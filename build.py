@@ -27,6 +27,8 @@ TIKTOK = "https://www.tiktok.com/@fabricioborgescorretor"
 LINKEDIN = "https://www.linkedin.com/in/fabricio-teixeira-43273960"
 MARCA_SUB = "Negócios Imobiliários"
 
+TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Chácara", "Fazenda"]
+
 REGIOES = {
     "vicente-pires": {
         "nome": "Vicente Pires",
@@ -240,7 +242,7 @@ def form_busca(r, regiao_sel=""):
         f'<option value="{s}"{" selected" if s == regiao_sel else ""}>{E(v["nome"])}</option>' for s, v in REGIOES.items()
     )
     return f"""<form class="busca" action="{r}imoveis.html" method="get" aria-label="Buscar imóveis">
-<label class="campo">Tipo<select name="tipo"><option value="">Todos</option><option>Casa</option><option>Apartamento</option><option>Lote</option></select></label>
+<label class="campo">Tipo<select name="tipo"><option value="">Todos</option>{"".join(f"<option>{t}</option>" for t in TIPOS)}</select></label>
 <label class="campo">Região<select name="regiao"><option value="">Todas as regiões</option>{opts_reg}</select></label>
 <label class="campo">Preço até<select name="ate"><option value="">Qualquer valor</option><option value="500000">R$ 500 mil</option><option value="800000">R$ 800 mil</option><option value="1200000">R$ 1,2 milhão</option><option value="2000000">R$ 2 milhões</option></select></label>
 <label class="campo">Quartos<select name="quartos"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
@@ -380,9 +382,7 @@ def lista_com_filtros(r, imoveis, regiao_fixa=None):
 <fieldset><legend>Tipo</legend>
 <div class="pilulas">
 <button type="button" class="pilula" data-tipo="" aria-pressed="true">Todos</button>
-<button type="button" class="pilula" data-tipo="Casa" aria-pressed="false">Casa</button>
-<button type="button" class="pilula" data-tipo="Apartamento" aria-pressed="false">Apartamento</button>
-<button type="button" class="pilula" data-tipo="Lote" aria-pressed="false">Lote</button>
+{"".join(f'<button type="button" class="pilula" data-tipo="{t}" aria-pressed="false">{t}</button>' for t in TIPOS)}
 </div></fieldset>
 <label class="campo">Preço até<select name="ate"><option value="">Qualquer valor</option><option value="500000">R$ 500 mil</option><option value="800000">R$ 800 mil</option><option value="1200000">R$ 1,2 milhão</option><option value="2000000">R$ 2 milhões</option></select></label>
 <label class="campo">Quartos<select name="quartos"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
@@ -559,7 +559,7 @@ def pagina_anuncie(tem_exemplo):
 <form class="caixa" data-anuncie>
 <div class="linha-campos">
 <label class="campo">Seu nome<input name="nome" required autocomplete="name"></label>
-<label class="campo">Tipo<select name="tipo"><option>Casa</option><option>Apartamento</option><option>Lote</option></select></label>
+<label class="campo">Tipo<select name="tipo">{"".join(f"<option>{t}</option>" for t in TIPOS)}</select></label>
 <label class="campo">Região<select name="regiao">{opts_reg}</select></label>
 </div>
 <label class="campo">Situação do documento<select name="doc"><option>Escriturado</option><option>Em regularização</option><option>Cessão de direitos</option><option>Não sei</option></select></label>
