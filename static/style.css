@@ -230,3 +230,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .card-foto .selo-video { left: auto; right: 12px; background: var(--azul); color: #fff; display: inline-flex; align-items: center; gap: 4px; }
 .selo-video svg { width: 14px; height: 14px; }
+.filtro-uf { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); margin-top: 8px; }
+.filtro-uf:first-of-type { margin-top: 0; }

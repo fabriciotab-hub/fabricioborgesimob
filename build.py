@@ -60,7 +60,52 @@ REGIOES = {
         "card": "Outras regiões",
         "cta": "Fale comigo",
     },
+    "aguas-lindas": {
+        "nome": "Águas Lindas de Goiás",
+        "uf": "GO",
+        "curto": "Casas e lotes com bom custo no Entorno do DF, pela BR-070.",
+        "texto": "Águas Lindas de Goiás fica no Entorno do DF, pela BR-070, e tem casas e lotes com preço mais acessível que em Brasília. Como no DF, confiro a documentação de cada imóvel antes da visita.",
+    },
+    "valparaiso": {
+        "nome": "Valparaíso de Goiás",
+        "uf": "GO",
+        "curto": "Casas e apartamentos no Entorno Sul, pela BR-040.",
+        "texto": "Valparaíso de Goiás fica no Entorno Sul do DF, pela BR-040, com casas, apartamentos e comércio completo. Confiro a documentação de cada imóvel antes da visita.",
+    },
+    "jardim-inga": {
+        "nome": "Jardim Ingá",
+        "uf": "GO",
+        "curto": "Casas e lotes no distrito de Luziânia, pela BR-040.",
+        "texto": "O Jardim Ingá é um distrito de Luziânia, na BR-040, entre Valparaíso e Luziânia, com casas e lotes de bom custo. Confiro a documentação de cada imóvel antes da visita.",
+    },
+    "luziania": {
+        "nome": "Luziânia",
+        "uf": "GO",
+        "curto": "Casas, lotes e chácaras em uma das maiores cidades do Entorno.",
+        "texto": "Luziânia é uma das maiores cidades do Entorno do DF, pela BR-040, com casas, lotes e chácaras. Confiro a documentação de cada imóvel antes da visita.",
+    },
+    "padre-bernardo": {
+        "nome": "Padre Bernardo",
+        "uf": "GO",
+        "curto": "Chácaras, fazendas e lotes ao norte do DF, pela BR-080.",
+        "texto": "Padre Bernardo fica ao norte do DF, pela BR-080, e tem chácaras, fazendas e lotes com bastante espaço. Confiro a documentação de cada imóvel antes da visita.",
+    },
 }
+
+UFS = {"DF": "Distrito Federal", "GO": "Goiás"}
+
+
+def uf(reg):
+    return reg.get("uf", "DF")
+
+
+def local(reg):
+    """Cidade e estado para textos e mapas: 'Vicente Pires, Brasília, DF' ou 'Luziânia, GO'."""
+    return f"{reg['nome']}, Brasília, DF" if uf(reg) == "DF" else f"{reg['nome']}, {uf(reg)}"
+
+
+def por_uf():
+    return [(u, nome, [(s, v) for s, v in REGIOES.items() if uf(v) == u]) for u, nome in UFS.items()]
 
 DOCS = {
     "escriturado": {
@@ -239,7 +284,10 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 
 def form_busca(r, regiao_sel=""):
     opts_reg = "".join(
-        f'<option value="{s}"{" selected" if s == regiao_sel else ""}>{E(v["nome"])}</option>' for s, v in REGIOES.items()
+        f'<optgroup label="{nome}">' + "".join(
+            f'<option value="{s}"{" selected" if s == regiao_sel else ""}>{E(v["nome"])}</option>' for s, v in regs
+        ) + "</optgroup>"
+        for _, nome, regs in por_uf()
     )
     return f"""<form class="busca" action="{r}imoveis.html" method="get" aria-label="Buscar imóveis">
 <label class="campo">Tipo<select name="tipo"><option value="">Todos</option>{"".join(f"<option>{t}</option>" for t in TIPOS)}</select></label>
@@ -319,13 +367,13 @@ def pagina_inicial(imoveis, tem_exemplo):
     cards = "\n".join(card(i, r) for i in destaques)
     reg_cards = "\n".join(
         f'<a class="regiao-card" href="regioes/{s}.html"><strong>{E(v.get("card", v["nome"]))}</strong><span>{E(v["curto"])}</span><em>{v.get("cta", "Ver imóveis")}</em></a>'
-        for s, v in REGIOES.items()
+        for s, v in REGIOES.items() if uf(v) == "DF"
     )
     corpo = f"""<section class="hero">
 {monograma(520, classe="hero-mono")}
 <div class="wrap">
 <div style="display:flex;flex-direction:column;gap:16px">
-<span class="sobretitulo">Venda de imóveis no DF</span>
+<span class="sobretitulo">Venda de imóveis no DF e Entorno</span>
 <h1>Casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras</h1>
 <p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita.</p>
 </div>
@@ -354,7 +402,7 @@ def pagina_inicial(imoveis, tem_exemplo):
         "url": DOMINIO,
         "telephone": "+55 61 99562-0101",
         "sameAs": [f"https://instagram.com/{INSTAGRAM}"] + [u for u in (YOUTUBE, TIKTOK, LINKEDIN) if u],
-        "areaServed": [v["nome"] + ", Brasília, DF" for k, v in REGIOES.items() if k != "outras-regioes"] + ["Distrito Federal"],
+        "areaServed": [local(v) for k, v in REGIOES.items() if k != "outras-regioes"] + ["Distrito Federal"],
         "address": {"@type": "PostalAddress", "addressLocality": "Brasília", "addressRegion": "DF", "addressCountry": "BR"},
     }
     head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
@@ -372,8 +420,11 @@ def lista_com_filtros(r, imoveis, regiao_fixa=None):
         filtro_reg = f'<input type="hidden" name="regiao" value="{regiao_fixa}">'
     else:
         checks = "".join(
-            f'<label class="check" style="font-weight:500"><input type="checkbox" name="regiao" value="{s}"> {E(v["nome"])}</label>'
-            for s, v in REGIOES.items()
+            f'<span class="filtro-uf">{nome}</span>' + "".join(
+                f'<label class="check" style="font-weight:500"><input type="checkbox" name="regiao" value="{s}"> {E(v["nome"])}</label>'
+                for s, v in regs
+            )
+            for _, nome, regs in por_uf()
         )
         filtro_reg = f'<fieldset><legend>Região</legend>{checks}</fieldset>'
     return f"""<div class="busca-layout" data-busca>
@@ -434,7 +485,7 @@ def pagina_regiao(slug, imoveis, tem_exemplo):
 </div>
 {lista_com_filtros(r, doms, slug) if doms else '<div class="vazio">Nenhum imóvel anunciado aqui agora. <a href="' + wa('Olá Fabrício, procuro imóvel em ' + reg['nome'] + '.') + '">Me chame no WhatsApp</a> e eu aviso quando aparecer.</div>'}
 </div></div>"""
-    return layout(r, f"{reg.get('h1', 'Imóveis à venda em ' + reg['nome'] + ', DF')} · {MARCA}", f"{reg.get('h1', 'Casas, lotes e apartamentos à venda em ' + reg['nome'] + ' (DF)')}. {reg['curto']}", corpo, "regioes", f"regioes/{slug}.html", tem_exemplo)
+    return layout(r, f"{reg.get('h1', 'Imóveis à venda em ' + reg['nome'] + ', ' + uf(reg))} · {MARCA}", f"{reg.get('h1', 'Casas, lotes e apartamentos à venda em ' + reg['nome'] + ' (' + uf(reg) + ')')}. {reg['curto']}", corpo, "regioes", f"regioes/{slug}.html", tem_exemplo)
 
 
 def pagina_imovel(i, tem_exemplo):
@@ -482,7 +533,7 @@ def pagina_imovel(i, tem_exemplo):
         secao_video = f'<p><a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Veja os vídeos dos imóveis no meu canal do YouTube</a></p>'
     else:
         secao_video = ""
-    mapa_q = quote(f"{reg['nome']}, Brasília, DF")
+    mapa_q = quote(local(reg))
     corpo = f"""<div class="wrap">
 <nav class="trilha" aria-label="Caminho"><a href="../imoveis.html">Imóveis à venda</a><span aria-hidden="true">/</span><a href="../regioes/{i['regiao']}.html">{E(reg['nome'])}</a><span aria-hidden="true">/</span><span>Código {i['codigo']}</span></nav>
 <div class="galeria">{''.join(cel)}</div>
@@ -491,7 +542,7 @@ def pagina_imovel(i, tem_exemplo):
 <div style="display:flex;flex-direction:column;gap:10px">
 <span class="selo selo-{i['documento']}" style="align-self:flex-start;font-size:14px;padding:6px 12px">{d['rotulo']}</span>
 <h1>{E(i['titulo'])} em {E(reg['nome'])}</h1>
-<p style="color:var(--texto-2)">{E(i['endereco'])}, Brasília, DF</p>
+<p style="color:var(--texto-2)">{E(i['endereco'])}, {E(local(reg).split(", ", 1)[1] if uf(reg) == "DF" else uf(reg))}</p>
 </div>
 <div class="specs">{specs_html}</div>
 <section style="display:flex;flex-direction:column;gap:12px">
@@ -533,17 +584,20 @@ def pagina_imovel(i, tem_exemplo):
         "itemOffered": {
             "@type": "SingleFamilyResidence" if i["tipo"] == "Casa" else ("Apartment" if i["tipo"] == "Apartamento" else "Place"),
             "name": i["titulo"],
-            "address": {"@type": "PostalAddress", "addressLocality": reg["nome"], "addressRegion": "DF", "addressCountry": "BR"},
+            "address": {"@type": "PostalAddress", "addressLocality": reg["nome"], "addressRegion": uf(reg), "addressCountry": "BR"},
         },
     }
     head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
-    desc = f"{i['tipo']} à venda em {reg['nome']}, DF: {specs_curtas(i)}. {brl(i['preco'])}. {d['rotulo']}. Código {i['codigo']}."
+    desc = f"{i['tipo']} à venda em {reg['nome']}, {uf(reg)}: {specs_curtas(i)}. {brl(i['preco'])}. {d['rotulo']}. Código {i['codigo']}."
     return layout(r, f"{i['titulo']} em {reg['nome']} · {brl(i['preco'])}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
 
 
 def pagina_anuncie(tem_exemplo):
     r = ""
-    opts_reg = "".join(f"<option>{E(v['nome'])}</option>" for v in REGIOES.values())
+    opts_reg = "".join(
+        f'<optgroup label="{nome}">' + "".join(f"<option>{E(v['nome'])}</option>" for _, v in regs) + "</optgroup>"
+        for _, nome, regs in por_uf()
+    )
     corpo = f"""<section class="pagina-texto"><div class="wrap">
 <span class="sobretitulo">Para proprietários</span>
 <h1>Venda seu imóvel com quem conhece a região</h1>
