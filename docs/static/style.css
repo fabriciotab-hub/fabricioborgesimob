@@ -239,3 +239,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .fotos-todas::backdrop { background: rgba(18, 18, 18, .85); }
 .fotos-todas img { display: block; width: 100%; height: auto; margin-bottom: 12px; border-radius: 6px; }
 .fechar-fotos { position: sticky; top: 0; float: right; margin-top: -44px; background: var(--azul); color: #fff; border: 0; border-radius: 8px; padding: 8px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+.selo-lancamento { background: #E6E6EE; color: var(--azul); }
+.doc-lancamento { background: #F2F2F6; border: 1px solid #CFCFDC; }
+.card-foto { overflow: hidden; }
+.card-foto img { position: absolute; inset: 0; }

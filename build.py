@@ -126,12 +126,21 @@ DOCS = {
         "resumo": "Venda por contrato de cessão. Pagamento normalmente à vista.",
         "texto": "A venda deste imóvel é feita por contrato de cessão de direitos, sem escritura no momento. Normalmente o pagamento é à vista ou combinado com o vendedor. Antes da proposta eu levanto toda a documentação disponível com você.",
     },
+    "lancamento": {
+        "rotulo": "Lançamento",
+        "cor": "#272742",
+        "resumo": "Imóvel na planta, com incorporação registrada em cartório.",
+        "texto": "Este é um lançamento na planta, com memorial de incorporação registrado em cartório. A compra é feita direto com a construtora, com entrada e parcelas durante a obra, e o restante pode ser financiado na entrega das chaves. Eu explico a tabela e as condições de pagamento.",
+        "secao": False,
+    },
 }
 
 E = html.escape
 
 
 def brl(v):
+    if v is None:
+        return "Preço sob consulta"
     return "R$ " + f"{v:,.0f}".replace(",", ".")
 
 
@@ -170,7 +179,9 @@ def specs_curtas(i):
         partes.append(f"{i['area']} m²")
     elif i.get("lote"):
         partes.append(f"lote {i['lote']} m²")
-    if i.get("quartos"):
+    if i.get("quartos_texto"):
+        partes.append(i["quartos_texto"])
+    elif i.get("quartos"):
         partes.append(f"{i['quartos']} quarto{'s' if i['quartos'] > 1 else ''}")
     if i.get("vagas"):
         partes.append(f"{i['vagas']} vaga{'s' if i['vagas'] > 1 else ''}")
@@ -193,7 +204,7 @@ def card(i, r):
     d = DOCS[i["documento"]]
     reg = REGIOES[i["regiao"]]["nome"]
     attrs = (
-        f'data-tipo="{E(i["tipo"])}" data-regiao="{i["regiao"]}" data-preco="{i["preco"]}" '
+        f'data-tipo="{E(i["tipo"])}" data-regiao="{i["regiao"]}" data-preco="{i["preco"] or 0}" '
         f'data-quartos="{i.get("quartos") or 0}" data-doc="{i["documento"]}" '
         f'data-area="{i.get("area") or i.get("lote") or 0}" data-ordem="{i["_ordem"]}"'
     )
@@ -306,7 +317,7 @@ def form_busca(r, regiao_sel=""):
 def secao_docs():
     itens = "".join(
         f'<div><strong><span class="ponto" style="background:{d["cor"]}"></span>{d["rotulo"]}</strong><small>{d["resumo"]}</small></div>'
-        for d in DOCS.values()
+        for d in DOCS.values() if d.get("secao", True)
     )
     return f"""<section class="faixa-azul">
 <div class="wrap">
@@ -515,7 +526,9 @@ def pagina_imovel(i, tem_exemplo):
         specs.append(("Área construída", f"{i['area']} m²"))
     if i.get("lote"):
         specs.append(("Lote", f"{i['lote']} m²"))
-    if i.get("quartos"):
+    if i.get("quartos_texto"):
+        specs.append(("Quartos", i["quartos_texto"]))
+    elif i.get("quartos"):
         q = f"{i['quartos']}"
         if i.get("suites") and i["suites"] == i["quartos"]:
             q = f"{i['suites']} suíte{'s' if i['suites'] > 1 else ''}"
@@ -588,7 +601,7 @@ def pagina_imovel(i, tem_exemplo):
     ld = {
         "@context": "https://schema.org",
         "@type": "Offer",
-        "price": i["preco"],
+        **({"price": i["preco"]} if i["preco"] else {}),
         "priceCurrency": "BRL",
         "url": f"{DOMINIO}/imoveis/{i['codigo']}.html",
         "itemOffered": {
