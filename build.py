@@ -707,6 +707,8 @@ def main():
     )
     (SAIDA / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {DOMINIO}/sitemap.xml\n", encoding="utf-8")
     (SAIDA / "CNAME").write_text("fabricioborgesimob.com.br\n", encoding="utf-8")
+    # Verificação do Google Search Console (não remover)
+    (SAIDA / "google1be5a2dd9e10a72d.html").write_text("google-site-verification: google1be5a2dd9e10a72d.html", encoding="utf-8")
     (SAIDA / ".nojekyll").write_text("", encoding="utf-8")
     print(f"{len(paginas)} páginas geradas em {SAIDA}")
 
