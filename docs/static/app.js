@@ -131,4 +131,14 @@
         (f.obs.value ? '\nSobre o imóvel: ' + f.obs.value : ''));
     });
   }
+
+  // Galeria: todas as fotos
+  var janela = document.querySelector('[data-fotos]');
+  if (janela && janela.showModal) {
+    document.querySelectorAll('[data-abrir-fotos], .galeria img').forEach(function (b) {
+      b.addEventListener('click', function () { janela.showModal(); });
+    });
+    janela.querySelector('[data-fechar-fotos]').addEventListener('click', function () { janela.close(); });
+    janela.addEventListener('click', function (e) { if (e.target === janela) janela.close(); });
+  }
 })();

@@ -179,9 +179,13 @@ def specs_curtas(i):
     return " · ".join(partes)
 
 
+def foco(i):
+    return f' style="object-position:{E(i["capa_foco"])}"' if i.get("capa_foco") else ""
+
+
 def foto_capa(i, r):
     if i.get("fotos"):
-        return f'<img src="{r}{E(i["fotos"][0])}" alt="{E(i["titulo"])}" loading="lazy">'
+        return f'<img src="{r}{E(i["fotos"][0])}" alt="{E(i["titulo"])}" loading="lazy"{foco(i)}>'
     return ICONE_FOTO
 
 
@@ -498,9 +502,14 @@ def pagina_imovel(i, tem_exemplo):
     cel = []
     for n in range(5):
         if n < len(fotos):
-            cel.append(f'<div><img src="{r}{E(fotos[n])}" alt="{E(i["titulo"])}, foto {n + 1}" loading="{"eager" if n == 0 else "lazy"}"></div>')
+            cel.append(f'<div><img src="{r}{E(fotos[n])}" alt="{E(i["titulo"])}, foto {n + 1}" loading="{"eager" if n == 0 else "lazy"}"{foco(i) if n == 0 else ""}></div>')
         else:
             cel.append(f"<div>{rotulos[n]}</div>")
+    if len(fotos) > 1:
+        cel.append(f'<button type="button" class="ver-fotos" data-abrir-fotos>Ver as {len(fotos)} fotos</button>')
+    todas = "".join(f'<img src="{r}{E(f)}" alt="{E(i["titulo"])}, foto {n + 1}" loading="lazy">' for n, f in enumerate(fotos))
+    janela_fotos = (f'<dialog class="fotos-todas" data-fotos aria-label="Fotos do imóvel {i["codigo"]}">'
+                    f'<button type="button" class="fechar-fotos" data-fechar-fotos>Fechar</button>{todas}</dialog>') if len(fotos) > 1 else ""
     specs = []
     if i.get("area"):
         specs.append(("Área construída", f"{i['area']} m²"))
@@ -537,6 +546,7 @@ def pagina_imovel(i, tem_exemplo):
     corpo = f"""<div class="wrap">
 <nav class="trilha" aria-label="Caminho"><a href="../imoveis.html">Imóveis à venda</a><span aria-hidden="true">/</span><a href="../regioes/{i['regiao']}.html">{E(reg['nome'])}</a><span aria-hidden="true">/</span><span>Código {i['codigo']}</span></nav>
 <div class="galeria">{''.join(cel)}</div>
+{janela_fotos}
 <div class="imovel-layout">
 <div class="imovel-principal">
 <div style="display:flex;flex-direction:column;gap:10px">
@@ -563,7 +573,7 @@ def pagina_imovel(i, tem_exemplo):
 </div>
 <aside class="lateral" aria-label="Contato">
 <span class="preco">{brl(i['preco'])}</span>
-<div class="custos">{custos_html or '<div><span>Sem condomínio</span></div>'}</div>
+<div class="custos">{custos_html or ('<div><span>Sem condomínio</span></div>' if i.get("condominio") == 0 else '')}</div>
 <a class="btn btn-azul" style="min-height:52px;font-size:17px" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} Conversar no WhatsApp</a>
 <button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>
 <form class="form-visita" data-visita data-codigo="{i['codigo']}" hidden>

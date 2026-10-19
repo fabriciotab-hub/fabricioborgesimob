@@ -232,3 +232,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .selo-video svg { width: 14px; height: 14px; }
 .filtro-uf { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); margin-top: 8px; }
 .filtro-uf:first-of-type { margin-top: 0; }
+.galeria { position: relative; }
+.galeria img { cursor: zoom-in; }
+.ver-fotos { position: absolute; right: 12px; bottom: 12px; background: #fff; color: var(--azul); border: 1px solid var(--azul); border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.fotos-todas { width: min(1000px, 100vw); max-height: 100vh; padding: 56px 16px 16px; border: 0; border-radius: 8px; }
+.fotos-todas::backdrop { background: rgba(18, 18, 18, .85); }
+.fotos-todas img { display: block; width: 100%; height: auto; margin-bottom: 12px; border-radius: 6px; }
+.fechar-fotos { position: sticky; top: 0; float: right; margin-top: -44px; background: var(--azul); color: #fff; border: 0; border-radius: 8px; padding: 8px 14px; font: inherit; font-weight: 600; cursor: pointer; }
