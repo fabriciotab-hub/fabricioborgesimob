@@ -27,7 +27,7 @@ TIKTOK = "https://www.tiktok.com/@fabricioborgescorretor"
 LINKEDIN = "https://www.linkedin.com/in/fabricio-teixeira-43273960"
 MARCA_SUB = "Negócios Imobiliários"
 
-TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Chácara", "Fazenda"]
+TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Comércio", "Chácara", "Fazenda"]
 
 REGIOES = {
     "vicente-pires": {
