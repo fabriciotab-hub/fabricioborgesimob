@@ -549,7 +549,7 @@ def pagina_imovel(i, tem_exemplo):
     if vid:
         mais = f'<a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Ver mais vídeos no meu canal</a>' if YOUTUBE else ""
         secao_video = (f'<section style="display:flex;flex-direction:column;gap:12px"><h2>Vídeo do imóvel</h2>'
-                       f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="Vídeo do imóvel {i['codigo']}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
+                       f'<div class="video{" vertical" if "/shorts/" in (i.get("video") or "") else ""}"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="Vídeo do imóvel {i['codigo']}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                        f'<p style="font-size:15px;color:var(--texto-2)"><a href="https://www.youtube.com/watch?v={vid}" rel="noopener">Assistir no YouTube</a></p>{mais}</section>')
     elif YOUTUBE:
         secao_video = f'<p><a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Veja os vídeos dos imóveis no meu canal do YouTube</a></p>'
