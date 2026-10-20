@@ -45,7 +45,41 @@
 <p style="color:var(--texto-2);font-size:18px;line-height:1.6">Meu foco é Vicente Pires, Jóquei, Arniqueira e Águas Claras, mas também atendo quem quer vender ou comprar em outras regiões de Brasília. O cuidado é o mesmo: avaliação, documentação conferida e acompanhamento até a escritura.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="btn btn-azul" href="../anuncie.html">Quero vender meu imóvel</a><a class="btn btn-contorno" href="https://wa.me/5561995620101?text=Ol%C3%A1%20Fabr%C3%ADcio%2C%20procuro%20um%20im%C3%B3vel%20em%20outra%20regi%C3%A3o%20de%20Bras%C3%ADlia%3A%20">Quero comprar em outra região</a></div>
 </div>
-<div class="vazio">Nenhum imóvel anunciado aqui agora. <a href="https://wa.me/5561995620101?text=Ol%C3%A1%20Fabr%C3%ADcio%2C%20procuro%20im%C3%B3vel%20em%20Outras%20regi%C3%B5es%20do%20DF.">Me chame no WhatsApp</a> e eu aviso quando aparecer.</div>
+<div class="busca-layout" data-busca>
+<form class="filtros" aria-label="Filtros" onsubmit="return false">
+<input type="hidden" name="regiao" value="outras-regioes">
+<fieldset><legend>Tipo</legend>
+<div class="pilulas">
+<button type="button" class="pilula" data-tipo="" aria-pressed="true">Todos</button>
+<button type="button" class="pilula" data-tipo="Casa" aria-pressed="false">Casa</button><button type="button" class="pilula" data-tipo="Apartamento" aria-pressed="false">Apartamento</button><button type="button" class="pilula" data-tipo="Lote" aria-pressed="false">Lote</button><button type="button" class="pilula" data-tipo="Área residencial" aria-pressed="false">Área residencial</button><button type="button" class="pilula" data-tipo="Área comercial" aria-pressed="false">Área comercial</button><button type="button" class="pilula" data-tipo="Comércio" aria-pressed="false">Comércio</button><button type="button" class="pilula" data-tipo="Chácara" aria-pressed="false">Chácara</button><button type="button" class="pilula" data-tipo="Fazenda" aria-pressed="false">Fazenda</button>
+</div></fieldset>
+<label class="campo">Preço até<select name="ate"><option value="">Qualquer valor</option><option value="500000">R$ 500 mil</option><option value="800000">R$ 800 mil</option><option value="1200000">R$ 1,2 milhão</option><option value="2000000">R$ 2 milhões</option></select></label>
+<label class="campo">Quartos<select name="quartos"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
+<label class="check" style="background:var(--fundo-2);border-radius:10px;padding:8px 12px"><input type="checkbox" name="esc" value="1"> Só escriturados</label>
+</form>
+<div class="resultados">
+<div class="barra-resultados">
+<p><strong data-total>1</strong> imóveis encontrados</p>
+<label class="campo" style="flex-direction:row;align-items:center;gap:8px;font-weight:500">Ordenar por
+<select name="ordem" style="width:auto"><option value="recentes">Mais recentes</option><option value="menor">Menor preço</option><option value="maior">Maior preço</option><option value="area">Maior área</option></select></label>
+</div>
+<div class="grade" data-lista><a class="card" href="../imoveis/TS-0101.html" data-tipo="Comércio" data-regiao="outras-regioes" data-preco="147000" data-quartos="0" data-doc="escriturado" data-area="40.66" data-ordem="0">
+<div class="card-foto"><img src="../fotos/TS-0101/01.jpg" alt="Loja de 40 m² no Edifício Icaraí, Taguatinga Sul" loading="lazy"><span class="selo selo-escriturado">Escriturado</span></div>
+<div class="card-corpo">
+<span class="preco">R$ 147.000</span>
+<span class="card-titulo">Loja de 40 m² no Edifício Icaraí, Taguatinga Sul</span>
+<span class="card-local">Outras regiões do DF · Comércio</span>
+<span class="card-specs">40,66 m²</span>
+<span class="codigo">Código TS-0101</span>
+</div>
+</a></div>
+<div class="vazio" data-vazio hidden>Nenhum imóvel com esses filtros agora. Ajuste a busca ou peça um alerta abaixo.</div>
+<div class="alerta">
+<div><strong style="font-size:18px">Não achou o que procura?</strong><br><span style="color:var(--texto-2)">Me conte o que você quer e eu aviso no WhatsApp quando aparecer.</span></div>
+<a class="btn btn-areia" href="https://wa.me/5561995620101?text=Ol%C3%A1%20Fabr%C3%ADcio%2C%20estou%20procurando%20um%20im%C3%B3vel%20e%20queria%20receber%20op%C3%A7%C3%B5es.%20Procuro%3A%20">Criar alerta no WhatsApp</a>
+</div>
+</div>
+</div>
 </div></div>
 </main>
 <footer class="rodape">

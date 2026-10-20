@@ -173,10 +173,14 @@ ICONE_FOTO = '<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24"
 ICONE_PESSOA = '<svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>'
 
 
+def m2(v):
+    return f"{v:g}".replace(".", ",")
+
+
 def specs_curtas(i):
     partes = []
     if i.get("area"):
-        partes.append(f"{i['area']} m²")
+        partes.append(f"{m2(i['area'])} m²")
     elif i.get("lote"):
         partes.append(f"lote {i['lote']} m²")
     if i.get("quartos_texto"):
@@ -523,7 +527,7 @@ def pagina_imovel(i, tem_exemplo):
                     f'<button type="button" class="fechar-fotos" data-fechar-fotos>Fechar</button>{todas}</dialog>') if len(fotos) > 1 else ""
     specs = []
     if i.get("area"):
-        specs.append(("Área construída", f"{i['area']} m²"))
+        specs.append(("Área" if i["tipo"] == "Comércio" else "Área construída", f"{m2(i['area'])} m²"))
     if i.get("lote"):
         specs.append(("Lote", f"{i['lote']} m²"))
     if i.get("quartos_texto"):
@@ -564,7 +568,7 @@ def pagina_imovel(i, tem_exemplo):
 <div class="imovel-principal">
 <div style="display:flex;flex-direction:column;gap:10px">
 <span class="selo selo-{i['documento']}" style="align-self:flex-start;font-size:14px;padding:6px 12px">{d['rotulo']}</span>
-<h1>{E(i['titulo'])} em {E(reg['nome'])}</h1>
+<h1>{E(i['titulo'])}{'' if i['regiao'] == 'outras-regioes' else ' em ' + E(reg['nome'])}</h1>
 <p style="color:var(--texto-2)">{E(i['endereco'])}, {E(local(reg).split(", ", 1)[1] if uf(reg) == "DF" else uf(reg))}</p>
 </div>
 <div class="specs">{specs_html}</div>
@@ -612,7 +616,7 @@ def pagina_imovel(i, tem_exemplo):
     }
     head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
     desc = f"{i['tipo']} à venda em {reg['nome']}, {uf(reg)}: {specs_curtas(i)}. {brl(i['preco'])}. {d['rotulo']}. Código {i['codigo']}."
-    return layout(r, f"{i['titulo']} em {reg['nome']} · {brl(i['preco'])}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
+    return layout(r, f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' em ' + reg['nome']} · {brl(i['preco'])}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
 
 
 def pagina_anuncie(tem_exemplo):
