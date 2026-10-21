@@ -105,7 +105,20 @@
     "fotos/TS-0101/08.jpg",
     "fotos/TS-0101/09.jpg",
     "fotos/TS-0101/10.jpg"
-   ]
+   ],
+   "capa": {
+    "foto": "fotos/TS-0101/09.jpg",
+    "foco": "50% 30%",
+    "local": "Taguatinga Sul",
+    "esquerda": [
+     "Loja comercial",
+     "Galeria Icaraí"
+    ],
+    "direita": [
+     "40,66 m²",
+     "Escriturada"
+    ]
+   }
   },
   {
    "codigo": "AR-0102",

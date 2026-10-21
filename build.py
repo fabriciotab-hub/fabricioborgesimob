@@ -731,6 +731,11 @@ def main():
     imoveis = dados["imoveis"]
     for n, i in enumerate(imoveis):
         i["_ordem"] = n
+        # Capa gerada por ferramentas/capas.js entra como primeira foto.
+        capa = f"fotos/{i['codigo']}/capa.jpg"
+        if i.get("capa") and (RAIZ / capa).exists() and capa not in i.get("fotos", []):
+            i["fotos"] = [capa] + i.get("fotos", [])
+            i["capa_foco"] = "50% 100%"
     tem_exemplo = any(i.get("exemplo") for i in imoveis)
 
     if SAIDA.exists():
