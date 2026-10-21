@@ -245,3 +245,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .card-foto img { position: absolute; inset: 0; }
 
 .video.vertical { aspect-ratio: 9 / 16; width: 100%; max-width: 360px; }
+
+/* Parceria CVT */
+.financiamento { padding-top: 0; }
+.fin-caixa { background: var(--azul); color: #fff; border-radius: 8px; padding: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+.fin-texto { flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px; }
+.fin-texto h2 { color: #fff; font-size: clamp(26px, 3.4vw, 32px); }
+.fin-texto .sobretitulo { color: var(--areia); }
+.fin-texto p { color: #D6D6DE; line-height: 1.6; font-size: 17px; }
+.fin-texto strong { color: #fff; }
+.fin-botoes { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-contorno-claro { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.6); }
+.btn-contorno-claro:hover { background: rgba(255,255,255,.1); color: #fff; }
+.fin-contato { font-size: 15px !important; }
+.fin-contato a { color: var(--areia); font-weight: 600; }
+.cvt-marca { display: flex; align-items: center; gap: 12px; border: 1px solid var(--areia); border-radius: 8px; padding: 18px 22px; color: #fff; }
+.cvt-marca b { font-family: "Julius Sans One", sans-serif; font-size: 44px; letter-spacing: .08em; line-height: 1; }
+.cvt-marca small { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--areia); line-height: 1.35; }
+.aviso-fin { background: #fff; border-left: 3px solid var(--azul); border-radius: 6px; padding: 10px 14px; font-size: 15px; line-height: 1.5; color: #33334A; }
+.aviso-fin a { font-weight: 700; white-space: nowrap; }
+@media (max-width: 600px) { .fin-caixa { padding: 26px 20px; } }

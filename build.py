@@ -341,7 +341,8 @@ def secao_sobre(r, completa=False):
         foto = f'<div class="foto-retrato"><img src="{r}static/img/fabricio-retrato.jpg" alt="{MARCA}, corretor de imóveis" width="360" height="540"></div>'
     if completa:
         extra = """<p>Trabalho só com venda. Isso me deixa focado em uma coisa: ajudar quem quer comprar a encontrar o imóvel certo, com a documentação entendida, e ajudar quem quer vender a chegar no preço justo com segurança.</p>
-<p>Antes de cada visita eu explico a situação do documento, os custos de transferência e as opções de pagamento, para você decidir com calma.</p>"""
+<p>Antes de cada visita eu explico a situação do documento, os custos de transferência e as opções de pagamento, para você decidir com calma.</p>
+<p>Para quem vai financiar, conto com a parceria da <a href="https://cvtcorrespondente.com.br/" rel="noopener" style="color:var(--areia);font-weight:600">CVT Correspondente Bancário</a>, que analisa o crédito em vários bancos e cuida do processo até a assinatura.</p>"""
     return f"""<section class="sobre" id="sobre">
 <div class="wrap">
 {foto}
@@ -350,6 +351,42 @@ def secao_sobre(r, completa=False):
 <p>{CRECI}. Especialista em venda de imóveis em Vicente Pires, Jóquei, Arniqueira e Águas Claras.</p>
 {extra}
 <div><a class="btn btn-azul" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}">{ICONE_WHATS.format(s=18)} Falar comigo no WhatsApp</a></div>
+</div>
+</div>
+</section>"""
+
+
+PARCEIRO = {
+    "nome": "CVT Correspondente Bancário",
+    "frase": "Crédito imobiliário com estratégia, segurança e alto padrão.",
+    "servico": "Análise de crédito em vários bancos ao mesmo tempo, uso do FGTS e acompanhamento do pedido até a assinatura do contrato.",
+    "whats": "https://wa.me/5561984390099?text=" + quote("Olá, vim pelo site do corretor Fabrício Borges e quero simular um financiamento."),
+    "whats_txt": "(61) 98439-0099",
+    "site": "https://cvtcorrespondente.com.br/",
+    "instagram": "https://www.instagram.com/cvtoficial/",
+}
+
+
+def selo_parceiro():
+    return '<span class="cvt-marca" aria-hidden="true"><b>CVT</b><small>Correspondente<br>Bancário</small></span>'
+
+
+def secao_financiamento():
+    p = PARCEIRO
+    return f"""<section class="secao financiamento" id="financiamento">
+<div class="wrap">
+<div class="fin-caixa">
+<div class="fin-texto">
+<span class="sobretitulo">Parceria</span>
+<h2>Financiamento facilitado</h2>
+<p>Para quem vai financiar, trabalho em parceria com a <strong>{p['nome']}</strong>. {p['frase']} {p['servico']}</p>
+<div class="fin-botoes">
+<a class="btn btn-areia" href="{p['whats']}" rel="noopener">{ICONE_WHATS.format(s=18)} Simular com a CVT</a>
+<a class="btn btn-contorno-claro" href="{p['site']}" rel="noopener">Conhecer a CVT</a>
+</div>
+<p class="fin-contato">WhatsApp {p['whats_txt']} · <a href="{p['instagram']}" rel="noopener">@cvtoficial</a></p>
+</div>
+{selo_parceiro()}
 </div>
 </div>
 </section>"""
@@ -413,6 +450,7 @@ def pagina_inicial(imoveis, tem_exemplo):
 </section>
 {secao_docs()}
 {secao_simulador_anuncie(r)}
+{secao_financiamento()}
 {secao_sobre(r)}"""
     ld = {
         "@context": "https://schema.org",
@@ -559,6 +597,10 @@ def pagina_imovel(i, tem_exemplo):
         secao_video = f'<p><a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Veja os vídeos dos imóveis no meu canal do YouTube</a></p>'
     else:
         secao_video = ""
+    aviso_fin = ""
+    if i["documento"] == "escriturado" or "financ" in (i.get("descricao") or "").lower() and "não aceita financ" not in (i.get("descricao") or "").lower():
+        aviso_fin = (f'<p class="aviso-fin">Financiamento facilitado com a <strong>{PARCEIRO["nome"]}</strong>, parceira. '
+                     f'<a href="{PARCEIRO["whats"]}" rel="noopener">Simular no WhatsApp</a></p>')
     mapa_q = quote(local(reg))
     corpo = f"""<div class="wrap">
 <nav class="trilha" aria-label="Caminho"><a href="../imoveis.html">Imóveis à venda</a><span aria-hidden="true">/</span><a href="../regioes/{i['regiao']}.html">{E(reg['nome'])}</a><span aria-hidden="true">/</span><span>Código {i['codigo']}</span></nav>
@@ -581,6 +623,7 @@ def pagina_imovel(i, tem_exemplo):
 <section class="doc-box doc-{i['documento']}">
 <h2 style="font-size:22px">Situação do documento: {d['rotulo'].lower()}</h2>
 <p style="line-height:1.6;color:#33334A">{d['texto']}</p>
+{aviso_fin}
 </section>
 <section style="display:flex;flex-direction:column;gap:12px">
 <h2>Localização</h2>
