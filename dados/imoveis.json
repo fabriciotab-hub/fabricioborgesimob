@@ -65,7 +65,19 @@
     "fotos/PT-0101/12.jpg",
     "fotos/PT-0101/13.jpg"
    ],
-   "capa_foco": "0% 50%"
+   "capa": {
+    "canva": "DAHYxecNCrI",
+    "foto": "social/PT-0101/capa-fundo.jpg",
+    "local": "Algarve",
+    "esquerda": [
+     "Apartamentos",
+     "Lojas comerciais"
+    ],
+    "direita": [
+     "Portugal",
+     "970 m da Praia da Oura"
+    ]
+   }
   },
   {
    "codigo": "AR-0103",
