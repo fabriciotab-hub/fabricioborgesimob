@@ -261,6 +261,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
     menu = [
         ("imoveis.html", "Comprar", "comprar"),
         ("index.html#regioes", "Regiões", "regioes"),
+        ("investidores.html", "Investidores", "investidores"),
         ("anuncie.html", "Anuncie seu imóvel", "anuncie"),
         ("sobre.html", "Sobre", "sobre"),
     ]
@@ -323,7 +324,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <div class="rodape-marca">{monograma(56, classe="rodape-mono")}<div><strong>{MARCA}</strong><br>{MARCA_SUB}<br>Corretor de imóveis · {CRECI}<br>Brasília, DF</div></div>
 <div><strong>Contato</strong><ul><li><a href="{wa()}">WhatsApp {WHATS_TXT}</a></li><li><a href="https://instagram.com/{INSTAGRAM}" rel="noopener">{ICONE_INSTA} @{INSTAGRAM}</a></li>{yt_rodape}</ul></div>
 <div><ul>{regioes_rodape}</ul></div>
-<div><ul><li><a href="{r}anuncie.html">Anuncie seu imóvel</a></li><li><a href="{r}privacidade.html">Política de privacidade</a></li></ul></div>
+<div><ul><li><a href="{r}investidores.html">Lançamentos para investidores</a></li><li><a href="{r}anuncie.html">Anuncie seu imóvel</a></li><li><a href="{r}privacidade.html">Política de privacidade</a></li></ul></div>
 </div>
 </footer>
 <a class="whats-flutuante" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}" aria-label="Falar no WhatsApp">{ICONE_WHATS.format(s=30)}</a>
@@ -461,9 +462,9 @@ def pagina_inicial(imoveis, tem_exemplo):
 {monograma(520, classe="hero-mono")}
 <div class="wrap">
 <div style="display:flex;flex-direction:column;gap:16px">
-<span class="sobretitulo">Venda de imóveis no DF e Entorno</span>
+<span class="sobretitulo">Venda de imóveis no DF, Entorno e Portugal</span>
 <h1>Casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras</h1>
-<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita.</p>
+<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita. E, para quem quer investir ou morar fora, <a href="investidores.html" style="color:inherit;font-weight:600">lançamentos e oportunidades no Algarve, Portugal</a>.</p>
 </div>
 {form_busca(r)}
 </div>
@@ -733,6 +734,38 @@ def pagina_sobre(tem_exemplo):
     return layout(r, f"Sobre · {MARCA}, corretor de imóveis no DF", f"{MARCA}, corretor de imóveis {CRECI}, especialista em venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras.", corpo, "sobre", "sobre.html", tem_exemplo)
 
 
+def para_investidor(i):
+    return i.get("investidor", i["documento"] in ("lancamento", "portugal"))
+
+
+def pagina_investidores(imoveis, tem_exemplo):
+    r = ""
+    sel = [i for i in imoveis if para_investidor(i)]
+    br = [i for i in sel if uf(REGIOES[i["regiao"]]) not in PAISES]
+    pt = [i for i in sel if uf(REGIOES[i["regiao"]]) in PAISES]
+
+    def grupo(titulo, texto, lista, msg):
+        cards = "\n".join(card(i, r) for i in lista) if lista else f'<div class="vazio">Novas oportunidades chegam em breve. <a href="{wa(msg)}">Me chame no WhatsApp</a> e eu aviso primeiro.</div>'
+        return f"""<section class="secao" style="padding-top:0">
+<div class="secao-cabeca"><h2>{titulo}</h2></div>
+<p style="color:var(--texto-2);line-height:1.6;max-width:820px;margin-bottom:20px">{texto}</p>
+<div class="grade">{cards}</div>
+</section>"""
+
+    corpo = f"""<div class="busca-pagina"><div class="wrap">
+<nav class="trilha" aria-label="Caminho" style="padding-top:0"><a href="index.html">Início</a><span aria-hidden="true">/</span><span>Investidores</span></nav>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:820px">
+<span class="sobretitulo" style="color:var(--texto-2)">Para investidores</span>
+<h1 style="font-size:clamp(28px,4vw,38px)">Lançamentos e oportunidades para investir</h1>
+<p style="color:var(--texto-2);font-size:18px;line-height:1.6">Lançamentos na planta são a porta de entrada de quem investe: entrada menor, parcelas durante a obra e valorização até a entrega das chaves. Aqui reúno os empreendimentos do DF e as oportunidades em Portugal, no Algarve, por meio da minha parceria luso-brasileira. Eu analiso cada um com você, do potencial de valorização à documentação.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="btn btn-azul" href="{wa("Olá Fabrício, sou investidor e quero conhecer os lançamentos e oportunidades.")}">{ICONE_WHATS.format(s=18)} Falar sobre investimento</a></div>
+</div>
+{grupo("Lançamentos no DF", "Empreendimentos na planta, comprados direto com a construtora, com tabela e condições de pagamento explicadas por mim.", br, "Olá Fabrício, quero saber dos lançamentos no DF.")}
+{grupo("Portugal · Algarve", "Imóveis e oportunidades no sul de Portugal, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
+</div></div>"""
+    return layout(r, f"Lançamentos e oportunidades para investidores · {MARCA}", "Lançamentos na planta no DF e oportunidades no Algarve, Portugal, para investidores brasileiros. Corretor Fabrício Borges, CRECI/DF 27547.", corpo, "investidores", "investidores.html", tem_exemplo)
+
+
 def pagina_privacidade(tem_exemplo):
     corpo = f"""<section class="pagina-texto"><div class="wrap">
 <h1>Política de privacidade</h1>
@@ -784,6 +817,7 @@ def main():
         "imoveis.html": pagina_busca(imoveis, tem_exemplo),
         "anuncie.html": pagina_anuncie(tem_exemplo),
         "sobre.html": pagina_sobre(tem_exemplo),
+        "investidores.html": pagina_investidores(imoveis, tem_exemplo),
         "privacidade.html": pagina_privacidade(tem_exemplo),
         "404.html": pagina_404(tem_exemplo),
     }
