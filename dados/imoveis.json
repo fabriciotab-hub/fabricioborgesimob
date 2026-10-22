@@ -2,6 +2,71 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto.",
  "imoveis": [
   {
+   "codigo": "PT-0101",
+   "destaque": true,
+   "tipo": "Lote",
+   "titulo": "Projeto Oura Prime, terreno para empreendimento em Albufeira",
+   "regiao": "algarve",
+   "moeda": "EUR",
+   "endereco": "Rua de Sá Carneiro, Areias de São João, Albufeira",
+   "mapa": "Rua de Sá Carneiro, Areias de São João, Albufeira, Portugal",
+   "mapa_zoom": 15,
+   "preco": 11000000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": null,
+   "lote": null,
+   "quartos": null,
+   "suites": null,
+   "vagas": null,
+   "documento": "portugal",
+   "specs": [
+    [
+     "Habitação",
+     "6.976 m²"
+    ],
+    [
+     "Comércio",
+     "3.257 m²"
+    ],
+    [
+     "Estacionamento",
+     "9.734 m²"
+    ],
+    [
+     "Praia da Oura",
+     "970 m"
+    ]
+   ],
+   "descricao": "O Projeto Oura Prime é um terreno para incorporação em Areias de São João, na Rua de Sá Carneiro, em Albufeira, a 970 m da Praia da Oura, no coração do Algarve. O terreno já teve aprovado um aparthotel com área comercial, e o município mantém o índice de construção aprovado (sujeito a nova consulta à Câmara Municipal). As áreas previstas são 6.976 m² de habitação, 3.257 m² de comércio e 9.734 m² de estacionamento, o que permite combinar apartamentos, lojas e vagas com receita própria. Os estudos de arquitetura incluem plantas de apartamentos T0 e T1 (estúdio e 1 quarto, no padrão português). Albufeira é o concelho mais turístico do Algarve, com mais de 2 milhões de visitantes por ano, 36 praias, marina, campos de golfe de renome e forte procura por imóveis de férias e aluguel de curta duração. Fica a cerca de 40 minutos do Aeroporto de Faro, 30 minutos de Portimão e 2 horas de Lisboa, com acesso pelas autoestradas A2 e A22. Oportunidade para investidores e incorporadores brasileiros. Peça a apresentação completa, com estudo de mercado e imóveis comparáveis. Imagens ilustrativas.",
+   "itens": [
+    "Projeto aprovado anteriormente (aparthotel)",
+    "6.976 m² de habitação",
+    "3.257 m² de comércio",
+    "9.734 m² de estacionamento",
+    "970 m da Praia da Oura",
+    "Plantas T0 e T1",
+    "40 min do Aeroporto de Faro",
+    "Albufeira, Algarve"
+   ],
+   "fotos": [
+    "fotos/PT-0101/01.jpg",
+    "fotos/PT-0101/02.jpg",
+    "fotos/PT-0101/03.jpg",
+    "fotos/PT-0101/04.jpg",
+    "fotos/PT-0101/05.jpg",
+    "fotos/PT-0101/06.jpg",
+    "fotos/PT-0101/07.jpg",
+    "fotos/PT-0101/08.jpg",
+    "fotos/PT-0101/09.jpg",
+    "fotos/PT-0101/10.jpg",
+    "fotos/PT-0101/11.jpg",
+    "fotos/PT-0101/12.jpg",
+    "fotos/PT-0101/13.jpg"
+   ],
+   "capa_foco": "0% 50%"
+  },
+  {
    "codigo": "AR-0103",
    "destaque": true,
    "tipo": "Casa",

@@ -90,9 +90,20 @@ REGIOES = {
         "curto": "Chácaras, fazendas e lotes ao norte do DF, pela BR-080.",
         "texto": "Padre Bernardo fica ao norte do DF, pela BR-080, e tem chácaras, fazendas e lotes com bastante espaço. Confiro a documentação de cada imóvel antes da visita.",
     },
+    "algarve": {
+        "nome": "Algarve",
+        "uf": "PT",
+        "em": "no Algarve",
+        "curto": "Lançamentos e oportunidades de alto padrão no sul de Portugal, para investir ou morar.",
+        "texto": "Por meio de uma parceria luso-brasileira com um corretor estabelecido no Algarve, apresento a brasileiros imóveis e oportunidades de investimento no sul de Portugal, com praias, golfe e um mercado em valorização. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo parceiro, licenciado no país.",
+        "h1": "Imóveis à venda no Algarve, Portugal",
+        "card": "Algarve · Portugal",
+        "rodape": "Algarve, Portugal",
+    },
 }
 
-UFS = {"DF": "Distrito Federal", "GO": "Goiás"}
+UFS = {"DF": "Distrito Federal", "GO": "Goiás", "PT": "Portugal"}
+PAISES = {"PT": "Portugal"}
 
 
 def uf(reg):
@@ -101,7 +112,13 @@ def uf(reg):
 
 def local(reg):
     """Cidade e estado para textos e mapas: 'Vicente Pires, Brasília, DF' ou 'Luziânia, GO'."""
+    if uf(reg) in PAISES:
+        return f"{reg['nome']}, {PAISES[uf(reg)]}"
     return f"{reg['nome']}, Brasília, DF" if uf(reg) == "DF" else f"{reg['nome']}, {uf(reg)}"
+
+
+def em_regiao(reg):
+    return reg.get("em", "em " + reg["nome"])
 
 
 def por_uf():
@@ -133,6 +150,13 @@ DOCS = {
         "texto": "Este é um lançamento na planta, com memorial de incorporação registrado em cartório. A compra é feita direto com a construtora, com entrada e parcelas durante a obra, e o restante pode ser financiado na entrega das chaves. Eu explico a tabela e as condições de pagamento.",
         "secao": False,
     },
+    "portugal": {
+        "rotulo": "Portugal · parceria",
+        "cor": "#272742",
+        "resumo": "Imóvel em Portugal, intermediado por corretor parceiro licenciado no país.",
+        "texto": "Este imóvel fica em Portugal. A intermediação da venda em Portugal é feita pelo meu parceiro, corretor licenciado no país, e eu acompanho você daqui, em português do Brasil, do primeiro contato até a escritura. As condições, a documentação e os impostos de compra (IMT e Imposto do Selo) são confirmados com o parceiro antes da proposta.",
+        "secao": False,
+    },
 }
 
 E = html.escape
@@ -142,6 +166,14 @@ def brl(v):
     if v is None:
         return "Preço sob consulta"
     return "R$ " + f"{v:,.0f}".replace(",", ".")
+
+
+def preco(i, v=None):
+    """Valor do imóvel na moeda dele (campo "moeda": "EUR" para Portugal)."""
+    v = i["preco"] if v is None else v
+    if i.get("moeda") == "EUR" and v is not None:
+        return "€ " + f"{v:,.0f}".replace(",", ".")
+    return brl(v)
 
 
 def wa(msg=None):
@@ -215,7 +247,7 @@ def card(i, r):
     return f"""<a class="card" href="{r}imoveis/{i['codigo']}.html" {attrs}>
 <div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if youtube_id(i.get("video")) else ''}</div>
 <div class="card-corpo">
-<span class="preco">{brl(i['preco'])}</span>
+<span class="preco">{preco(i)}</span>
 <span class="card-titulo">{E(i['titulo'])}</span>
 <span class="card-local">{E(reg)} · {E(i['tipo'])}</span>
 <span class="card-specs">{specs_curtas(i)}</span>
@@ -423,7 +455,7 @@ def pagina_inicial(imoveis, tem_exemplo):
     cards = "\n".join(card(i, r) for i in destaques)
     reg_cards = "\n".join(
         f'<a class="regiao-card" href="regioes/{s}.html"><strong>{E(v.get("card", v["nome"]))}</strong><span>{E(v["curto"])}</span><em>{v.get("cta", "Ver imóveis")}</em></a>'
-        for s, v in REGIOES.items() if uf(v) == "DF"
+        for s, v in REGIOES.items() if uf(v) in ("DF", "PT")
     )
     corpo = f"""<section class="hero">
 {monograma(520, classe="hero-mono")}
@@ -579,13 +611,14 @@ def pagina_imovel(i, tem_exemplo):
         specs.append(("Quartos", q))
     if i.get("vagas"):
         specs.append(("Vagas", str(i["vagas"])))
+    specs += [tuple(x) for x in i.get("specs", [])]
     specs_html = "".join(f"<div><span>{a}</span><strong>{b}</strong></div>" for a, b in specs)
     tags = "".join(f"<span>{E(t)}</span>" for t in i.get("itens", []))
     custos = []
     if i.get("condominio"):
-        custos.append(("Condomínio", f"{brl(i['condominio'])}/mês"))
+        custos.append(("Condomínio", f"{preco(i, i['condominio'])}/mês"))
     if i.get("iptu_ano"):
-        custos.append(("IPTU", f"{brl(i['iptu_ano'])}/ano"))
+        custos.append(("IPTU", f"{preco(i, i['iptu_ano'])}/ano"))
     custos_html = "".join(f"<div><span>{a}</span><b>{b}</b></div>" for a, b in custos)
     vid = youtube_id(i.get("video"))
     if vid:
@@ -601,7 +634,7 @@ def pagina_imovel(i, tem_exemplo):
     if i["documento"] == "escriturado" or "financ" in (i.get("descricao") or "").lower() and "não aceita financ" not in (i.get("descricao") or "").lower():
         aviso_fin = (f'<p class="aviso-fin">Financiamento facilitado com a <strong>{PARCEIRO["nome"]}</strong>, parceira. '
                      f'<a href="{PARCEIRO["whats"]}" rel="noopener">Simular no WhatsApp</a></p>')
-    mapa_q = quote(local(reg))
+    mapa_q = quote(i.get("mapa") or local(reg))
     corpo = f"""<div class="wrap">
 <nav class="trilha" aria-label="Caminho"><a href="../imoveis.html">Imóveis à venda</a><span aria-hidden="true">/</span><a href="../regioes/{i['regiao']}.html">{E(reg['nome'])}</a><span aria-hidden="true">/</span><span>Código {i['codigo']}</span></nav>
 <div class="galeria">{''.join(cel)}</div>
@@ -610,8 +643,8 @@ def pagina_imovel(i, tem_exemplo):
 <div class="imovel-principal">
 <div style="display:flex;flex-direction:column;gap:10px">
 <span class="selo selo-{i['documento']}" style="align-self:flex-start;font-size:14px;padding:6px 12px">{d['rotulo']}</span>
-<h1>{E(i['titulo'])}{'' if i['regiao'] == 'outras-regioes' else ' em ' + E(reg['nome'])}</h1>
-<p style="color:var(--texto-2)">{E(i['endereco'])}, {E(local(reg).split(", ", 1)[1] if uf(reg) == "DF" else uf(reg))}</p>
+<h1>{E(i['titulo'])}{'' if i['regiao'] == 'outras-regioes' else ' ' + E(em_regiao(reg))}</h1>
+<p style="color:var(--texto-2)">{E(i['endereco'])}, {E(local(reg).split(", ", 1)[1] if uf(reg) in ("DF", *PAISES) else uf(reg))}</p>
 </div>
 <div class="specs">{specs_html}</div>
 <section style="display:flex;flex-direction:column;gap:12px">
@@ -627,12 +660,12 @@ def pagina_imovel(i, tem_exemplo):
 </section>
 <section style="display:flex;flex-direction:column;gap:12px">
 <h2>Localização</h2>
-<div class="mapa"><iframe title="Mapa de {E(reg['nome'])}" loading="lazy" src="https://www.google.com/maps?q={mapa_q}&z=13&output=embed"></iframe></div>
+<div class="mapa"><iframe title="Mapa de {E(reg['nome'])}" loading="lazy" src="https://www.google.com/maps?q={mapa_q}&z={i.get("mapa_zoom", 13)}&output=embed"></iframe></div>
 <p style="font-size:15px;color:var(--texto-2)">O endereço exato é passado ao agendar a visita.</p>
 </section>
 </div>
 <aside class="lateral" aria-label="Contato">
-<span class="preco">{brl(i['preco'])}</span>
+<span class="preco">{preco(i)}</span>
 <div class="custos">{custos_html or ('<div><span>Sem condomínio</span></div>' if i.get("condominio") == 0 else '')}</div>
 <a class="btn btn-azul" style="min-height:52px;font-size:17px" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} Conversar no WhatsApp</a>
 <button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>
@@ -641,7 +674,7 @@ def pagina_imovel(i, tem_exemplo):
 <label class="campo">Melhor dia e horário<select name="quando"><option>Sábado de manhã</option><option>Sábado à tarde</option><option>Dia de semana de manhã</option><option>Dia de semana à tarde</option><option>Dia de semana à noite</option></select></label>
 <button class="btn btn-areia" type="submit">Enviar pedido pelo WhatsApp</button>
 </form>
-<p class="codigo">Código {i['codigo']} · {CRECI}</p>
+<p class="codigo">Código {i['codigo']} · {CRECI}{" · intermediação em Portugal por corretor parceiro licenciado" if uf(reg) == "PT" else ""}</p>
 </aside>
 </div>
 </div>"""
@@ -649,17 +682,17 @@ def pagina_imovel(i, tem_exemplo):
         "@context": "https://schema.org",
         "@type": "Offer",
         **({"price": i["preco"]} if i["preco"] else {}),
-        "priceCurrency": "BRL",
+        "priceCurrency": i.get("moeda", "BRL"),
         "url": f"{DOMINIO}/imoveis/{i['codigo']}.html",
         "itemOffered": {
             "@type": "SingleFamilyResidence" if i["tipo"] == "Casa" else ("Apartment" if i["tipo"] == "Apartamento" else "Place"),
             "name": i["titulo"],
-            "address": {"@type": "PostalAddress", "addressLocality": reg["nome"], "addressRegion": uf(reg), "addressCountry": "BR"},
+            "address": {"@type": "PostalAddress", "addressLocality": reg["nome"], "addressRegion": reg["nome"] if uf(reg) in PAISES else uf(reg), "addressCountry": uf(reg) if uf(reg) in PAISES else "BR"},
         },
     }
     head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
-    desc = f"{i['tipo']} à venda em {reg['nome']}, {uf(reg)}: {specs_curtas(i)}. {brl(i['preco'])}. {d['rotulo']}. Código {i['codigo']}."
-    return layout(r, f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' em ' + reg['nome']} · {brl(i['preco'])}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
+    desc = f"{i['tipo']} à venda {em_regiao(reg)}, {local(reg).split(', ', 1)[1]}: {specs_curtas(i) or i['titulo']}. {preco(i)}. {d['rotulo']}. Código {i['codigo']}."
+    return layout(r, f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' ' + em_regiao(reg)} · {preco(i)}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
 
 
 def pagina_anuncie(tem_exemplo):
