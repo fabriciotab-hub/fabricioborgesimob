@@ -1,5 +1,7 @@
 // Gera a capa padrão (1280x1280) de cada anúncio que tem o campo "capa" em dados/imoveis.json.
 // Uso: node ferramentas/capas.js [CODIGO ...]   (sem código, gera todas)
+// Imóveis com "canva" em "capa" usam a capa feita no Canva (cópia do modelo "Capa VP")
+// e salva em fotos/CODIGO/capa.jpg; este script não mexe nelas.
 // Campos de "capa": foto (caminho da foto de fundo), local (texto grande),
 // esquerda e direita (até 2 linhas cada), foco (posição da foto, ex. "50% 50%").
 const fs = require('fs');
@@ -42,7 +44,7 @@ h1 { font-family: Titulo; font-weight: 400; text-align: center; font-size: ${c.t
 
 (async () => {
   const pedidos = process.argv.slice(2);
-  const lista = dados.imoveis.filter(i => i.capa && (!pedidos.length || pedidos.includes(i.codigo)));
+  const lista = dados.imoveis.filter(i => i.capa && !i.capa.canva && (!pedidos.length || pedidos.includes(i.codigo)));
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const p = await b.newPage({ viewport: { width: 1280, height: 1280 } });
   for (const i of lista) {
