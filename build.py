@@ -151,7 +151,8 @@ DOCS = {
         "secao": False,
     },
     "portugal": {
-        "rotulo": "Portugal · parceria",
+        "rotulo": "Portugal · Algarve",
+        "titulo": "Compra em Portugal, com parceiro licenciado",
         "cor": "#272742",
         "resumo": "Imóvel em Portugal, intermediado por corretor parceiro licenciado no país.",
         "texto": "Este imóvel fica em Portugal. A intermediação da venda em Portugal é feita pelo meu parceiro, corretor licenciado no país, e eu acompanho você daqui, em português do Brasil, do primeiro contato até a escritura. As condições, a documentação e os impostos de compra (IMT e Imposto do Selo) são confirmados com o parceiro antes da proposta.",
@@ -655,7 +656,7 @@ def pagina_imovel(i, tem_exemplo):
 </section>
 {secao_video}
 <section class="doc-box doc-{i['documento']}">
-<h2 style="font-size:22px">Situação do documento: {d['rotulo'].lower()}</h2>
+<h2 style="font-size:22px">{d.get('titulo', 'Situação do documento: ' + d['rotulo'].lower())}</h2>
 <p style="line-height:1.6;color:#33334A">{d['texto']}</p>
 {aviso_fin}
 </section>
