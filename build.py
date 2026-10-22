@@ -31,26 +31,31 @@ TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", 
 
 REGIOES = {
     "vicente-pires": {
+        "busca": "Casas e lotes à venda em Vicente Pires, DF",
         "nome": "Vicente Pires",
         "curto": "Casas e lotes amplos, com ruas em regularização: mostro a situação de cada um.",
         "texto": "Vicente Pires tem casas em lotes grandes, ruas cada vez mais urbanizadas e preço por metro quadrado abaixo de Águas Claras. Parte da região ainda está em regularização com a Terracap, por isso cada anúncio aqui mostra a situação do documento antes da visita.",
     },
     "joquei": {
+        "busca": "Casas em condomínio à venda no Jóquei, Vicente Pires, DF",
         "nome": "Jóquei",
         "curto": "Casas em condomínio com terrenos grandes, perto de Vicente Pires.",
         "texto": "O Jóquei reúne condomínios horizontais com terrenos grandes e clima de chácara, a poucos minutos de Vicente Pires e da EPTG. É uma boa escolha para quem quer espaço e segurança de condomínio.",
     },
     "arniqueira": {
+        "busca": "Casas e lotes à venda em Arniqueira, DF",
         "nome": "Arniqueira",
         "curto": "Lotes e casas em uma região em crescimento, ao lado de Águas Claras.",
         "texto": "Arniqueira é a região administrativa mais nova do DF e cresce ao lado de Águas Claras. Tem lotes e casas novas com bom custo, e boa parte dos imóveis está em processo de regularização.",
     },
     "aguas-claras": {
+        "busca": "Apartamentos à venda em Águas Claras, DF",
         "nome": "Águas Claras",
         "curto": "Apartamentos com lazer completo e metrô perto de casa.",
         "texto": "Águas Claras concentra apartamentos com lazer completo, comércio a pé e estações de metrô. Os imóveis são escriturados e aceitam financiamento bancário normalmente.",
     },
     "outras-regioes": {
+        "busca": "Imóveis à venda em Brasília e outras regiões do DF",
         "nome": "Outras regiões do DF",
         "curto": "Tem um imóvel em outra região de Brasília? Também atendo, é só me chamar.",
         "texto": "Meu foco é Vicente Pires, Jóquei, Arniqueira e Águas Claras, mas também atendo quem quer vender ou comprar em outras regiões de Brasília. O cuidado é o mesmo: avaliação, documentação conferida e acompanhamento até a escritura.",
@@ -61,36 +66,42 @@ REGIOES = {
         "cta": "Fale comigo",
     },
     "aguas-lindas": {
+        "busca": "Casas e lotes à venda em Águas Lindas de Goiás",
         "nome": "Águas Lindas de Goiás",
         "uf": "GO",
         "curto": "Casas e lotes com bom custo no Entorno do DF, pela BR-070.",
         "texto": "Águas Lindas de Goiás fica no Entorno do DF, pela BR-070, e tem casas e lotes com preço mais acessível que em Brasília. Como no DF, confiro a documentação de cada imóvel antes da visita.",
     },
     "valparaiso": {
+        "busca": "Casas e apartamentos à venda em Valparaíso de Goiás",
         "nome": "Valparaíso de Goiás",
         "uf": "GO",
         "curto": "Casas e apartamentos no Entorno Sul, pela BR-040.",
         "texto": "Valparaíso de Goiás fica no Entorno Sul do DF, pela BR-040, com casas, apartamentos e comércio completo. Confiro a documentação de cada imóvel antes da visita.",
     },
     "jardim-inga": {
+        "busca": "Casas e lotes à venda no Jardim Ingá, Luziânia, GO",
         "nome": "Jardim Ingá",
         "uf": "GO",
         "curto": "Casas e lotes no distrito de Luziânia, pela BR-040.",
         "texto": "O Jardim Ingá é um distrito de Luziânia, na BR-040, entre Valparaíso e Luziânia, com casas e lotes de bom custo. Confiro a documentação de cada imóvel antes da visita.",
     },
     "luziania": {
+        "busca": "Casas, lotes e chácaras à venda em Luziânia, GO",
         "nome": "Luziânia",
         "uf": "GO",
         "curto": "Casas, lotes e chácaras em uma das maiores cidades do Entorno.",
         "texto": "Luziânia é uma das maiores cidades do Entorno do DF, pela BR-040, com casas, lotes e chácaras. Confiro a documentação de cada imóvel antes da visita.",
     },
     "padre-bernardo": {
+        "busca": "Chácaras e fazendas à venda em Padre Bernardo, GO",
         "nome": "Padre Bernardo",
         "uf": "GO",
         "curto": "Chácaras, fazendas e lotes ao norte do DF, pela BR-080.",
         "texto": "Padre Bernardo fica ao norte do DF, pela BR-080, e tem chácaras, fazendas e lotes com bastante espaço. Confiro a documentação de cada imóvel antes da visita.",
     },
     "algarve": {
+        "busca": "Imóveis no Algarve, Portugal, para brasileiros investirem",
         "nome": "Algarve",
         "uf": "PT",
         "em": "no Algarve",
@@ -257,8 +268,24 @@ def card(i, r):
 </a>"""
 
 
-def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head=""):
+def ld_script(*objs):
+    return "\n".join(f'<script type="application/ld+json">{json.dumps(o, ensure_ascii=False)}</script>' for o in objs)
+
+
+def trilha_ld(passos):
+    """Caminho de navegação para o Google mostrar no resultado da busca."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": n + 1, "name": nome, "item": f"{DOMINIO}/{c}"} for n, (nome, c) in enumerate(passos)
+        ],
+    }
+
+
+def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head="", imagem="static/img/fabricio-retrato.jpg", indexar=True):
     canonical = f"{DOMINIO}/{caminho}"
+    robots = "" if indexar else '<meta name="robots" content="noindex">\n'
     menu = [
         ("imoveis.html", "Comprar", "comprar"),
         ("index.html#regioes", "Regiões", "regioes"),
@@ -288,13 +315,15 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(titulo)}</title>
 <meta name="description" content="{E(descricao)}">
-<link rel="canonical" href="{canonical}">
+{robots}<link rel="canonical" href="{canonical}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="{MARCA} · {MARCA_SUB}">
 <meta property="og:title" content="{E(titulo)}">
 <meta property="og:description" content="{E(descricao)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:image" content="{DOMINIO}/static/img/fabricio-retrato.jpg">
+<meta property="og:image" content="{DOMINIO}/{E(imagem)}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#272742">
 <link rel="icon" href="{r}static/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -495,12 +524,19 @@ def pagina_inicial(imoveis, tem_exemplo):
         "sameAs": [f"https://instagram.com/{INSTAGRAM}"] + [u for u in (YOUTUBE, TIKTOK, LINKEDIN) if u],
         "areaServed": [local(v) for k, v in REGIOES.items() if k != "outras-regioes"] + ["Distrito Federal"],
         "address": {"@type": "PostalAddress", "addressLocality": "Brasília", "addressRegion": "DF", "addressCountry": "BR"},
+        "image": f"{DOMINIO}/static/img/fabricio-retrato.jpg",
+        "logo": f"{DOMINIO}/static/monograma.svg",
+        "description": "Corretor de imóveis em Brasília, com venda de casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira, Águas Claras, Entorno do DF e Algarve, Portugal.",
+        "knowsLanguage": "pt-BR",
+        "identifier": CRECI,
+        "employee": {"@type": "Person", "name": "Fabrício Borges", "jobTitle": "Corretor de imóveis", "identifier": CRECI},
     }
-    head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
+    site = {"@context": "https://schema.org", "@type": "WebSite", "name": f"{MARCA} · {MARCA_SUB}", "url": f"{DOMINIO}/", "inLanguage": "pt-BR"}
+    head = ld_script(ld, site)
     return layout(
         r,
-        f"{MARCA} · Imóveis à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras",
-        "Casas, lotes e apartamentos à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras (DF), com a situação do documento explicada. Corretor Fabrício Borges, CRECI/DF 27547.",
+        f"Imóveis à venda em Vicente Pires, Arniqueira e Águas Claras · {MARCA}, corretor no DF",
+        f"Corretor de imóveis em Brasília ({CRECI}): casas, lotes e apartamentos à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras, no Entorno do DF e no Algarve, Portugal. Documentação explicada antes da visita.",
         corpo, "", "", tem_exemplo, head,
     )
 
@@ -555,7 +591,7 @@ def pagina_busca(imoveis, tem_exemplo):
 </div>
 {lista_com_filtros(r, imoveis)}
 </div></div>"""
-    return layout(r, f"Imóveis à venda · {MARCA}", "Busque casas, lotes e apartamentos à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras, com filtro por situação do documento.", corpo, "comprar", "imoveis.html", tem_exemplo)
+    return layout(r, f"Imóveis à venda no DF, Entorno e Algarve · {MARCA}", "Casas, lotes, apartamentos e pontos comerciais à venda em Vicente Pires, Jóquei, Arniqueira, Águas Claras, outras regiões de Brasília, Entorno do DF e Algarve, com filtro por preço, quartos e situação do documento.", corpo, "comprar", "imoveis.html", tem_exemplo)
 
 
 def pagina_regiao(slug, imoveis, tem_exemplo):
@@ -576,7 +612,9 @@ def pagina_regiao(slug, imoveis, tem_exemplo):
 </div>
 {lista_com_filtros(r, doms, slug) if doms else '<div class="vazio">Nenhum imóvel anunciado aqui agora. <a href="' + wa('Olá Fabrício, procuro imóvel em ' + reg['nome'] + '.') + '">Me chame no WhatsApp</a> e eu aviso quando aparecer.</div>'}
 </div></div>"""
-    return layout(r, f"{reg.get('h1', 'Imóveis à venda em ' + reg['nome'] + ', ' + uf(reg))} · {MARCA}", f"{reg.get('h1', 'Casas, lotes e apartamentos à venda em ' + reg['nome'] + ' (' + uf(reg) + ')')}. {reg['curto']}", corpo, "regioes", f"regioes/{slug}.html", tem_exemplo)
+    head = ld_script(trilha_ld([("Início", ""), (reg["nome"], f"regioes/{slug}.html")]))
+    desc = f"{reg['busca']}. {reg['curto']} Corretor {MARCA}, {CRECI}."
+    return layout(r, f"{reg['busca']} · {MARCA}", desc, corpo, "regioes", f"regioes/{slug}.html", tem_exemplo, head)
 
 
 def pagina_imovel(i, tem_exemplo):
@@ -680,21 +718,41 @@ def pagina_imovel(i, tem_exemplo):
 </aside>
 </div>
 </div>"""
+    url = f"{DOMINIO}/imoveis/{i['codigo']}.html"
+    # Bairro do anúncio: a região, ou o campo "bairro" para imóveis em "outras-regioes".
+    bairro = i.get("bairro") or ("Brasília" if i["regiao"] == "outras-regioes" else reg["nome"])
+    onde = f"em {bairro}" if i.get("bairro") or i["regiao"] == "outras-regioes" else em_regiao(reg)
+    lugar = f"{bairro}, {PAISES[uf(reg)]}" if uf(reg) in PAISES else f"{bairro}, {uf(reg)}"
     ld = {
         "@context": "https://schema.org",
-        "@type": "Offer",
-        **({"price": i["preco"]} if i["preco"] else {}),
-        "priceCurrency": i.get("moeda", "BRL"),
-        "url": f"{DOMINIO}/imoveis/{i['codigo']}.html",
-        "itemOffered": {
-            "@type": "SingleFamilyResidence" if i["tipo"] == "Casa" else ("Apartment" if i["tipo"] == "Apartamento" else "Place"),
-            "name": i["titulo"],
-            "address": {"@type": "PostalAddress", "addressLocality": reg["nome"], "addressRegion": reg["nome"] if uf(reg) in PAISES else uf(reg), "addressCountry": uf(reg) if uf(reg) in PAISES else "BR"},
+        "@type": "RealEstateListing",
+        "name": i["titulo"],
+        "url": url,
+        "description": i.get("descricao", ""),
+        "image": [f"{DOMINIO}/{f}" for f in fotos[:6]],
+        "offers": {
+            "@type": "Offer",
+            **({"price": i["preco"]} if i["preco"] else {}),
+            "priceCurrency": i.get("moeda", "BRL"),
+            "availability": "https://schema.org/InStock",
+            "url": url,
+            "seller": {"@type": "RealEstateAgent", "name": f"{MARCA} · {MARCA_SUB}", "url": DOMINIO, "telephone": "+55 61 99562-0101"},
+            "itemOffered": {
+                "@type": "SingleFamilyResidence" if i["tipo"] == "Casa" else ("Apartment" if i["tipo"] == "Apartamento" else "Place"),
+                "name": i["titulo"],
+                **({"floorSize": {"@type": "QuantitativeValue", "value": i["area"], "unitCode": "MTK"}} if i.get("area") else {}),
+                **({"numberOfRooms": i["quartos"]} if i.get("quartos") else {}),
+                "address": {"@type": "PostalAddress", "addressLocality": bairro, "addressRegion": reg["nome"] if uf(reg) in PAISES else uf(reg), "addressCountry": uf(reg) if uf(reg) in PAISES else "BR"},
+            },
         },
     }
-    head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
-    desc = f"{i['tipo']} à venda {em_regiao(reg)}, {local(reg).split(', ', 1)[1]}: {specs_curtas(i) or i['titulo']}. {preco(i)}. {d['rotulo']}. Código {i['codigo']}."
-    return layout(r, f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' ' + em_regiao(reg)} · {preco(i)}", desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head)
+    head = ld_script(ld, trilha_ld([("Imóveis à venda", "imoveis.html"), (reg["nome"], f"regioes/{i['regiao']}.html"), (f"Código {i['codigo']}", f"imoveis/{i['codigo']}.html")]))
+    tipo = {"Comércio": "Ponto comercial", "Lote": "Terreno" if uf(reg) in PAISES else "Lote"}.get(i["tipo"], i["tipo"])
+    desc = f"{tipo} à venda {onde}, {lugar.split(', ', 1)[1]}: {specs_curtas(i) or i['titulo']}. {preco(i)}. {d['rotulo']}. Código {i['codigo']}, com fotos e vídeo. Fale com o corretor {MARCA}."
+    if not youtube_id(i.get("video")):
+        desc = desc.replace(", com fotos e vídeo", ", com fotos")
+    titulo = i.get("titulo_seo") or f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' ' + em_regiao(reg)} · {preco(i)}"
+    return layout(r, titulo, desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head, fotos[0] if fotos else "static/img/fabricio-retrato.jpg")
 
 
 def pagina_anuncie(tem_exemplo):
@@ -726,13 +784,13 @@ def pagina_anuncie(tem_exemplo):
 <button class="btn btn-azul" type="submit">{ICONE_WHATS.format(s=18)} Enviar pelo WhatsApp</button>
 </form>
 </div></section>"""
-    return layout(r, f"Anuncie seu imóvel · {MARCA}", "Venda sua casa, lote ou apartamento em Vicente Pires, Jóquei, Arniqueira ou Águas Claras com avaliação, fotos e divulgação.", corpo, "anuncie", "anuncie.html", tem_exemplo)
+    return layout(r, f"Quer vender seu imóvel em Brasília? Anuncie com corretor · {MARCA}", "Venda sua casa, lote ou apartamento em Vicente Pires, Jóquei, Arniqueira, Águas Claras ou outra região do DF com avaliação gratuita, fotos profissionais, divulgação e documentação conferida.", corpo, "anuncie", "anuncie.html", tem_exemplo)
 
 
 def pagina_sobre(tem_exemplo):
     r = ""
     corpo = secao_sobre(r, completa=True) + secao_docs()
-    return layout(r, f"Sobre · {MARCA}, corretor de imóveis no DF", f"{MARCA}, corretor de imóveis {CRECI}, especialista em venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras.", corpo, "sobre", "sobre.html", tem_exemplo)
+    return layout(r, f"{MARCA}, corretor de imóveis em Brasília · {CRECI}", f"{MARCA}, corretor de imóveis {CRECI}, especialista em venda de casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras, no Entorno do DF e no Algarve, Portugal.", corpo, "sobre", "sobre.html", tem_exemplo)
 
 
 def para_investidor(i):
@@ -764,7 +822,8 @@ def pagina_investidores(imoveis, tem_exemplo):
 {grupo("Lançamentos no DF", "Empreendimentos na planta, comprados direto com a construtora, com tabela e condições de pagamento explicadas por mim.", br, "Olá Fabrício, quero saber dos lançamentos no DF.")}
 {grupo("Portugal · Algarve", "Imóveis e oportunidades no sul de Portugal, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
 </div></div>"""
-    return layout(r, f"Lançamentos e oportunidades para investidores · {MARCA}", "Lançamentos na planta no DF e oportunidades no Algarve, Portugal, para investidores brasileiros. Corretor Fabrício Borges, CRECI/DF 27547.", corpo, "investidores", "investidores.html", tem_exemplo)
+    head = ld_script(trilha_ld([("Início", ""), ("Investidores", "investidores.html")]))
+    return layout(r, f"Investir em imóveis: lançamentos no DF e no Algarve, Portugal · {MARCA}", f"Lançamentos na planta em Brasília e imóveis para investir no Algarve, Portugal, com atendimento em português do Brasil. Corretor {MARCA}, {CRECI}, com parceiro licenciado em Portugal.", corpo, "investidores", "investidores.html", tem_exemplo, head)
 
 
 def pagina_privacidade(tem_exemplo):
@@ -790,7 +849,7 @@ def pagina_404(tem_exemplo):
 <p>Esse imóvel pode já ter sido vendido ou o endereço mudou.</p>
 <p><a class="btn btn-azul" href="/imoveis.html">Ver os imóveis à venda</a></p>
 </div></section>"""
-    return layout("/", f"Página não encontrada · {MARCA}", "Página não encontrada.", corpo, "", "404.html", tem_exemplo)
+    return layout("/", f"Página não encontrada · {MARCA}", "Página não encontrada.", corpo, "", "404.html", tem_exemplo, indexar=False)
 
 
 def main():
