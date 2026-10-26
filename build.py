@@ -115,6 +115,17 @@ REGIOES = {
         "card": "Algarve · Portugal",
         "rodape": "Algarve, Portugal",
     },
+    "comporta": {
+        "busca": "Imóveis na Comporta, Portugal, para brasileiros",
+        "nome": "Comporta",
+        "uf": "PT",
+        "em": "na Comporta",
+        "curto": "Casas de alto padrão no Alentejo, entre pinhais e praias, a 1 hora de Lisboa.",
+        "texto": "A Comporta, no Alentejo, é um dos destinos mais exclusivos de Portugal, com praias douradas, pinhais e campos de arroz, a 1 hora de Lisboa. Apresento a brasileiros casas de alto padrão na região. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita por imobiliária parceira, licenciada no país.",
+        "h1": "Imóveis à venda na Comporta, Portugal",
+        "card": "Comporta · Portugal",
+        "rodape": "Comporta, Portugal",
+    },
 }
 
 UFS = {"DF": "Distrito Federal", "GO": "Goiás", "PT": "Portugal"}
@@ -166,7 +177,7 @@ DOCS = {
         "secao": False,
     },
     "portugal": {
-        "rotulo": "Portugal · Algarve",
+        "rotulo": "Portugal",
         "titulo": "Compra em Portugal, com parceiro licenciado",
         "cor": "#272742",
         "resumo": "Imóvel em Portugal, intermediado por corretor parceiro licenciado no país.",
@@ -514,7 +525,7 @@ def pagina_inicial(imoveis, tem_exemplo):
 <div style="display:flex;flex-direction:column;gap:16px">
 <span class="sobretitulo">Venda de imóveis no DF, Entorno e Portugal</span>
 <h1>Casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras</h1>
-<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita. E, para quem quer investir ou morar fora, <a href="investidores.html" style="color:inherit;font-weight:600">lançamentos e oportunidades no Algarve, Portugal</a>.</p>
+<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita. E, para quem quer investir ou morar fora, <a href="investidores.html" style="color:inherit;font-weight:600">lançamentos e oportunidades em Portugal</a>.</p>
 </div>
 {form_busca(r)}
 </div>
@@ -836,14 +847,14 @@ def pagina_investidores(imoveis, tem_exemplo):
 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:820px">
 <span class="sobretitulo" style="color:var(--texto-2)">Para investidores</span>
 <h1 style="font-size:clamp(28px,4vw,38px)">Lançamentos e oportunidades para investir</h1>
-<p style="color:var(--texto-2);font-size:18px;line-height:1.6">Lançamentos na planta são a porta de entrada de quem investe: entrada menor, parcelas durante a obra e valorização até a entrega das chaves. Aqui reúno os empreendimentos do DF e as oportunidades em Portugal, no Algarve, por meio da minha parceria luso-brasileira. Eu analiso cada um com você, do potencial de valorização à documentação.</p>
+<p style="color:var(--texto-2);font-size:18px;line-height:1.6">Lançamentos na planta são a porta de entrada de quem investe: entrada menor, parcelas durante a obra e valorização até a entrega das chaves. Aqui reúno os empreendimentos do DF e as oportunidades em Portugal, no Algarve e na Comporta, por meio da minha parceria luso-brasileira. Eu analiso cada um com você, do potencial de valorização à documentação.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="btn btn-azul" href="{wa("Olá Fabrício, sou investidor e quero conhecer os lançamentos e oportunidades.")}">{ICONE_WHATS.format(s=18)} Falar sobre investimento</a></div>
 </div>
 {grupo("Lançamentos no DF", "Empreendimentos na planta, comprados direto com a construtora, com tabela e condições de pagamento explicadas por mim.", br, "Olá Fabrício, quero saber dos lançamentos no DF.")}
-{grupo("Portugal · Algarve", "Imóveis e oportunidades no sul de Portugal, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
+{grupo("Portugal", "Imóveis e oportunidades no Algarve e na Comporta, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
 </div></div>"""
     head = ld_script(trilha_ld([("Início", ""), ("Investidores", "investidores.html")]))
-    return layout(r, f"Investir em imóveis: lançamentos no DF e no Algarve, Portugal · {MARCA}", f"Lançamentos na planta em Brasília e imóveis para investir no Algarve, Portugal, com atendimento em português do Brasil. Corretor {MARCA}, {CRECI}, com parceiro licenciado em Portugal.", corpo, "investidores", "investidores.html", tem_exemplo, head)
+    return layout(r, f"Investir em imóveis: lançamentos no DF e em Portugal · {MARCA}", f"Lançamentos na planta em Brasília e imóveis para investir em Portugal, no Algarve e na Comporta, com atendimento em português do Brasil. Corretor {MARCA}, {CRECI}, com parceiro licenciado em Portugal.", corpo, "investidores", "investidores.html", tem_exemplo, head)
 
 
 def pagina_privacidade(tem_exemplo):
