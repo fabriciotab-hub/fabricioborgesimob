@@ -27,7 +27,7 @@ TIKTOK = "https://www.tiktok.com/@fabricioborgescorretor"
 LINKEDIN = "https://www.linkedin.com/in/fabricio-teixeira-43273960"
 MARCA_SUB = "Negócios Imobiliários"
 # Google Ads: ID da conta, ex.: "AW-123456789". Vazio desliga a tag do Google no site.
-GOOGLE_ADS_ID = ""
+GOOGLE_ADS_ID = "AW-18537426832"
 # Rótulo da conversão "Clique no WhatsApp", ex.: "AbCdEfGhIjK" (vem junto do ID no Google Ads).
 GOOGLE_ADS_CONVERSAO = ""
 
