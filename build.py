@@ -26,6 +26,10 @@ YOUTUBE = "https://www.youtube.com/@FabricioBorgesCorretorIm-sb5mb"
 TIKTOK = "https://www.tiktok.com/@fabricioborgescorretor"
 LINKEDIN = "https://www.linkedin.com/in/fabricio-teixeira-43273960"
 MARCA_SUB = "Negócios Imobiliários"
+# Google Ads: ID da conta, ex.: "AW-123456789". Vazio desliga a tag do Google no site.
+GOOGLE_ADS_ID = ""
+# Rótulo da conversão "Clique no WhatsApp", ex.: "AbCdEfGhIjK" (vem junto do ID no Google Ads).
+GOOGLE_ADS_CONVERSAO = ""
 
 TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Comércio", "Chácara", "Fazenda"]
 
@@ -283,6 +287,22 @@ def trilha_ld(passos):
     }
 
 
+def tag_google_ads():
+    """Tag do Google Ads; conta como conversão todo clique que abre o WhatsApp do corretor."""
+    if not GOOGLE_ADS_ID:
+        return ""
+    conversao = ""
+    if GOOGLE_ADS_CONVERSAO:
+        conversao = f"""
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/{WHATS}"]');if(a)gtag('event','conversion',{{send_to:'{GOOGLE_ADS_ID}/{GOOGLE_ADS_CONVERSAO}'}});}},true);"""
+    return f"""<script async src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ADS_ID}"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('js',new Date());gtag('config','{GOOGLE_ADS_ID}');{conversao}
+</script>
+"""
+
+
 def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head="", imagem="static/img/fabricio-retrato.jpg", indexar=True):
     canonical = f"{DOMINIO}/{caminho}"
     robots = "" if indexar else '<meta name="robots" content="noindex">\n'
@@ -330,7 +350,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Julius+Sans+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{r}static/style.css">
-{extra_head}
+{tag_google_ads()}{extra_head}
 </head>
 <body>
 {aviso}
@@ -838,7 +858,7 @@ def pagina_privacidade(tem_exemplo):
 <h2>Seus direitos</h2>
 <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados. Basta me chamar no WhatsApp {WHATS_TXT}.</p>
 <h2>Serviços de terceiros</h2>
-<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts. Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
+<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts.{" Também uso o Google Ads para anunciar o site, com cookies que medem quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if GOOGLE_ADS_ID else ""} Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
 </div></section>"""
     return layout("", f"Política de privacidade · {MARCA}", "Como o site de Fabrício Borges trata os dados de quem entra em contato.", corpo, "", "privacidade.html", tem_exemplo)
 
