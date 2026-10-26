@@ -2,6 +2,91 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'.",
  "imoveis": [
   {
+   "codigo": "PT-0103",
+   "destaque": true,
+   "tipo": "Casa",
+   "titulo": "Green Village Azeitão, moradias V3 e V4 com jardim junto à Arrábida",
+   "titulo_seo": "Moradias V3 e V4 em condomínio fechado em Azeitão, Portugal · a partir de € 800 mil",
+   "regiao": "azeitao",
+   "moeda": "EUR",
+   "endereco": "Green Village Azeitão, Azeitão, Setúbal",
+   "mapa": "Azeitão, Setúbal, Portugal",
+   "mapa_zoom": 12,
+   "preco": 800000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": null,
+   "lote": null,
+   "quartos": 3,
+   "quartos_texto": "3 ou 4 quartos",
+   "vagas": null,
+   "documento": "portugal",
+   "investidor": true,
+   "specs": [
+    [
+     "Área bruta",
+     "184 a 195 m²"
+    ],
+    [
+     "Lotes",
+     "359 a 630 m²"
+    ],
+    [
+     "Valores",
+     "€ 800.000 a € 1.100.000"
+    ],
+    [
+     "Unidades",
+     "15 moradias"
+    ],
+    [
+     "Lisboa",
+     "32 km"
+    ]
+   ],
+   "descricao": "Casas com jardim num condomínio fechado de apenas 15 moradias, ao lado do Parque Natural da Arrábida. Azeitão fica na região de Setúbal, a 32 km de Lisboa e a 12 km da Praia dos Galapinhos, eleita a mais bonita da Europa em 2017. O condomínio ocupa um terreno de mais de 11.500 m², a 10 minutos a pé da zona comercial de Azeitão. São moradias V3 e V4 (3 ou 4 quartos, mais sala), com 184 a 195 m² de área bruta, lotes de 359 a 630 m², estacionamento privativo coberto e depósito no edifício do condomínio. O projeto é bioclimático, com iluminação e ventilação naturais, sombreamento externo com lâminas, isolamento de cortiça nas paredes externas e aquecimento solar da água. Esquadrias de PVC com vidro duplo, piso de madeira nas salas e quartos, cozinha em madeira laqueada branco fosco com bancada de granito, terraços em deck e porcelanato, persianas elétricas, fibra ótica, alarme e pré-instalação para casa inteligente, aquecimento central e ar-condicionado. Piscina privativa opcional. O condomínio tem portaria e moradia para o segurança, edifício social com sala de convívio e área de churrasco, piscina de borda infinita com solário em deck, hortas orgânicas individuais, área de lazer com campo esportivo e captação própria de água natural. Valores da tabela de lançamento (junho de 2026): de € 800.000 a € 1.100.000, conforme a moradia. Pagamento: 30% no contrato-promessa (CPCV), 30% de reforço e 40% na escritura. Peça a tabela completa e as plantas. Imagens ilustrativas.",
+   "itens": [
+    "Condomínio fechado com portaria",
+    "Piscina de borda infinita",
+    "Horta orgânica individual",
+    "Projeto bioclimático",
+    "Aquecimento solar da água",
+    "Estacionamento coberto",
+    "Jardim privativo",
+    "Piscina privativa opcional"
+   ],
+   "fotos": [
+    "fotos/PT-0103/01.jpg",
+    "fotos/PT-0103/02.jpg",
+    "fotos/PT-0103/03.jpg",
+    "fotos/PT-0103/04.jpg",
+    "fotos/PT-0103/05.jpg",
+    "fotos/PT-0103/06.jpg",
+    "fotos/PT-0103/07.jpg",
+    "fotos/PT-0103/08.jpg",
+    "fotos/PT-0103/09.jpg",
+    "fotos/PT-0103/10.jpg",
+    "fotos/PT-0103/11.jpg",
+    "fotos/PT-0103/12.jpg",
+    "fotos/PT-0103/13.jpg",
+    "fotos/PT-0103/14.jpg",
+    "fotos/PT-0103/15.jpg",
+    "fotos/PT-0103/16.jpg"
+   ],
+   "capa": {
+    "foto": "social/PT-0103/capa-fundo.jpg",
+    "local": "Azeitão",
+    "esquerda": [
+     "Moradias V3 e V4",
+     "184 a 195 m²"
+    ],
+    "direita": [
+     "Portugal",
+     "32 km de Lisboa"
+    ]
+   }
+  },
+  {
    "codigo": "PT-0101",
    "destaque": true,
    "tipo": "Lote",

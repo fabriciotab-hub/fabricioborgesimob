@@ -126,6 +126,17 @@ REGIOES = {
         "card": "Comporta · Portugal",
         "rodape": "Comporta, Portugal",
     },
+    "azeitao": {
+        "busca": "Casas em Azeitão, Portugal, perto de Lisboa, para brasileiros",
+        "nome": "Azeitão",
+        "uf": "PT",
+        "em": "em Azeitão",
+        "curto": "Moradias com jardim junto à Serra da Arrábida, a 32 km de Lisboa.",
+        "texto": "Azeitão fica na região de Setúbal, ao lado do Parque Natural da Arrábida, com serra, vinhas, vilas históricas e praias de água transparente, a 32 km de Lisboa. Apresento a brasileiros moradias em condomínio fechado na região. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita por imobiliária parceira, licenciada no país.",
+        "h1": "Imóveis à venda em Azeitão, Portugal",
+        "card": "Azeitão · Portugal",
+        "rodape": "Azeitão, Portugal",
+    },
 }
 
 UFS = {"DF": "Distrito Federal", "GO": "Goiás", "PT": "Portugal"}
@@ -847,14 +858,14 @@ def pagina_investidores(imoveis, tem_exemplo):
 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:820px">
 <span class="sobretitulo" style="color:var(--texto-2)">Para investidores</span>
 <h1 style="font-size:clamp(28px,4vw,38px)">Lançamentos e oportunidades para investir</h1>
-<p style="color:var(--texto-2);font-size:18px;line-height:1.6">Lançamentos na planta são a porta de entrada de quem investe: entrada menor, parcelas durante a obra e valorização até a entrega das chaves. Aqui reúno os empreendimentos do DF e as oportunidades em Portugal, no Algarve e na Comporta, por meio da minha parceria luso-brasileira. Eu analiso cada um com você, do potencial de valorização à documentação.</p>
+<p style="color:var(--texto-2);font-size:18px;line-height:1.6">Lançamentos na planta são a porta de entrada de quem investe: entrada menor, parcelas durante a obra e valorização até a entrega das chaves. Aqui reúno os empreendimentos do DF e as oportunidades em Portugal, no Algarve, na Comporta e em Azeitão, por meio da minha parceria luso-brasileira. Eu analiso cada um com você, do potencial de valorização à documentação.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="btn btn-azul" href="{wa("Olá Fabrício, sou investidor e quero conhecer os lançamentos e oportunidades.")}">{ICONE_WHATS.format(s=18)} Falar sobre investimento</a></div>
 </div>
 {grupo("Lançamentos no DF", "Empreendimentos na planta, comprados direto com a construtora, com tabela e condições de pagamento explicadas por mim.", br, "Olá Fabrício, quero saber dos lançamentos no DF.")}
-{grupo("Portugal", "Imóveis e oportunidades no Algarve e na Comporta, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
+{grupo("Portugal", "Imóveis e oportunidades no Algarve, na Comporta e em Azeitão, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita pelo meu parceiro, corretor licenciado no país.", pt, "Olá Fabrício, quero saber das oportunidades em Portugal.")}
 </div></div>"""
     head = ld_script(trilha_ld([("Início", ""), ("Investidores", "investidores.html")]))
-    return layout(r, f"Investir em imóveis: lançamentos no DF e em Portugal · {MARCA}", f"Lançamentos na planta em Brasília e imóveis para investir em Portugal, no Algarve e na Comporta, com atendimento em português do Brasil. Corretor {MARCA}, {CRECI}, com parceiro licenciado em Portugal.", corpo, "investidores", "investidores.html", tem_exemplo, head)
+    return layout(r, f"Investir em imóveis: lançamentos no DF e em Portugal · {MARCA}", f"Lançamentos na planta em Brasília e imóveis para investir em Portugal, no Algarve, na Comporta e em Azeitão, com atendimento em português do Brasil. Corretor {MARCA}, {CRECI}, com parceiro licenciado em Portugal.", corpo, "investidores", "investidores.html", tem_exemplo, head)
 
 
 def pagina_privacidade(tem_exemplo):
