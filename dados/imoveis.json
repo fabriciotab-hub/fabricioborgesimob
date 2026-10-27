@@ -54,7 +54,9 @@
     "Condomínio fechado com guarita",
     "Garantia"
    ],
-   "fotos": []
+   "fotos": [
+    "fotos/VP-0101/01.jpg"
+   ]
   },
   {
    "codigo": "AC-0302",
