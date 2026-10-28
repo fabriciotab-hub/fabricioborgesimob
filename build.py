@@ -330,13 +330,13 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
     robots = "" if indexar else '<meta name="robots" content="noindex">\n'
     menu = [
         ("imoveis.html", "Comprar", "comprar"),
-        ("index.html#regioes", "Regiões", "regioes"),
+        ("/#regioes", "Regiões", "regioes"),
         ("investidores.html", "Investidores", "investidores"),
         ("anuncie.html", "Anuncie seu imóvel", "anuncie"),
         ("sobre.html", "Sobre", "sobre"),
     ]
     links = "\n".join(
-        f'<a href="{r}{h}"{" aria-current=\"page\"" if k == ativo else ""}>{t}</a>' for h, t, k in menu
+        f'<a href="{h if h.startswith("/") else r + h}"{" aria-current=\"page\"" if k == ativo else ""}>{t}</a>' for h, t, k in menu
     )
     aviso = (
         '<div class="aviso-previa">Prévia do site: os imóveis mostrados são exemplos fictícios.</div>'
@@ -378,7 +378,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 {aviso}
 <header class="topo">
 <div class="wrap">
-<a class="marca" href="{r}index.html" aria-label="{MARCA}, página inicial">
+<a class="marca" href="/" aria-label="{MARCA}, página inicial">
 <span class="marca-icone">{monograma(44)}</span>
 <span class="marca-texto"><span class="marca-nome">{MARCA}</span><span class="marca-sub">{MARCA_SUB}</span></span>
 </a>
@@ -646,7 +646,7 @@ def pagina_regiao(slug, imoveis, tem_exemplo):
                  f'<a class="btn btn-azul" href="../anuncie.html">Quero vender meu imóvel</a>'
                  f'<a class="btn btn-contorno" href="{wa("Olá Fabrício, procuro um imóvel em outra região de Brasília: ")}">Quero comprar em outra região</a></div>')
     corpo = f"""<div class="busca-pagina"><div class="wrap">
-<nav class="trilha" aria-label="Caminho" style="padding-top:0"><a href="../index.html">Início</a><span aria-hidden="true">/</span><span>{E(reg['nome'])}</span></nav>
+<nav class="trilha" aria-label="Caminho" style="padding-top:0"><a href="/">Início</a><span aria-hidden="true">/</span><span>{E(reg['nome'])}</span></nav>
 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:820px">
 <h1 style="font-size:clamp(28px,4vw,38px)">{E(reg.get("h1", "Imóveis à venda em " + reg["nome"]))}</h1>
 <p style="color:var(--texto-2);font-size:18px;line-height:1.6">{E(reg['texto'])}</p>
@@ -854,7 +854,7 @@ def pagina_investidores(imoveis, tem_exemplo):
 </section>"""
 
     corpo = f"""<div class="busca-pagina"><div class="wrap">
-<nav class="trilha" aria-label="Caminho" style="padding-top:0"><a href="index.html">Início</a><span aria-hidden="true">/</span><span>Investidores</span></nav>
+<nav class="trilha" aria-label="Caminho" style="padding-top:0"><a href="/">Início</a><span aria-hidden="true">/</span><span>Investidores</span></nav>
 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:820px">
 <span class="sobretitulo" style="color:var(--texto-2)">Para investidores</span>
 <h1 style="font-size:clamp(28px,4vw,38px)">Lançamentos e oportunidades para investir</h1>
