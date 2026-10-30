@@ -2,6 +2,98 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'.",
  "imoveis": [
   {
+   "codigo": "PT-0104",
+   "destaque": true,
+   "tipo": "Comércio",
+   "titulo": "Chalet Saudade, guest house com 15 quartos no centro histórico de Sintra",
+   "titulo_seo": "Guest house com 15 quartos à venda no centro histórico de Sintra, Portugal · valor sob consulta",
+   "regiao": "sintra",
+   "moeda": "EUR",
+   "endereco": "Centro Histórico, Sintra, Lisboa",
+   "mapa": "Centro Histórico, Sintra, Portugal",
+   "mapa_zoom": 15,
+   "preco": null,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": 971,
+   "lote": null,
+   "quartos": 15,
+   "quartos_texto": "15 quartos",
+   "vagas": null,
+   "documento": "portugal",
+   "investidor": true,
+   "specs": [
+    [
+     "Área coberta",
+     "971 m²"
+    ],
+    [
+     "Varandas e terraços",
+     "213,75 m²"
+    ],
+    [
+     "Jardim",
+     "883 m²"
+    ],
+    [
+     "Quartos",
+     "15"
+    ],
+    [
+     "Pisos",
+     "7"
+    ],
+    [
+     "Lisboa",
+     "cerca de 30 km"
+    ]
+   ],
+   "descricao": "Casarão histórico em pleno centro de Sintra, a poucos passos da estação de comboio (a linha de Sintra, que liga a Lisboa, movimenta cerca de 3 milhões de passageiros por ano, segundo o vendedor). O Chalet Saudade funciona como guest house de estilo vintage, com 15 quartos desde as obras de 2018, e vem de uma operação com alta ocupação e avaliações máximas nos principais portais de reservas. São 7 pisos, com 971 m² de área coberta, 213,75 m² de varandas e terraços e 883 m² de jardim. Sintra e a sua paisagem cultural são Patrimônio Mundial da UNESCO (fonte: whc.unesco.org/en/list/723). Informações do vendedor (book de 2020): ocupação média de 91% em 2017, 85% em 2018 e 88% em 2019; nota 9,5/10 no Booking (1.427 avaliações), 5,0/5 no TripAdvisor (566), 4,8/5 na Expedia (457) e 9,6/10 no Hotels.com (327). Valor sob consulta. Demonstrações de faturamento e demais números da operação são enviados mediante contato. A intermediação em Portugal é feita pela imobiliária parceira.",
+   "itens": [
+    "Operação de guest house em funcionamento",
+    "Centro histórico de Sintra (UNESCO)",
+    "Perto da estação de comboio",
+    "Jardim de 883 m²",
+    "Varandas e terraços",
+    "15 quartos",
+    "Nota 9,5 no Booking"
+   ],
+   "fotos": [
+    "fotos/PT-0104/01.jpg",
+    "fotos/PT-0104/02.jpg",
+    "fotos/PT-0104/03.jpg",
+    "fotos/PT-0104/04.jpg",
+    "fotos/PT-0104/05.jpg",
+    "fotos/PT-0104/06.jpg",
+    "fotos/PT-0104/07.jpg",
+    "fotos/PT-0104/08.jpg",
+    "fotos/PT-0104/09.jpg",
+    "fotos/PT-0104/10.jpg",
+    "fotos/PT-0104/11.jpg",
+    "fotos/PT-0104/12.jpg",
+    "fotos/PT-0104/13.jpg",
+    "fotos/PT-0104/14.jpg",
+    "fotos/PT-0104/15.jpg",
+    "fotos/PT-0104/16.jpg",
+    "fotos/PT-0104/17.jpg",
+    "fotos/PT-0104/18.jpg",
+    "fotos/PT-0104/19.jpg"
+   ],
+   "capa": {
+    "foto": "social/PT-0104/capa-fundo.jpg",
+    "foco": "50% 60%",
+    "local": "Sintra",
+    "esquerda": [
+     "Guest house · 15 quartos",
+     "971 m² cobertos"
+    ],
+    "direita": [
+     "Portugal",
+     "Centro histórico UNESCO"
+    ]
+   }
+  },
+  {
    "codigo": "VP-0101",
    "destaque": true,
    "tipo": "Casa",
