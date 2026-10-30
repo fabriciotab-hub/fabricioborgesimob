@@ -137,6 +137,17 @@ REGIOES = {
         "card": "Azeitão · Portugal",
         "rodape": "Azeitão, Portugal",
     },
+    "sintra": {
+        "busca": "Imóvel à venda em Sintra, Portugal, para brasileiros investirem",
+        "nome": "Sintra",
+        "uf": "PT",
+        "em": "em Sintra",
+        "curto": "Centro histórico de Sintra, patrimônio mundial da UNESCO, a cerca de 30 km de Lisboa.",
+        "texto": "Sintra fica a cerca de 30 km de Lisboa e tem o centro histórico e a paisagem cultural classificados pela UNESCO como Patrimônio Mundial. Apresento a brasileiros imóveis na região, incluindo operações de alojamento turístico em funcionamento. Você fala comigo, em português do Brasil, e a intermediação em Portugal é feita por imobiliária parceira, licenciada no país.",
+        "h1": "Imóveis à venda em Sintra, Portugal",
+        "card": "Sintra · Portugal",
+        "rodape": "Sintra, Portugal",
+    },
 }
 
 UFS = {"DF": "Distrito Federal", "GO": "Goiás", "PT": "Portugal"}
