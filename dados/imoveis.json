@@ -781,7 +781,20 @@
     "fotos/AC-0301/19.jpg",
     "fotos/AC-0301/20.jpg"
    ],
-   "video": "https://www.youtube.com/watch?v=Yr2uztfORtM"
+   "video": "https://www.youtube.com/watch?v=Yr2uztfORtM",
+   "capa": {
+    "foto": "fotos/AC-0301/fundo-capa.jpg",
+    "foco": "50% 45%",
+    "local": "Águas Claras",
+    "esquerda": [
+     "Villa Almare",
+     "Lançamento"
+    ],
+    "direita": [
+     "2 e 3 quartos",
+     "Condomínio-clube"
+    ]
+   }
   },
   {
    "codigo": "AR-0101",
