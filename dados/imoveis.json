@@ -2,6 +2,67 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'.",
  "imoveis": [
   {
+   "codigo": "VP-0102",
+   "destaque": true,
+   "tipo": "Casa",
+   "titulo": "Casa moderna com 3 suítes, piscina e área verde na Rua 6",
+   "titulo_seo": "Casa com 3 suítes à venda em Vicente Pires, DF · R$ 1.490.000",
+   "regiao": "vicente-pires",
+   "endereco": "Rua 6, Vicente Pires",
+   "preco": 1490000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": null,
+   "lote": 400,
+   "quartos": 3,
+   "suites": 3,
+   "vagas": 4,
+   "documento": "cessao",
+   "capa": {
+    "foto": "fotos/VP-0102/fundo-capa.jpg",
+    "foco": "50% 40%",
+    "local": "Vicente Pires",
+    "esquerda": [
+     "Rua 06 · Lote 400 m²",
+     "03 suítes"
+    ],
+    "direita": [
+     "Lazer completo",
+     "Área verde"
+    ]
+   },
+   "descricao": "Casa moderna na Rua 6 de Vicente Pires, pensada para quem gosta de casa aberta e cheia de luz. A sala com pé-direito alto se integra à cozinha, que se abre para o espaço gourmet, a piscina e a área verde nos fundos. São 3 suítes, lavabo e garagem para até 4 carros, num lote de 400 m².",
+   "itens": [
+    "Lote de 400 m²",
+    "3 suítes",
+    "Sala com pé-direito alto",
+    "Cozinha integrada com ilha",
+    "Espaço gourmet externo integrado à cozinha",
+    "Lavabo",
+    "Garagem para até 4 veículos",
+    "Piscina",
+    "Área verde nos fundos",
+    "Acabamento moderno com iluminação embutida"
+   ],
+   "fotos": [
+    "fotos/VP-0102/01.jpg",
+    "fotos/VP-0102/02.jpg",
+    "fotos/VP-0102/03.jpg",
+    "fotos/VP-0102/04.jpg",
+    "fotos/VP-0102/05.jpg",
+    "fotos/VP-0102/06.jpg",
+    "fotos/VP-0102/07.jpg",
+    "fotos/VP-0102/08.jpg",
+    "fotos/VP-0102/09.jpg",
+    "fotos/VP-0102/10.jpg",
+    "fotos/VP-0102/11.jpg",
+    "fotos/VP-0102/12.jpg",
+    "fotos/VP-0102/13.jpg",
+    "fotos/VP-0102/14.jpg",
+    "fotos/VP-0102/15.jpg"
+   ]
+  },
+  {
    "codigo": "PT-0104",
    "destaque": true,
    "tipo": "Comércio",
