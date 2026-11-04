@@ -20,7 +20,7 @@
    "documento": "cessao",
    "capa": {
     "foto": "fotos/VP-0102/fundo-capa.jpg",
-    "foco": "50% 40%",
+    "foco": "50% 35%",
     "local": "Vicente Pires",
     "esquerda": [
      "Rua 06 · Lote 400 m²",
@@ -59,7 +59,10 @@
     "fotos/VP-0102/12.jpg",
     "fotos/VP-0102/13.jpg",
     "fotos/VP-0102/14.jpg",
-    "fotos/VP-0102/15.jpg"
+    "fotos/VP-0102/15.jpg",
+    "fotos/VP-0102/16.jpg",
+    "fotos/VP-0102/17.jpg",
+    "fotos/VP-0102/18.jpg"
    ]
   },
   {
