@@ -30,6 +30,8 @@ MARCA_SUB = "Negócios Imobiliários"
 GOOGLE_ADS_ID = "AW-18537426832"
 # Rótulo da conversão "Clique no WhatsApp", ex.: "AbCdEfGhIjK" (vem junto do ID no Google Ads).
 GOOGLE_ADS_CONVERSAO = ""
+# Google Analytics 4: ID de métricas, ex.: "G-ABC123XYZ". Vazio desliga o Analytics.
+GA4_ID = ""
 
 TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Comércio", "Chácara", "Fazenda"]
 
@@ -210,6 +212,74 @@ DOCS = {
 
 E = html.escape
 
+# Guias curtos que explicam o diferencial do site (documentação). Conteúdo informativo, revisar com o Fabricio.
+GUIAS = {
+    "cessao-de-direitos": {
+        "menu": "Guia: cessão de direitos",
+        "chamada": "Entenda o que é cessão de direitos e o que conferir antes de comprar",
+        "titulo": "Cessão de direitos: o que é e o que conferir antes de comprar",
+        "busca": "O que é cessão de direitos na compra de imóvel no DF e o que conferir",
+        "resumo": "Como funciona a compra de imóvel por cessão de direitos em Vicente Pires, Arniqueira e outras áreas do DF, o que conferir e por que o pagamento costuma ser à vista.",
+        "corpo": """<p>Em boa parte de Vicente Pires, do Jóquei e de Arniqueira, muitos imóveis ainda não têm escritura e matrícula próprias em cartório. Nesses casos, quem vende não transfere a propriedade registrada: transfere os <strong>direitos</strong> que tem sobre o imóvel, por meio de um contrato de cessão de direitos.</p>
+<h2>Como funciona na prática</h2>
+<p>O vendedor (cedente) passa ao comprador (cessionário) os direitos de posse e de uso que ele mesmo recebeu de quem estava antes. É comum existir uma sequência de cessões, uma para cada dono anterior. O contrato costuma ter as assinaturas reconhecidas em cartório.</p>
+<h2>O que eu confiro com você antes da proposta</h2>
+<ul>
+<li>A sequência de contratos, do primeiro ocupante até o vendedor atual, sem lacunas.</li>
+<li>Os documentos pessoais do vendedor e, se for casado, a assinatura do cônjuge.</li>
+<li>Certidões em nome do vendedor, para ver se há processos que possam atingir o imóvel.</li>
+<li>Débitos de IPTU, TLP, água e luz em nome do imóvel.</li>
+<li>Em que fase está a regularização da área onde o imóvel fica.</li>
+</ul>
+<h2>Pagamento e financiamento</h2>
+<p>Como não há matrícula em cartório, os bancos normalmente não financiam imóveis vendidos por cessão de direitos. Por isso o pagamento costuma ser à vista, ou parcelado diretamente com o vendedor, conforme combinado em contrato.</p>
+<h2>Vale a pena?</h2>
+<p>Pode valer, e muito: é o que permite morar em casas amplas, em lotes grandes, por um preço por metro quadrado menor que o de áreas escrituradas. O ponto é comprar sabendo exatamente o que está sendo comprado. É por isso que cada anúncio deste site mostra a situação do documento antes da visita.</p>""",
+    },
+    "regularizacao-terracap": {
+        "menu": "Guia: imóvel em regularização",
+        "chamada": "Entenda como funciona a regularização com a Terracap",
+        "titulo": "Imóvel em regularização no DF: como funciona com a Terracap",
+        "busca": "Imóvel em regularização no DF: como funciona com a Terracap",
+        "resumo": "O que significa comprar um imóvel em área em regularização em Vicente Pires, Arniqueira ou no Jóquei, quem conduz o processo e quando sai a escritura.",
+        "corpo": """<p>Várias regiões do DF nasceram de parcelamentos que não foram aprovados na época, como partes de Vicente Pires, do Jóquei e de Arniqueira. Hoje essas áreas passam por regularização fundiária, conduzida pelo Governo do Distrito Federal e, nas terras públicas, pela <strong>Terracap</strong>.</p>
+<h2>O que muda para quem compra</h2>
+<p>Enquanto a área está em regularização, o imóvel normalmente é vendido por cessão de direitos. Quando o processo da área termina, o ocupante pode obter a escritura e a matrícula em cartório, seguindo as regras e os custos definidos para aquela área.</p>
+<h2>Cada área está em uma fase</h2>
+<p>A regularização não anda igual em toda a região. Alguns trechos já têm projeto aprovado e escrituras saindo; outros ainda estão em etapas anteriores. Por isso a pergunta certa não é só \"o bairro está regularizado?\", e sim \"em que fase está a quadra ou a rua deste imóvel?\".</p>
+<h2>Como eu ajudo</h2>
+<ul>
+<li>Levanto a fase da regularização da área do imóvel antes da visita.</li>
+<li>Explico o que o comprador pode precisar pagar quando chegar a hora da escritura.</li>
+<li>Mostro a diferença de preço entre imóveis escriturados, em regularização e por cessão de direitos na mesma região.</li>
+</ul>
+<p class="nota-guia">As regras de cada área mudam com o andamento dos processos. Antes de fechar negócio, a situação é sempre conferida nos órgãos responsáveis.</p>""",
+    },
+    "custos-de-compra": {
+        "menu": "Guia: custos para comprar",
+        "chamada": "Veja os custos além do preço do imóvel",
+        "titulo": "Quanto custa comprar um imóvel no DF além do preço",
+        "busca": "Custos para comprar imóvel no DF: ITBI, escritura e registro",
+        "resumo": "Os custos que entram na conta de quem compra um imóvel no DF além do preço: ITBI, escritura, registro e despesas do financiamento.",
+        "corpo": """<p>O preço do anúncio não é o único valor que sai do bolso. Para não ser surpreendido, separe uma reserva para os custos abaixo. Os valores exatos dependem do imóvel e são calculados caso a caso.</p>
+<h2>Imóvel escriturado</h2>
+<ul>
+<li><strong>ITBI</strong>: imposto de transmissão cobrado pelo Distrito Federal sobre o valor do imóvel, pago antes da escritura.</li>
+<li><strong>Escritura</strong> no cartório de notas, quando a compra é à vista. No financiamento, o contrato do banco faz esse papel.</li>
+<li><strong>Registro</strong> no cartório de registro de imóveis, que é o que torna você dono de fato.</li>
+<li><strong>Certidões</strong> do imóvel e do vendedor.</li>
+</ul>
+<h2>Com financiamento</h2>
+<p>O banco cobra a avaliação do imóvel e pode ter tarifas próprias. O correspondente bancário parceiro, a CVT, compara as condições de vários bancos e mostra o custo total antes de você decidir.</p>
+<h2>Imóvel em regularização ou por cessão de direitos</h2>
+<p>Normalmente não há escritura nem registro no momento da compra. Os custos ficam no contrato de cessão e no reconhecimento de firmas, e os de escritura vêm mais tarde, quando a regularização da área terminar.</p>
+<h2>Minha recomendação</h2>
+<p>Antes de visitar, me peça a conta completa do imóvel que te interessou. Eu passo o preço, os custos estimados e as formas de pagamento por escrito.</p>""",
+    },
+}
+DOC_GUIA = {"cessao": "cessao-de-direitos", "regularizacao": "regularizacao-terracap", "escriturado": "custos-de-compra"}
+
+
 
 def brl(v):
     if v is None:
@@ -292,11 +362,12 @@ def card(i, r):
         f'data-tipo="{E(i["tipo"])}" data-regiao="{i["regiao"]}" data-preco="{i["preco"] or 0}" '
         f'data-quartos="{i.get("quartos") or 0}" data-doc="{i["documento"]}" '
         f'data-area="{i.get("area") or i.get("lote") or 0}" data-ordem="{i["_ordem"]}"'
+        + (' data-vendido="1"' if i.get("vendido") else "")
     )
     return f"""<a class="card" href="{r}imoveis/{i['codigo']}.html" {attrs}>
-<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if youtube_id(i.get("video")) else ''}</div>
+<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-vendido">Vendido</span>' if i.get("vendido") else ''}{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if youtube_id(i.get("video")) else ''}</div>
 <div class="card-corpo">
-<span class="preco">{preco(i)}</span>
+<span class="preco">{"Vendido" if i.get("vendido") else preco(i)}</span>
 <span class="card-titulo">{E(i['titulo'])}</span>
 <span class="card-local">{E(reg)} · {E(i['tipo'])}</span>
 <span class="card-specs">{specs_curtas(i)}</span>
@@ -321,22 +392,29 @@ def trilha_ld(passos):
 
 
 def tag_google_ads():
-    """Tag do Google Ads; conta como conversão todo clique que abre o WhatsApp do corretor."""
-    if not GOOGLE_ADS_ID:
+    """Tags do Google (Ads e Analytics 4) e medição de contatos.
+
+    Todo clique que abre o WhatsApp vira o evento "contato_whatsapp" (com a origem e o código do imóvel),
+    inclusive os formulários de visita, venda e alerta, que abrem o WhatsApp. Com o rótulo de conversão
+    preenchido, o mesmo clique conta como conversão no Google Ads. O WhatsApp da CVT vira "contato_cvt".
+    """
+    ids = [x for x in (GOOGLE_ADS_ID, GA4_ID) if x]
+    if not ids:
         return ""
-    conversao = ""
-    if GOOGLE_ADS_CONVERSAO:
-        conversao = f"""
-document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/{WHATS}"]');if(a)gtag('event','conversion',{{send_to:'{GOOGLE_ADS_ID}/{GOOGLE_ADS_CONVERSAO}'}});}},true);"""
-    return f"""<script async src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ADS_ID}"></script>
+    configs = "".join(f"gtag('config','{x}');" for x in ids)
+    conversao = f"gtag('event','conversion',{{send_to:'{GOOGLE_ADS_ID}/{GOOGLE_ADS_CONVERSAO}'}});" if GOOGLE_ADS_ID and GOOGLE_ADS_CONVERSAO else ""
+    return f"""<script async src="https://www.googletagmanager.com/gtag/js?id={ids[0]}"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
-gtag('js',new Date());gtag('config','{GOOGLE_ADS_ID}');{conversao}
+gtag('js',new Date());{configs}
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
+var p={{origem:a.getAttribute('data-origem')||'link',pagina:location.pathname,imovel:a.getAttribute('data-codigo')||(document.body.getAttribute('data-codigo')||'')}};
+if(a.href.indexOf('wa.me/{WHATS}')>-1){{gtag('event','contato_whatsapp',p);{conversao}}}else{{gtag('event','contato_cvt',p);}}}},true);
 </script>
 """
 
 
-def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head="", imagem="static/img/fabricio-retrato.jpg", indexar=True):
+def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head="", imagem="static/img/fabricio-retrato.jpg", indexar=True, whats_msg=None, codigo="", barra=""):
     canonical = f"{DOMINIO}/{caminho}"
     robots = "" if indexar else '<meta name="robots" content="noindex">\n'
     menu = [
@@ -361,6 +439,9 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
     regioes_rodape = "".join(
         f'<li><a href="{r}regioes/{s}.html">{E(v.get("rodape", "Imóveis em " + v["nome"]))}</a></li>' for s, v in REGIOES.items()
     )
+    guias_rodape = "".join(f'<li><a href="{r}guias/{s}.html">{E(g["menu"])}</a></li>' for s, g in GUIAS.items())
+    msg_flutuante = whats_msg or "Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis."
+    flutuante = barra or f'<a class="whats-flutuante" data-origem="flutuante" href="{wa(msg_flutuante)}" aria-label="Falar no WhatsApp">{ICONE_WHATS.format(s=30)}</a>'
     return f"""<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -385,7 +466,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <link rel="stylesheet" href="{r}static/style.css">
 {tag_google_ads()}{extra_head}
 </head>
-<body>
+<body{f' data-codigo="{codigo}"' if codigo else ""}{' class="com-barra"' if barra else ""}>
 {aviso}
 <header class="topo">
 <div class="wrap">
@@ -393,9 +474,10 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <span class="marca-icone">{monograma(44)}</span>
 <span class="marca-texto"><span class="marca-nome">{MARCA}</span><span class="marca-sub">{MARCA_SUB}</span></span>
 </a>
-<nav class="menu" aria-label="Principal">
+<button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu><span class="menu-botao-linhas" aria-hidden="true"></span><span class="sr">Abrir menu</span></button>
+<nav class="menu" id="menu-principal" aria-label="Principal">
 {links}
-<a class="btn btn-azul btn-pilula" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}">{ICONE_WHATS.format(s=18)} WhatsApp</a>
+<a class="btn btn-azul btn-pilula" data-origem="topo" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}">{ICONE_WHATS.format(s=18)} WhatsApp</a>
 </nav>
 </div>
 </header>
@@ -407,10 +489,10 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <div class="rodape-marca">{monograma(56, classe="rodape-mono")}<div><strong>{MARCA}</strong><br>{MARCA_SUB}<br>Corretor de imóveis · {CRECI}<br>Brasília, DF</div></div>
 <div><strong>Contato</strong><ul><li><a href="{wa()}">WhatsApp {WHATS_TXT}</a></li><li><a href="https://instagram.com/{INSTAGRAM}" rel="noopener">{ICONE_INSTA} @{INSTAGRAM}</a></li>{yt_rodape}</ul></div>
 <div><ul>{regioes_rodape}</ul></div>
-<div><ul><li><a href="{r}investidores.html">Lançamentos para investidores</a></li><li><a href="{r}anuncie.html">Anuncie seu imóvel</a></li><li><a href="{r}privacidade.html">Política de privacidade</a></li></ul></div>
+<div><ul>{guias_rodape}<li><a href="{r}investidores.html">Lançamentos para investidores</a></li><li><a href="{r}anuncie.html">Anuncie seu imóvel</a></li><li><a href="{r}privacidade.html">Política de privacidade</a></li></ul></div>
 </div>
 </footer>
-<a class="whats-flutuante" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}" aria-label="Falar no WhatsApp">{ICONE_WHATS.format(s=30)}</a>
+{flutuante}
 <script src="{r}static/app.js" defer></script>
 </body>
 </html>
@@ -434,7 +516,8 @@ def form_busca(r, regiao_sel=""):
 </form>"""
 
 
-def secao_docs():
+def secao_docs(r=""):
+    links = "".join(f'<a href="{r}guias/{s}.html">{E(g["menu"].replace("Guia: ", "").capitalize())}</a>' for s, g in GUIAS.items())
     itens = "".join(
         f'<div><strong><span class="ponto" style="background:{d["cor"]}"></span>{d["rotulo"]}</strong><small>{d["resumo"]}</small></div>'
         for d in DOCS.values() if d.get("secao", True)
@@ -446,6 +529,7 @@ def secao_docs():
 <p>Em Vicente Pires, no Jóquei e em Arniqueira, parte dos imóveis ainda está em regularização. Cada anúncio mostra se o imóvel é escriturado, está em regularização com a Terracap ou é vendido por cessão de direitos.</p>
 </div>
 <div class="lista-docs">{itens}</div>
+<div class="docs-guias"><span>Guias rápidos:</span>{links}</div>
 </div>
 </section>"""
 
@@ -455,21 +539,27 @@ def secao_sobre(r, completa=False):
     foto = f'<div class="foto-corretor"><img src="{r}static/img/fabricio.jpg" alt="{MARCA}, corretor de imóveis" width="200" height="200"></div>'
     if completa:
         foto = f'<div class="foto-retrato"><img src="{r}static/img/fabricio-retrato.jpg" alt="{MARCA}, corretor de imóveis" width="360" height="540"></div>'
-    if completa:
         extra = """<p>Trabalho só com venda. Isso me deixa focado em uma coisa: ajudar quem quer comprar a encontrar o imóvel certo, com a documentação entendida, e ajudar quem quer vender a chegar no preço justo com segurança.</p>
-<p>Antes de cada visita eu explico a situação do documento, os custos de transferência e as opções de pagamento, para você decidir com calma.</p>
-<p>Para quem vai financiar, conto com a parceria da <a href="https://cvtcorrespondente.com.br/" rel="noopener" style="color:var(--areia);font-weight:600">CVT Correspondente Bancário</a>, que analisa o crédito em vários bancos e cuida do processo até a assinatura.</p>"""
+<p>Antes de cada visita eu explico a situação do documento, os custos de transferência e as opções de pagamento, para você decidir com calma.</p>"""
     return f"""<section class="sobre" id="sobre">
 <div class="wrap">
 {foto}
 <div class="sobre-texto">
-<h2 style="font-size:clamp(26px,3.4vw,32px)">{MARCA}, corretor de imóveis</h2>
+<h{"1" if completa else "2"} style="font-size:clamp(26px,3.4vw,32px)">{MARCA}, corretor de imóveis</h{"1" if completa else "2"}>
 <p>{CRECI}. Especialista em venda de imóveis em Vicente Pires, Jóquei, Arniqueira e Águas Claras.</p>
 {extra}
-<div><a class="btn btn-azul" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}">{ICONE_WHATS.format(s=18)} Falar comigo no WhatsApp</a></div>
+<div class="fin-botoes"><a class="btn btn-azul" data-origem="sobre" href="{wa('Olá Fabrício, vim pelo site e gostaria de falar sobre imóveis.')}">{ICONE_WHATS.format(s=18)} Falar comigo no WhatsApp</a>{"" if completa else f'<a class="btn btn-contorno-claro" href="{r}sobre.html">Conheça meu trabalho</a>'}</div>
 </div>
 </div>
 </section>"""
+
+
+COMO_TRABALHO = [
+    ("Documento explicado antes da visita", "Você sabe se o imóvel é escriturado, está em regularização ou é vendido por cessão de direitos antes de sair de casa."),
+    ("Conta completa por escrito", "Preço, custos de transferência e formas de pagamento, para decidir com calma."),
+    ("Financiamento com quem entende", "Parceria com a CVT Correspondente Bancário, que compara vários bancos e acompanha até a assinatura."),
+    ("Acompanhamento até a escritura", "Visitas, proposta, contrato e cartório, sempre com você."),
+]
 
 
 PARCEIRO = {
@@ -508,65 +598,146 @@ def secao_financiamento():
 </section>"""
 
 
-def secao_simulador_anuncie(r):
-    return f"""<section class="secao">
-<div class="wrap duas">
+PASSOS_VENDA = [
+    ("Você me conta sobre o imóvel", "Pelo WhatsApp ou pelo formulário, em poucos minutos."),
+    ("Avaliação com vendas reais", "Visito o imóvel e chegamos juntos ao preço certo para vender."),
+    ("Fotos e divulgação", "Produzo fotos e vídeo, anuncio no site, nas redes e nos portais."),
+    ("Visitas e negociação", "Filtro os interessados e acompanho tudo até a escritura."),
+]
+
+
+def secao_vender(r):
+    passos = "".join(f'<li><strong>{E(t)}</strong><span>{E(d)}</span></li>' for t, d in PASSOS_VENDA)
+    return f"""<section class="secao vender" id="anuncie">
+<div class="wrap">
+<div class="vender-caixa">
+<div class="vender-texto">
+<span class="sobretitulo">Para proprietários</span>
+<h2>Quer vender seu imóvel no DF?</h2>
+<p>Avaliação gratuita, documentação conferida antes de anunciar e divulgação para quem já está procurando na sua região.</p>
+<div class="fin-botoes">
+<a class="btn btn-azul" data-origem="home-vender" href="{wa('Olá Fabrício, quero vender meu imóvel e gostaria de uma avaliação.')}">{ICONE_WHATS.format(s=18)} Quero uma avaliação</a>
+<a class="btn btn-contorno" href="{r}anuncie.html">Como funciona</a>
+</div>
+</div>
+<ol class="passos">{passos}</ol>
+</div>
+</div>
+</section>"""
+
+
+def secao_simulador(r):
+    return f"""<section class="secao" style="padding-top:0">
+<div class="wrap">
 <div class="caixa" id="simulador">
 <h2>Quanto posso financiar?</h2>
 <p class="sub" style="margin:0">Uma conta rápida para saber a faixa de preço certa antes de procurar.</p>
 <div class="linha-campos">
 <label class="campo">Renda familiar mensal<input id="sim-renda" inputmode="numeric" value="15.000"></label>
 <label class="campo">Entrada disponível<input id="sim-entrada" inputmode="numeric" value="150.000"></label>
+<div class="campo" style="justify-content:flex-end"><button class="btn btn-azul" type="button" id="sim-botao">Simular</button></div>
 </div>
-<button class="btn btn-azul" type="button" id="sim-botao">Simular</button>
 <div class="resultado" id="sim-resultado" hidden aria-live="polite"></div>
 <p class="nota">Estimativa com parcela de até 30% da renda, 35 anos e juros de 11% ao ano. Imóveis em regularização ou cessão de direitos não costumam aceitar financiamento bancário.</p>
-</div>
-<div class="caixa caixa-areia" id="anuncie">
-<div style="display:flex;flex-direction:column;gap:12px">
-<h2>Quer vender seu imóvel?</h2>
-<p style="color:var(--texto-2);line-height:1.6">Faço a avaliação, as fotos e a divulgação no site e nos portais. Você acompanha cada visita.</p>
-</div>
-<a class="btn btn-escuro" href="{r}anuncie.html">Anunciar meu imóvel</a>
 </div>
 </div>
 </section>"""
 
 
-def pagina_inicial(imoveis, tem_exemplo):
+def carregar_depoimentos():
+    """dados/depoimentos.json: lista de {"nome", "texto", "contexto"}. Só depoimentos reais, com autorização do cliente."""
+    arq = RAIZ / "dados/depoimentos.json"
+    if not arq.exists():
+        return []
+    return [d for d in json.loads(arq.read_text(encoding="utf-8")).get("depoimentos", []) if d.get("texto") and d.get("nome")]
+
+
+def secao_depoimentos(deps):
+    if not deps:
+        return ""
+    itens = "".join(
+        f'<figure class="depoimento"><blockquote>“{E(d["texto"])}”</blockquote><figcaption><strong>{E(d["nome"])}</strong>'
+        f'{"<span>" + E(d["contexto"]) + "</span>" if d.get("contexto") else ""}</figcaption></figure>'
+        for d in deps
+    )
+    return f"""<section class="secao depoimentos">
+<div class="wrap">
+<div class="secao-cabeca"><h2>Quem já comprou e vendeu comigo</h2></div>
+<div class="grade-depoimentos">{itens}</div>
+</div>
+</section>"""
+
+
+def secao_portugal(r):
+    regs = "".join(
+        f'<a href="{r}regioes/{s}.html">{E(v["nome"])}</a>' for s, v in REGIOES.items() if uf(v) in PAISES
+    )
+    return f"""<section class="secao" style="padding-top:0">
+<div class="wrap">
+<div class="portugal-caixa">
+<div class="fin-texto">
+<span class="sobretitulo">Investir ou morar fora</span>
+<h2>Imóveis em Portugal</h2>
+<p>Oportunidades selecionadas em Portugal, com preços em euro. Você fala comigo, em português do Brasil, e a intermediação no país é feita por parceiro licenciado.</p>
+<div class="portugal-regioes">{regs}</div>
+<div class="fin-botoes"><a class="btn btn-areia" href="{r}investidores.html">Ver oportunidades em Portugal</a></div>
+</div>
+</div>
+</div>
+</section>"""
+
+
+def secao_guias(r):
+    itens = "".join(
+        f'<a class="regiao-card" href="{r}guias/{s}.html"><strong>{E(g["titulo"])}</strong><span>{E(g["resumo"])}</span><em>Ler o guia</em></a>'
+        for s, g in GUIAS.items()
+    )
+    return f"""<section class="secao">
+<div class="wrap">
+<div class="secao-cabeca"><h2>Antes de comprar, entenda</h2></div>
+<div class="regioes guias">{itens}</div>
+</div>
+</section>"""
+
+
+def pagina_inicial(imoveis, tem_exemplo, deps=()):
     r = ""
-    destaques = [i for i in imoveis if i.get("destaque")][:3] or imoveis[:3]
+    df = [i for i in imoveis if uf(REGIOES[i["regiao"]]) not in PAISES and not i.get("vendido")]
+    destaques = [i for i in df if i.get("destaque")][:6] or df[:6]
     cards = "\n".join(card(i, r) for i in destaques)
     reg_cards = "\n".join(
         f'<a class="regiao-card" href="regioes/{s}.html"><strong>{E(v.get("card", v["nome"]))}</strong><span>{E(v["curto"])}</span><em>{v.get("cta", "Ver imóveis")}</em></a>'
-        for s, v in REGIOES.items() if uf(v) in ("DF", "PT")
+        for s, v in REGIOES.items() if uf(v) == "DF"
     )
     corpo = f"""<section class="hero">
 {monograma(520, classe="hero-mono")}
 <div class="wrap">
-<div style="display:flex;flex-direction:column;gap:16px">
-<span class="sobretitulo">Venda de imóveis no DF, Entorno e Portugal</span>
+<div class="hero-texto">
+<span class="sobretitulo">Corretor de imóveis no DF · {CRECI}</span>
 <h1>Casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras</h1>
-<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita. E, para quem quer investir ou morar fora, <a href="investidores.html" style="color:inherit;font-weight:600">lançamentos e oportunidades em Portugal</a>.</p>
+<p class="lead">Um corretor que conhece cada rua da região, com a situação do documento de cada imóvel explicada antes da visita.</p>
 </div>
 {form_busca(r)}
 </div>
 </section>
-<section class="secao" id="regioes">
+<section class="secao">
+<div class="wrap">
+<div class="secao-cabeca"><h2>Imóveis à venda no DF</h2><a href="imoveis.html" style="font-weight:700">Ver todos os imóveis</a></div>
+<div class="grade grade-home">{cards}</div>
+</div>
+</section>
+<section class="secao" id="regioes" style="padding-top:0">
 <div class="wrap">
 <div class="secao-cabeca"><h2>Onde eu atuo</h2></div>
 <div class="regioes">{reg_cards}</div>
 </div>
 </section>
-<section class="secao" style="padding-top:0">
-<div class="wrap">
-<div class="secao-cabeca"><h2>Imóveis em destaque</h2><a href="imoveis.html" style="font-weight:700">Ver todos os imóveis</a></div>
-<div class="grade">{cards}</div>
-</div>
-</section>
 {secao_docs()}
-{secao_simulador_anuncie(r)}
+{secao_vender(r)}
+{secao_depoimentos(deps)}
+{secao_simulador(r)}
 {secao_financiamento()}
+{secao_portugal(r)}
 {secao_sobre(r)}"""
     ld = {
         "@context": "https://schema.org",
@@ -589,7 +760,7 @@ def pagina_inicial(imoveis, tem_exemplo):
     return layout(
         r,
         f"Imóveis à venda em Vicente Pires, Arniqueira e Águas Claras · {MARCA}, corretor no DF",
-        f"Corretor de imóveis em Brasília ({CRECI}): casas, lotes e apartamentos à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras, no Entorno do DF e no Algarve, Portugal. Documentação explicada antes da visita.",
+        f"Corretor de imóveis em Brasília ({CRECI}): casas, lotes e apartamentos à venda em Vicente Pires, Jóquei, Arniqueira e Águas Claras, com a situação do documento explicada antes da visita. Também atendo o Entorno do DF e oportunidades em Portugal.",
         corpo, "", "", tem_exemplo, head,
     )
 
@@ -647,6 +818,25 @@ def pagina_busca(imoveis, tem_exemplo):
     return layout(r, f"Imóveis à venda no DF, Entorno e Algarve · {MARCA}", "Casas, lotes, apartamentos e pontos comerciais à venda em Vicente Pires, Jóquei, Arniqueira, Águas Claras, outras regiões de Brasília, Entorno do DF e Algarve, com filtro por preço, quartos e situação do documento.", corpo, "comprar", "imoveis.html", tem_exemplo)
 
 
+def form_avise(reg):
+    tipos = "".join(f"<option>{t}</option>" for t in TIPOS)
+    return f"""<div class="avise">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h2>Ainda não há imóvel anunciado {E(em_regiao(reg))}</h2>
+<p style="color:var(--texto-2)">Me conte o que você procura e eu aviso no seu WhatsApp assim que entrar um imóvel com esse perfil.</p>
+</div>
+<form class="caixa" data-avise data-regiao="{E(reg['nome'])}">
+<div class="linha-campos">
+<label class="campo">Seu nome<input name="nome" required autocomplete="name"></label>
+<label class="campo">Tipo<select name="tipo">{tipos}</select></label>
+<label class="campo">Valor até<select name="ate"><option>Até R$ 500 mil</option><option>Até R$ 800 mil</option><option>Até R$ 1,2 milhão</option><option>Até R$ 2 milhões</option><option>Acima de R$ 2 milhões</option></select></label>
+</div>
+<button class="btn btn-azul" type="submit">{ICONE_WHATS.format(s=18)} Quero ser avisado</button>
+<p class="nota">A mensagem abre no seu WhatsApp e só chega a mim se você enviar.</p>
+</form>
+</div>"""
+
+
 def pagina_regiao(slug, imoveis, tem_exemplo):
     r = "../"
     reg = REGIOES[slug]
@@ -663,7 +853,7 @@ def pagina_regiao(slug, imoveis, tem_exemplo):
 <p style="color:var(--texto-2);font-size:18px;line-height:1.6">{E(reg['texto'])}</p>
 {acoes}
 </div>
-{lista_com_filtros(r, doms, slug) if doms else '<div class="vazio">Nenhum imóvel anunciado aqui agora. <a href="' + wa('Olá Fabrício, procuro imóvel em ' + reg['nome'] + '.') + '">Me chame no WhatsApp</a> e eu aviso quando aparecer.</div>'}
+{lista_com_filtros(r, doms, slug) if doms else form_avise(reg)}
 </div></div>"""
     head = ld_script(trilha_ld([("Início", ""), (reg["nome"], f"regioes/{slug}.html")]))
     desc = f"{reg['busca']}. {reg['curto']} Corretor {MARCA}, {CRECI}."
@@ -674,7 +864,10 @@ def pagina_imovel(i, tem_exemplo):
     r = "../"
     d = DOCS[i["documento"]]
     reg = REGIOES[i["regiao"]]
+    vendido = bool(i.get("vendido"))
     msg = f"Olá Fabrício, tenho interesse no imóvel {i['codigo']} ({i['titulo']})."
+    if vendido:
+        msg = f"Olá Fabrício, vi o imóvel {i['codigo']} ({i['titulo']}), que já foi vendido. Procuro um parecido."
     fotos = i.get("fotos") or []
     rotulos = ["Foto principal", "Sala", "Cozinha", "Quarto", "Área externa"]
     cel = []
@@ -728,6 +921,12 @@ def pagina_imovel(i, tem_exemplo):
         aviso_fin = (f'<p class="aviso-fin">Financiamento facilitado com a <strong>{PARCEIRO["nome"]}</strong>, parceira. '
                      f'<a href="{PARCEIRO["whats"]}" rel="noopener">Simular no WhatsApp</a></p>')
     mapa_q = quote(i.get("mapa") or local(reg))
+    g = DOC_GUIA.get(i["documento"])
+    guia_doc = f'<p><a href="{r}guias/{g}.html" style="font-weight:600">{E(GUIAS[g]["chamada"])}</a></p>' if g else ""
+    preco_txt = "Vendido" if vendido else preco(i)
+    barra = (f'<a class="whats-flutuante so-grande" data-origem="flutuante" data-codigo="{i["codigo"]}" href="{wa(msg)}" aria-label="Falar no WhatsApp sobre o imóvel {i["codigo"]}">{ICONE_WHATS.format(s=30)}</a>'
+             f'<div class="barra-imovel"><div><span class="barra-preco">{preco_txt}</span><span class="barra-cod">Código {i["codigo"]}</span></div>'
+             f'<a class="btn btn-whats" data-origem="barra" data-codigo="{i["codigo"]}" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} WhatsApp</a></div>')
     corpo = f"""<div class="wrap">
 <nav class="trilha" aria-label="Caminho"><a href="../imoveis.html">Imóveis à venda</a><span aria-hidden="true">/</span><a href="../regioes/{i['regiao']}.html">{E(reg['nome'])}</a><span aria-hidden="true">/</span><span>Código {i['codigo']}</span></nav>
 <div class="galeria">{''.join(cel)}</div>
@@ -735,7 +934,7 @@ def pagina_imovel(i, tem_exemplo):
 <div class="imovel-layout">
 <div class="imovel-principal">
 <div style="display:flex;flex-direction:column;gap:10px">
-<span class="selo selo-{i['documento']}" style="align-self:flex-start;font-size:14px;padding:6px 12px">{d['rotulo']}</span>
+<span class="selo selo-{i['documento']}" style="align-self:flex-start;font-size:14px;padding:6px 12px">{d['rotulo']}</span>{'<span class="selo selo-vendido" style="align-self:flex-start;font-size:14px;padding:6px 12px">Vendido</span>' if vendido else ''}
 <h1>{E(i['titulo'])}{'' if i['regiao'] == 'outras-regioes' else ' ' + E(em_regiao(reg))}</h1>
 <p style="color:var(--texto-2)">{E(i['endereco'])}, {E(local(reg).split(", ", 1)[1] if uf(reg) in ("DF", *PAISES) else uf(reg))}</p>
 </div>
@@ -749,6 +948,7 @@ def pagina_imovel(i, tem_exemplo):
 <section class="doc-box doc-{i['documento']}">
 <h2 style="font-size:22px">{d.get('titulo', 'Situação do documento: ' + d['rotulo'].lower())}</h2>
 <p style="line-height:1.6;color:#33334A">{d['texto']}</p>
+{guia_doc}
 {aviso_fin}
 </section>
 <section style="display:flex;flex-direction:column;gap:12px">
@@ -758,10 +958,10 @@ def pagina_imovel(i, tem_exemplo):
 </section>
 </div>
 <aside class="lateral" aria-label="Contato">
-<span class="preco">{preco(i)}</span>
+<span class="preco">{preco_txt}</span>
 <div class="custos">{custos_html or ('<div><span>Sem condomínio</span></div>' if i.get("condominio") == 0 else '')}</div>
-<a class="btn btn-azul" style="min-height:52px;font-size:17px" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} Conversar no WhatsApp</a>
-<button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>
+<a class="btn btn-azul" style="min-height:52px;font-size:17px" data-origem="anuncio" data-codigo="{i['codigo']}" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} {"Quero um imóvel parecido" if vendido else "Conversar no WhatsApp"}</a>
+{"" if vendido else '<button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>'}
 <form class="form-visita" data-visita data-codigo="{i['codigo']}" hidden>
 <label class="campo">Seu nome<input name="nome" required autocomplete="name"></label>
 <label class="campo">Melhor dia e horário<select name="quando"><option>Sábado de manhã</option><option>Sábado à tarde</option><option>Dia de semana de manhã</option><option>Dia de semana à tarde</option><option>Dia de semana à noite</option></select></label>
@@ -787,7 +987,7 @@ def pagina_imovel(i, tem_exemplo):
             "@type": "Offer",
             **({"price": i["preco"]} if i["preco"] else {}),
             "priceCurrency": i.get("moeda", "BRL"),
-            "availability": "https://schema.org/InStock",
+            "availability": "https://schema.org/SoldOut" if vendido else "https://schema.org/InStock",
             "url": url,
             "seller": {"@type": "RealEstateAgent", "name": f"{MARCA} · {MARCA_SUB}", "url": DOMINIO, "telephone": "+55 61 99562-0101"},
             "itemOffered": {
@@ -805,7 +1005,8 @@ def pagina_imovel(i, tem_exemplo):
     if not youtube_id(i.get("video")):
         desc = desc.replace(", com fotos e vídeo", ", com fotos")
     titulo = i.get("titulo_seo") or f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' ' + em_regiao(reg)} · {preco(i)}"
-    return layout(r, titulo, desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head, fotos[0] if fotos else "static/img/fabricio-retrato.jpg")
+    return layout(r, titulo, desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head, fotos[0] if fotos else "static/img/fabricio-retrato.jpg",
+                  whats_msg=msg, codigo=i["codigo"], barra=barra)
 
 
 def pagina_anuncie(tem_exemplo):
@@ -840,10 +1041,58 @@ def pagina_anuncie(tem_exemplo):
     return layout(r, f"Quer vender seu imóvel em Brasília? Anuncie com corretor · {MARCA}", "Venda sua casa, lote ou apartamento em Vicente Pires, Jóquei, Arniqueira, Águas Claras ou outra região do DF com avaliação gratuita, fotos profissionais, divulgação e documentação conferida.", corpo, "anuncie", "anuncie.html", tem_exemplo)
 
 
-def pagina_sobre(tem_exemplo):
+def pagina_sobre(tem_exemplo, deps=()):
     r = ""
-    corpo = secao_sobre(r, completa=True) + secao_docs()
-    return layout(r, f"{MARCA}, corretor de imóveis em Brasília · {CRECI}", f"{MARCA}, corretor de imóveis {CRECI}, especialista em venda de casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras, no Entorno do DF e no Algarve, Portugal.", corpo, "sobre", "sobre.html", tem_exemplo)
+    itens = "".join(f'<li><strong>{E(t)}</strong><span>{E(d)}</span></li>' for t, d in COMO_TRABALHO)
+    redes = f'<a class="btn btn-contorno" href="https://instagram.com/{INSTAGRAM}" rel="noopener">{ICONE_INSTA} Instagram @{INSTAGRAM}</a>'
+    if YOUTUBE:
+        redes += f'<a class="btn btn-contorno" href="{E(YOUTUBE)}" rel="noopener">{ICONE_YT} Vídeos dos imóveis no YouTube</a>'
+    corpo = secao_sobre(r, completa=True) + f"""<section class="secao">
+<div class="wrap">
+<div class="secao-cabeca"><h2>Como eu trabalho</h2></div>
+<ol class="passos passos-grade">{itens}</ol>
+</div>
+</section>
+{secao_depoimentos(deps)}
+{secao_docs(r)}
+{secao_guias(r)}
+<section class="secao" style="padding-top:0">
+<div class="wrap">
+<div class="caixa caixa-areia redes">
+<h2>Acompanhe os imóveis e as dicas no dia a dia</h2>
+<p style="color:var(--texto-2)">Tours em vídeo, novidades da região e lançamentos chegam primeiro nas redes.</p>
+<div class="fin-botoes">{redes}</div>
+</div>
+</div>
+</section>"""
+    return layout(r, f"{MARCA}, corretor de imóveis em Brasília · {CRECI}", f"{MARCA}, corretor de imóveis {CRECI}, especialista em venda de casas, lotes e apartamentos em Vicente Pires, Jóquei, Arniqueira e Águas Claras, com a documentação explicada antes da visita.", corpo, "sobre", "sobre.html", tem_exemplo)
+
+
+def pagina_guia(slug, tem_exemplo):
+    r = "../"
+    g = GUIAS[slug]
+    outros = "".join(f'<li><a href="{s}.html">{E(o["titulo"])}</a></li>' for s, o in GUIAS.items() if s != slug)
+    corpo = f"""<section class="pagina-texto guia"><div class="wrap">
+<nav class="trilha" aria-label="Caminho" style="padding:0"><a href="/">Início</a><span aria-hidden="true">/</span><span>Guias</span></nav>
+<span class="sobretitulo">Guia rápido</span>
+<h1>{E(g["titulo"])}</h1>
+{g["corpo"]}
+<div class="caixa caixa-areia" style="margin-top:16px">
+<strong style="font-size:19px">Ficou com alguma dúvida sobre um imóvel específico?</strong>
+<p style="color:var(--texto-2)">Me mande o código do anúncio ou o endereço e eu explico a situação dele.</p>
+<div class="fin-botoes"><a class="btn btn-azul" data-origem="guia" href="{wa('Olá Fabrício, li o guia do site e tenho uma dúvida: ')}">{ICONE_WHATS.format(s=18)} Tirar dúvida no WhatsApp</a><a class="btn btn-contorno" href="../imoveis.html">Ver imóveis à venda</a></div>
+</div>
+<p class="nota-guia">Conteúdo informativo, que não substitui a análise jurídica do caso concreto.</p>
+<h2>Outros guias</h2>
+<ul>{outros}</ul>
+</div></section>"""
+    head = ld_script(
+        {"@context": "https://schema.org", "@type": "Article", "headline": g["titulo"], "description": g["resumo"], "inLanguage": "pt-BR",
+         "author": {"@type": "Person", "name": "Fabrício Borges", "jobTitle": "Corretor de imóveis", "identifier": CRECI},
+         "mainEntityOfPage": f"{DOMINIO}/guias/{slug}.html"},
+        trilha_ld([("Início", ""), (g["titulo"], f"guias/{slug}.html")]),
+    )
+    return layout(r, f"{g['busca']} · {MARCA}", g["resumo"], corpo, "", f"guias/{slug}.html", tem_exemplo, head)
 
 
 def para_investidor(i):
@@ -891,7 +1140,7 @@ def pagina_privacidade(tem_exemplo):
 <h2>Seus direitos</h2>
 <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados. Basta me chamar no WhatsApp {WHATS_TXT}.</p>
 <h2>Serviços de terceiros</h2>
-<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts.{" Também uso o Google Ads para anunciar o site, com cookies que medem quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if GOOGLE_ADS_ID else ""} Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
+<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts.{" Também uso o Google Ads para anunciar o site, com cookies que medem quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if GOOGLE_ADS_ID else ""}{" Uso o Google Analytics para contar visitas e cliques no WhatsApp, sem identificar quem você é." if GA4_ID else ""} Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
 </div></section>"""
     return layout("", f"Política de privacidade · {MARCA}", "Como o site de Fabrício Borges trata os dados de quem entra em contato.", corpo, "", "privacidade.html", tem_exemplo)
 
@@ -916,26 +1165,34 @@ def main():
             i["fotos"] = [capa] + i.get("fotos", [])
             i["capa_foco"] = "50% 100%"
     tem_exemplo = any(i.get("exemplo") for i in imoveis)
+    # Vendidos vão para o fim da lista.
+    imoveis.sort(key=lambda i: (bool(i.get("vendido")), i["_ordem"]))
+    for n, i in enumerate(imoveis):
+        i["_ordem"] = n
+    deps = carregar_depoimentos()
 
     if SAIDA.exists():
         shutil.rmtree(SAIDA)
     (SAIDA / "imoveis").mkdir(parents=True)
     (SAIDA / "regioes").mkdir()
+    (SAIDA / "guias").mkdir()
     shutil.copytree(RAIZ / "static", SAIDA / "static")
     if (RAIZ / "fotos").exists():
         shutil.copytree(RAIZ / "fotos", SAIDA / "fotos")
 
     paginas = {
-        "index.html": pagina_inicial(imoveis, tem_exemplo),
+        "index.html": pagina_inicial(imoveis, tem_exemplo, deps),
         "imoveis.html": pagina_busca(imoveis, tem_exemplo),
         "anuncie.html": pagina_anuncie(tem_exemplo),
-        "sobre.html": pagina_sobre(tem_exemplo),
+        "sobre.html": pagina_sobre(tem_exemplo, deps),
         "investidores.html": pagina_investidores(imoveis, tem_exemplo),
         "privacidade.html": pagina_privacidade(tem_exemplo),
         "404.html": pagina_404(tem_exemplo),
     }
     for slug in REGIOES:
         paginas[f"regioes/{slug}.html"] = pagina_regiao(slug, imoveis, tem_exemplo)
+    for slug in GUIAS:
+        paginas[f"guias/{slug}.html"] = pagina_guia(slug, tem_exemplo)
     for i in imoveis:
         paginas[f"imoveis/{i['codigo']}.html"] = pagina_imovel(i, tem_exemplo)
     for caminho, conteudo in paginas.items():
