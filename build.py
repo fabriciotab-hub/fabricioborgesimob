@@ -45,6 +45,9 @@ REGIOES = {
     "joquei": {
         "busca": "Casas em condomínio à venda no Jóquei, Vicente Pires, DF",
         "nome": "Jóquei",
+        "em": "no Jóquei",
+        "h1": "Imóveis à venda no Jóquei",
+        "rodape": "Imóveis no Jóquei",
         "curto": "Casas em condomínio com terrenos grandes, perto de Vicente Pires.",
         "texto": "O Jóquei reúne condomínios horizontais com terrenos grandes e clima de chácara, a poucos minutos de Vicente Pires e da EPTG. É uma boa escolha para quem quer espaço e segurança de condomínio.",
     },
