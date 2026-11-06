@@ -267,3 +267,88 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .aviso-fin { background: #fff; border-left: 3px solid var(--azul); border-radius: 6px; padding: 10px 14px; font-size: 15px; line-height: 1.5; color: #33334A; }
 .aviso-fin a { font-weight: 700; white-space: nowrap; }
 @media (max-width: 600px) { .fin-caixa { padding: 26px 20px; } }
+/* ===== Melhorias nov/2026: menu do celular, barra do anúncio, venda, Portugal, depoimentos, guias ===== */
+.menu-botao { display: none; width: 44px; height: 44px; border: 1px solid var(--borda-forte); border-radius: 8px; background: #fff; cursor: pointer; align-items: center; justify-content: center; padding: 0; }
+.menu-botao-linhas, .menu-botao-linhas::before, .menu-botao-linhas::after { display: block; width: 20px; height: 2px; background: var(--azul); border-radius: 2px; position: relative; content: ""; transition: transform .15s; }
+.menu-botao-linhas::before { position: absolute; top: -6px; }
+.menu-botao-linhas::after { position: absolute; top: 6px; }
+.topo.aberto .menu-botao-linhas { background: transparent; }
+.topo.aberto .menu-botao-linhas::before { transform: translateY(6px) rotate(45deg); }
+.topo.aberto .menu-botao-linhas::after { transform: translateY(-6px) rotate(-45deg); }
+.hero-texto { display: flex; flex-direction: column; gap: 16px; }
+.selo-vendido { background: var(--preto); color: #fff; }
+.card-foto .selo-vendido { left: auto; right: 12px; }
+.btn-whats { background: #25D366; color: #fff; }
+.btn-whats:hover { background: #1EB257; color: #fff; }
+.barra-imovel { display: none; }
+/* Venda */
+.vender-caixa { background: var(--areia-clara); border-radius: 8px; padding: 36px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; }
+.vender-texto { flex: 1 1 380px; display: flex; flex-direction: column; gap: 14px; }
+.vender-texto p { color: var(--texto-2); line-height: 1.6; }
+.passos { flex: 1 1 380px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: passo; }
+.passos li { counter-increment: passo; background: #fff; border-radius: 12px; padding: 14px 16px 14px 60px; position: relative; display: flex; flex-direction: column; gap: 2px; }
+.passos li::before { content: counter(passo); position: absolute; left: 16px; top: 14px; width: 30px; height: 30px; border-radius: 999px; background: var(--azul); color: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.passos li span { color: var(--texto-2); font-size: 15px; }
+.passos-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.passos-grade li { background: var(--fundo-2); }
+/* Portugal */
+.portugal-caixa { background: var(--fundo-2); color: var(--texto); border: 1px solid var(--borda); border-radius: 8px; padding: 36px; }
+.portugal-caixa h2 { color: var(--azul) !important; }
+.portugal-caixa .fin-texto p { color: var(--texto-2); }
+.portugal-caixa .sobretitulo { color: var(--areia-escura); }
+.portugal-caixa .fin-texto { max-width: 760px; }
+.portugal-regioes { display: flex; flex-wrap: wrap; gap: 8px; }
+.portugal-regioes a { color: var(--azul); background: #fff; border: 1px solid var(--borda-forte); border-radius: 999px; padding: 6px 14px; font-size: 15px; text-decoration: none; }
+.portugal-regioes a:hover { border-color: var(--azul); }
+/* Depoimentos */
+.grade-depoimentos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.depoimento { margin: 0; border: 1px solid var(--borda); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.depoimento blockquote { margin: 0; line-height: 1.6; color: #33334A; }
+.depoimento figcaption { display: flex; flex-direction: column; font-size: 15px; }
+.depoimento figcaption span { color: var(--texto-3); }
+/* Documentos: links para os guias */
+.docs-guias { flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: 15px; }
+.docs-guias span { color: var(--texto-2); font-weight: 600; }
+.docs-guias a { font-weight: 600; }
+.guias .regiao-card strong { font-size: 19px; }
+/* Aviso em região vazia */
+.avise { display: flex; flex-direction: column; gap: 20px; max-width: 820px; }
+.avise h2 { font-size: 24px; color: var(--azul); }
+.redes h2 { font-size: 24px; }
+.guia .nota-guia { font-size: 14px; color: var(--texto-3); }
+.guia ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+.sobre-texto h1 { color: #fff; }
+@media (max-width: 900px) {
+  .topo .wrap { flex-wrap: nowrap; padding-top: 10px; padding-bottom: 10px; }
+  .menu-botao { display: inline-flex; flex: none; }
+  .menu { display: none; }
+  .topo.aberto .wrap { flex-wrap: wrap; }
+  .topo.aberto .menu { display: flex; flex-direction: column; align-items: stretch; gap: 0; width: 100%; padding: 8px 0 4px; font-size: 17px; }
+  .topo.aberto .menu a { padding: 12px 4px; border-top: 1px solid #EEECE8; }
+  .topo.aberto .menu .btn-pilula { display: inline-flex; margin-top: 10px; border-top: 0; justify-content: center; }
+}
+@media (max-width: 720px) {
+  .marca { gap: 10px; }
+  .marca-icone { padding-right: 10px; }
+  .marca-icone svg { height: 30px; }
+  .marca-nome { font-size: 15px; }
+  .marca-sub { font-size: 8.5px; }
+  .hero .wrap { padding-top: 28px; padding-bottom: 32px; gap: 20px; }
+  .hero h1 { font-size: 26px; }
+  .hero p.lead { font-size: 16px; }
+  .hero .sobretitulo { font-size: 11px; letter-spacing: .16em; }
+  .busca { padding: 14px; gap: 10px; grid-template-columns: 1fr 1fr; }
+  .busca .check, .busca .btn { grid-column: span 2; }
+  .busca .campo { font-size: 13px; }
+  .secao { padding: 40px 0; }
+  .vender-caixa, .portugal-caixa { padding: 26px 20px; }
+  .com-barra .barra-imovel { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: #fff; border-top: 1px solid var(--borda); box-shadow: 0 -6px 20px rgba(0,0,0,.08); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); align-items: center; justify-content: space-between; gap: 12px; }
+  .barra-imovel > div { display: flex; flex-direction: column; line-height: 1.2; }
+  .barra-preco { font-weight: 700; font-size: 20px; color: var(--azul); font-variant-numeric: tabular-nums; }
+  .barra-cod { font-size: 12px; color: var(--texto-3); }
+  .barra-imovel .btn { min-height: 48px; padding: 0 20px; }
+  .com-barra .so-grande { display: none; }
+  .com-barra { padding-bottom: 76px; }
+  .whats-flutuante { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .grade-home .card:nth-child(n+5) { display: none; }
+}

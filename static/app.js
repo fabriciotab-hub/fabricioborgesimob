@@ -1,8 +1,10 @@
 (function () {
   var WHATS = '5561995620101';
-  function abrirWhats(msg) {
+  function abrirWhats(msg, origem, codigo) {
     var a = document.createElement('a');
     a.href = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(msg);
+    if (origem) a.setAttribute('data-origem', origem);
+    if (codigo) a.setAttribute('data-codigo', codigo);
     a.target = '_blank';
     a.rel = 'noopener';
     document.body.appendChild(a);
@@ -116,7 +118,7 @@
     formVisita.addEventListener('submit', function (e) {
       e.preventDefault();
       abrirWhats('Olá Fabrício, sou ' + formVisita.elements.nome.value + ' e quero agendar uma visita ao imóvel ' +
-        formVisita.dataset.codigo + '. Melhor horário: ' + formVisita.elements.quando.value + '.');
+        formVisita.dataset.codigo + '. Melhor horário: ' + formVisita.elements.quando.value + '.', 'visita', formVisita.dataset.codigo);
     });
   }
 
@@ -128,7 +130,28 @@
       var f = formAnuncie.elements;
       abrirWhats('Olá Fabrício, sou ' + f.nome.value + ' e quero vender meu imóvel.\n' +
         'Tipo: ' + f.tipo.value + '\nRegião: ' + f.regiao.value + '\nDocumento: ' + f.doc.value +
-        (f.obs.value ? '\nSobre o imóvel: ' + f.obs.value : ''));
+        (f.obs.value ? '\nSobre o imóvel: ' + f.obs.value : ''), 'anuncie');
+    });
+  }
+
+  // Aviso de imóvel novo em região sem anúncios
+  var formAvise = document.querySelector('[data-avise]');
+  if (formAvise) {
+    formAvise.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = formAvise.elements;
+      abrirWhats('Olá Fabrício, sou ' + f.nome.value + ' e quero ser avisado quando entrar um imóvel em ' +
+        formAvise.dataset.regiao + '.\nTipo: ' + f.tipo.value + '\nValor: ' + f.ate.value, 'avise');
+    });
+  }
+
+  // Menu do celular
+  var menuBotao = document.querySelector('[data-menu]');
+  if (menuBotao) {
+    var topo = menuBotao.closest('.topo');
+    menuBotao.addEventListener('click', function () {
+      var aberto = topo.classList.toggle('aberto');
+      menuBotao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
     });
   }
 
