@@ -735,12 +735,12 @@ def pagina_inicial(imoveis, tem_exemplo, deps=()):
 <div class="regioes">{reg_cards}</div>
 </div>
 </section>
+{secao_portugal(r)}
 {secao_docs()}
 {secao_vender(r)}
 {secao_depoimentos(deps)}
 {secao_simulador(r)}
 {secao_financiamento()}
-{secao_portugal(r)}
 {secao_sobre(r)}"""
     ld = {
         "@context": "https://schema.org",
