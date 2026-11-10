@@ -2,6 +2,71 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'.",
  "imoveis": [
   {
+   "codigo": "AC-0303",
+   "destaque": true,
+   "tipo": "Apartamento",
+   "titulo": "Apartamento de 236 m² com 4 suítes, reformado, de frente para o parque",
+   "titulo_seo": "Apartamento com 4 suítes à venda em Águas Claras, DF · R$ 2,7 milhões",
+   "bairro": "Águas Claras Norte",
+   "regiao": "aguas-claras",
+   "endereco": "Sublime Mirante Residence, Avenida Parque Águas Claras, Águas Claras",
+   "preco": 2700000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": 236,
+   "lote": null,
+   "quartos": 4,
+   "suites": 4,
+   "vagas": 4,
+   "documento": "escriturado",
+   "descricao": "Acordar com o verde do Parque de Águas Claras na janela, numa vista que não vai ser tapada. Este apartamento de 236 m² no Sublime Mirante Residence passou por uma reforma completa assinada pela arquiteta Denise Zuba, com mármore em todo o piso, marcenaria Ornare e iluminação automatizada. É chegar e morar, sem obra e sem dor de cabeça.",
+   "itens": [
+    "4 suítes, a master com closet e banheira",
+    "Sala ampla com entrada exclusiva, integrada à varanda com vista definitiva para o parque",
+    "Cozinha ampla com área de serviço separada",
+    "Piso em mármore Crema Marfil e sala revestida em mármore Travertino",
+    "Armários Ornare, portas e portais Cinex",
+    "Iluminação automatizada em LED e ar-condicionado de última geração",
+    "4 vagas, sendo 3 soltas",
+    "Lazer completo: piscina com raia, academia, sauna, cinema, quadra, salão de festas, espaço gourmet e playground",
+    "Perto do Shopping Felicità, do Comper, do Big Box 24h e da Bonapan",
+    "Entre duas estações do metrô, com saída rápida para a EPTG"
+   ],
+   "fotos": [
+    "fotos/AC-0303/01.jpg",
+    "fotos/AC-0303/02.jpg",
+    "fotos/AC-0303/03.jpg",
+    "fotos/AC-0303/04.jpg",
+    "fotos/AC-0303/05.jpg",
+    "fotos/AC-0303/06.jpg",
+    "fotos/AC-0303/07.jpg",
+    "fotos/AC-0303/08.jpg",
+    "fotos/AC-0303/09.jpg",
+    "fotos/AC-0303/10.jpg",
+    "fotos/AC-0303/11.jpg",
+    "fotos/AC-0303/12.jpg",
+    "fotos/AC-0303/13.jpg",
+    "fotos/AC-0303/14.jpg",
+    "fotos/AC-0303/15.jpg",
+    "fotos/AC-0303/16.jpg",
+    "fotos/AC-0303/17.jpg",
+    "fotos/AC-0303/18.jpg"
+   ],
+   "capa": {
+    "foto": "fotos/AC-0303/fundo-capa.jpg",
+    "foco": "50% 42%",
+    "local": "Águas Claras",
+    "esquerda": [
+     "Sublime Mirante Residence",
+     "Frente ao Parque"
+    ],
+    "direita": [
+     "04 suítes · 236 m²",
+     "Reformado"
+    ]
+   }
+  },
+  {
    "codigo": "VP-0102",
    "destaque": true,
    "tipo": "Casa",
