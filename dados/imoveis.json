@@ -19,7 +19,7 @@
    "suites": 4,
    "vagas": 4,
    "documento": "escriturado",
-   "descricao": "Acordar com o verde do Parque de Águas Claras na janela, numa vista que não vai ser tapada. Este apartamento de 236 m² no Sublime Mirante Residence passou por uma reforma completa assinada pela arquiteta Denise Zuba, com mármore em todo o piso, marcenaria Ornare e iluminação automatizada. É chegar e morar, sem obra e sem dor de cabeça.",
+   "descricao": "Acordar com o verde do Parque de Águas Claras na janela, numa vista que não vai ser tapada. Este apartamento de 236 m² no Sublime Mirante Residence passou por uma reforma completa assinada pela arquiteta Denise Zuba, com mármore em todo o piso, marcenaria Ornare e iluminação automatizada. É chegar e morar, sem obra e sem dor de cabeça. Imóvel escriturado e registrado: aceita financiamento bancário e uso do FGTS.",
    "itens": [
     "4 suítes, a master com closet e banheira",
     "Sala ampla com entrada exclusiva, integrada à varanda com vista definitiva para o parque",
@@ -30,7 +30,8 @@
     "4 vagas, sendo 3 soltas",
     "Lazer completo: piscina com raia, academia, sauna, cinema, quadra, salão de festas, espaço gourmet e playground",
     "Perto do Shopping Felicità, do Comper, do Big Box 24h e da Bonapan",
-    "Entre duas estações do metrô, com saída rápida para a EPTG"
+    "Entre duas estações do metrô, com saída rápida para a EPTG",
+    "Escriturado e registrado, aceita financiamento e FGTS"
    ],
    "fotos": [
     "fotos/AC-0303/01.jpg",
@@ -63,8 +64,10 @@
     "direita": [
      "04 suítes · 236 m²",
      "Reformado"
-    ]
-   }
+    ],
+    "video": true
+   },
+   "video": "https://www.youtube.com/shorts/gqdadq8QqXs"
   },
   {
    "codigo": "VP-0102",
