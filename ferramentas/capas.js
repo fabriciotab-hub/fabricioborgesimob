@@ -3,7 +3,8 @@
 // Imóveis com "canva" em "capa" usam a capa feita no Canva (cópia do modelo "Capa VP")
 // e salva em fotos/CODIGO/capa.jpg; este script não mexe nelas.
 // Campos de "capa": foto (caminho da foto de fundo), local (texto grande),
-// esquerda e direita (até 2 linhas cada), foco (posição da foto, ex. "50% 50%").
+// esquerda e direita (até 2 linhas cada), foco (posição da foto, ex. "50% 50%"),
+// video (true = selo "▶ Vídeo" no alto da capa, para anúncio com vídeo).
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -32,9 +33,13 @@ body { width: 1280px; height: 1280px; position: relative; overflow: hidden; back
 h1 { font-family: Titulo; font-weight: 400; text-align: center; font-size: ${c.tamanho || 112}px; line-height: 1.05; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; margin-top: 4px; }
 .info { display: flex; justify-content: space-between; gap: 40px; margin-top: 8px; padding: 0 4px; font-family: Texto; font-size: 20px; letter-spacing: .01em; line-height: 1.45; }
 .info div:last-child { text-align: right; }
+.selo { position: absolute; top: 48px; right: 48px; display: flex; align-items: center; gap: 14px; padding: 14px 26px 14px 18px; border-radius: 999px; background: rgba(30,29,25,.72); color: #F9F8F4; font-family: Texto; font-size: 24px; letter-spacing: .12em; text-transform: uppercase; }
+.selo b { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #F38049; }
+.selo svg { width: 16px; height: 18px; margin-left: 3px; }
 </style></head><body>
 <img class="foto" src="${foto}">
 <div class="veu"></div>
+${c.video ? '<div class="selo"><b><svg viewBox="0 0 16 18"><path fill="#F9F8F4" d="M0 0v18l16-9z"/></svg></b>Vídeo</div>' : ''}
 <div class="base"><div class="bloco">
 <div class="pino"><i></i><svg viewBox="0 0 30 46"><ellipse cx="15" cy="40" rx="7.5" ry="3" fill="none" stroke="#F9F8F4" stroke-width="2"/><path fill="#F9F8F4" d="M15 2C8 2 2.5 7.5 2.5 14.3 2.5 23.5 15 39 15 39s12.5-15.5 12.5-24.7C27.5 7.5 22 2 15 2z"/><circle cx="15" cy="14.3" r="8.2" fill="#F38049"/></svg><i></i></div>
 <h1>${esc(c.local)}</h1>
