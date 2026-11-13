@@ -2,6 +2,69 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'.",
  "imoveis": [
   {
+   "codigo": "VP-0103",
+   "destaque": true,
+   "tipo": "Casa",
+   "titulo": "Casa com 3 quartos e escritório em lote de 800 m², condomínio fechado na Rua 4",
+   "titulo_seo": "Casa em lote de 800 m² à venda em Vicente Pires, DF · R$ 950 mil",
+   "regiao": "vicente-pires",
+   "endereco": "Rua 4, Vicente Pires",
+   "preco": 950000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": null,
+   "lote": 800,
+   "quartos": 3,
+   "suites": 1,
+   "vagas": null,
+   "documento": "cessao",
+   "capa": {
+    "foto": "fotos/VP-0103/fundo-capa.jpg",
+    "foco": "50% 45%",
+    "local": "Vicente Pires",
+    "esquerda": [
+     "Rua 04 · Condomínio fechado",
+     "Lote 800 m²"
+    ],
+    "direita": [
+     "Casa com 03 quartos",
+     "Sendo 01 suíte · Toda na laje"
+    ]
+   },
+   "descricao": "Espaço de verdade em Vicente Pires. Na Rua 4, dentro de condomínio fechado, este lote de 800 m² tem uma casa com 3 quartos, sendo 1 suíte, toda na laje, e muito terreno livre em volta: amplo jardim com coqueiros e uma área coberta grande para receber a família. Além dos quartos, tem sala, cozinha, escritório, lavabo e WC social, mais 2 quartos despensa e 3 canis para quem tem cachorro. O espaço gourmet com churrasqueira já está pronto. O condomínio tem guarita, câmeras de segurança, iluminação pública em LED, rede de águas pluviais, ruas asfaltadas e calçadas largas, num ambiente bem tranquilo. Imóvel em cessão de direitos (não aceita financiamento bancário); o proprietário aceita proposta e estuda permuta.",
+   "itens": [
+    "Lote de 800 m² em condomínio fechado",
+    "3 quartos, sendo 1 suíte",
+    "Casa toda na laje",
+    "Sala, cozinha americana e escritório",
+    "Lavabo e WC social",
+    "2 quartos despensa",
+    "3 canis",
+    "Espaço gourmet coberto com churrasqueira",
+    "Amplo jardim com coqueiros",
+    "Condomínio com guarita e câmeras de segurança",
+    "Iluminação pública em LED, águas pluviais, asfalto e calçadas largas",
+    "Aceita proposta e estuda permuta"
+   ],
+   "fotos": [
+    "fotos/VP-0103/01.jpg",
+    "fotos/VP-0103/02.jpg",
+    "fotos/VP-0103/03.jpg",
+    "fotos/VP-0103/04.jpg",
+    "fotos/VP-0103/05.jpg",
+    "fotos/VP-0103/06.jpg",
+    "fotos/VP-0103/07.jpg",
+    "fotos/VP-0103/08.jpg",
+    "fotos/VP-0103/09.jpg",
+    "fotos/VP-0103/10.jpg",
+    "fotos/VP-0103/11.jpg",
+    "fotos/VP-0103/12.jpg",
+    "fotos/VP-0103/13.jpg",
+    "fotos/VP-0103/14.jpg",
+    "fotos/VP-0103/15.jpg"
+   ]
+  },
+  {
    "codigo": "AC-0303",
    "destaque": true,
    "tipo": "Apartamento",
