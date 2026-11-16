@@ -17,7 +17,8 @@
    "quartos": 3,
    "suites": 1,
    "vagas": null,
-   "documento": "cessao",
+   "documento": "escriturado",
+   "financiamento": false,
    "capa": {
     "foto": "fotos/VP-0103/fundo-capa.jpg",
     "foco": "50% 45%",
@@ -32,7 +33,7 @@
     ],
     "video": true
    },
-   "descricao": "Espaço de verdade em Vicente Pires. Na Rua 4, dentro de condomínio fechado, este lote de 800 m² tem uma casa com 3 quartos, sendo 1 suíte, toda na laje, e muito terreno livre em volta: amplo jardim com coqueiros e uma área coberta grande para receber a família. Além dos quartos, tem sala, cozinha, escritório, lavabo e WC social, mais 2 quartos despensa e 3 canis para quem tem cachorro. O espaço gourmet com churrasqueira já está pronto. O condomínio tem guarita, câmeras de segurança, iluminação pública em LED, rede de águas pluviais, ruas asfaltadas e calçadas largas, num ambiente bem tranquilo. Imóvel em cessão de direitos (não aceita financiamento bancário); o proprietário aceita proposta e estuda permuta.",
+   "descricao": "Espaço de verdade em Vicente Pires. Na Rua 4, dentro de condomínio fechado, este lote de 800 m² tem uma casa com 3 quartos, sendo 1 suíte, toda na laje, e muito terreno livre em volta: amplo jardim com coqueiros e uma área coberta grande para receber a família. Além dos quartos, tem sala, cozinha, escritório, lavabo e WC social, mais 2 quartos despensa e 3 canis para quem tem cachorro. O espaço gourmet com churrasqueira já está pronto. O condomínio tem guarita, câmeras de segurança, iluminação pública em LED, rede de águas pluviais, ruas asfaltadas e calçadas largas, num ambiente bem tranquilo. Imóvel com escritura pública e IPTU desmembrado, não aceita financiamento bancário; o proprietário aceita proposta e estuda permuta.",
    "itens": [
     "Lote de 800 m² em condomínio fechado",
     "3 quartos, sendo 1 suíte",
@@ -45,6 +46,9 @@
     "Amplo jardim com coqueiros",
     "Condomínio com guarita e câmeras de segurança",
     "Iluminação pública em LED, águas pluviais, asfalto e calçadas largas",
+    "Escritura pública",
+    "IPTU desmembrado",
+    "Não aceita financiamento",
     "Aceita proposta e estuda permuta"
    ],
    "video": "https://www.youtube.com/shorts/taarBw0WPbw",
