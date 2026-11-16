@@ -280,6 +280,15 @@ GUIAS = {
 <p>Antes de visitar, me peça a conta completa do imóvel que te interessou. Eu passo o preço, os custos estimados e as formas de pagamento por escrito.</p>""",
     },
 }
+def doc_de(i):
+    """Situação do documento; "financiamento": false no imóvel avisa que não aceita financiamento."""
+    d = DOCS[i["documento"]]
+    if i.get("financiamento") is False and i["documento"] == "escriturado":
+        d = dict(d, resumo="Escritura pública. Não aceita financiamento bancário.",
+                 texto="Este imóvel tem escritura pública. A venda não aceita financiamento bancário: o pagamento é à vista ou combinado com o vendedor, e a transferência é feita direto no cartório.")
+    return d
+
+
 DOC_GUIA = {"cessao": "cessao-de-direitos", "regularizacao": "regularizacao-terracap", "escriturado": "custos-de-compra"}
 
 
@@ -359,7 +368,7 @@ def foto_capa(i, r):
 
 
 def card(i, r):
-    d = DOCS[i["documento"]]
+    d = doc_de(i)
     reg = REGIOES[i["regiao"]]["nome"]
     attrs = (
         f'data-tipo="{E(i["tipo"])}" data-regiao="{i["regiao"]}" data-preco="{i["preco"] or 0}" '
@@ -865,7 +874,7 @@ def pagina_regiao(slug, imoveis, tem_exemplo):
 
 def pagina_imovel(i, tem_exemplo):
     r = "../"
-    d = DOCS[i["documento"]]
+    d = doc_de(i)
     reg = REGIOES[i["regiao"]]
     vendido = bool(i.get("vendido"))
     msg = f"Olá Fabrício, tenho interesse no imóvel {i['codigo']} ({i['titulo']})."
