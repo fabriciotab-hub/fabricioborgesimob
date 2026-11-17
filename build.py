@@ -680,7 +680,7 @@ def secao_depoimentos(deps):
     if not deps:
         return ""
     itens = "".join(
-        f'<figure class="depoimento"><blockquote>“{E(d["texto"])}”</blockquote><figcaption><strong>{E(d["nome"])}</strong>'
+        f'<figure class="depoimento"><blockquote>{E(d["texto"])}</blockquote><figcaption><strong>{E(d["nome"])}</strong>'
         f'{"<span>" + E(d["contexto"]) + "</span>" if d.get("contexto") else ""}</figcaption></figure>'
         for d in deps
     )
