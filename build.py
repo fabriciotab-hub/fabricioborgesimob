@@ -203,6 +203,13 @@ DOCS = {
         "texto": "Este é um lançamento na planta, com memorial de incorporação registrado em cartório. A compra é feita direto com a construtora, com entrada e parcelas durante a obra, e o restante pode ser financiado na entrega das chaves. Eu explico a tabela e as condições de pagamento.",
         "secao": False,
     },
+    "consulta": {
+        "rotulo": "Documento sob consulta",
+        "cor": "#6B7A72",
+        "resumo": "Situação do documento informada pelo corretor antes da visita.",
+        "texto": "A situação do documento deste imóvel é informada antes da visita. Me chame no WhatsApp que eu explico se é escritura ou cessão de direitos, as formas de pagamento e os custos de transferência.",
+        "secao": False,
+    },
     "portugal": {
         "rotulo": "Portugal",
         "titulo": "Compra em Portugal, com parceiro licenciado",
@@ -328,6 +335,11 @@ def youtube_id(url):
     return m.group(1) if m else None
 
 
+def tem_video(i):
+    """Vídeo do YouTube ("video") ou arquivo MP4 hospedado no próprio site ("video_arquivo")."""
+    return bool(youtube_id(i.get("video")) or i.get("video_arquivo"))
+
+
 ICONE_TT = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>'
 ICONE_IN = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v12H3zM9 9h2.9v1.7h.1a3.2 3.2 0 0 1 2.9-1.6c3 0 3.6 2 3.6 4.6V21h-3v-6.5c0-1.5 0-3.5-2.1-3.5S10.9 12.7 10.9 14.4V21H9z"/></svg>'
 ICONE_INSTA = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>'
@@ -377,7 +389,7 @@ def card(i, r):
         + (' data-vendido="1"' if i.get("vendido") else "")
     )
     return f"""<a class="card" href="{r}imoveis/{i['codigo']}.html" {attrs}>
-<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-vendido">Vendido</span>' if i.get("vendido") else ''}{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if youtube_id(i.get("video")) else ''}</div>
+<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-vendido">Vendido</span>' if i.get("vendido") else ''}{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if tem_video(i) else ''}</div>
 <div class="card-corpo">
 <span class="preco">{"Vendido" if i.get("vendido") else preco(i)}</span>
 <span class="card-titulo">{E(i['titulo'])}</span>
@@ -924,6 +936,11 @@ def pagina_imovel(i, tem_exemplo):
         secao_video = (f'<section style="display:flex;flex-direction:column;gap:12px"><h2>Vídeo do imóvel</h2>'
                        f'<div class="video{" vertical" if "/shorts/" in (i.get("video") or "") else ""}"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="Vídeo do imóvel {i['codigo']}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                        f'<p style="font-size:15px;color:var(--texto-2)"><a href="https://www.youtube.com/watch?v={vid}" rel="noopener">Assistir no YouTube</a></p>{mais}</section>')
+    elif i.get("video_arquivo"):
+        mais = f'<a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Ver mais vídeos no meu canal</a>' if YOUTUBE else ""
+        poster = f' poster="{r}{E(i["video_poster"])}"' if i.get("video_poster") else ""
+        secao_video = (f'<section style="display:flex;flex-direction:column;gap:12px"><h2>Vídeo do imóvel</h2>'
+                       f'<div class="video vertical"><video src="{r}{E(i["video_arquivo"])}"{poster} controls playsinline preload="none" title="Vídeo do imóvel {i['codigo']}"></video></div>{mais}</section>')
     elif YOUTUBE:
         secao_video = f'<p><a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Veja os vídeos dos imóveis no meu canal do YouTube</a></p>'
     else:
@@ -1014,7 +1031,7 @@ def pagina_imovel(i, tem_exemplo):
     head = ld_script(ld, trilha_ld([("Imóveis à venda", "imoveis.html"), (reg["nome"], f"regioes/{i['regiao']}.html"), (f"Código {i['codigo']}", f"imoveis/{i['codigo']}.html")]))
     tipo = {"Comércio": "Ponto comercial", "Lote": "Terreno" if uf(reg) in PAISES else "Lote"}.get(i["tipo"], i["tipo"])
     desc = f"{tipo} à venda {onde}, {lugar.split(', ', 1)[1]}: {specs_curtas(i) or i['titulo']}. {preco(i)}. {d['rotulo']}. Código {i['codigo']}, com fotos e vídeo. Fale com o corretor {MARCA}."
-    if not youtube_id(i.get("video")):
+    if not tem_video(i):
         desc = desc.replace(", com fotos e vídeo", ", com fotos")
     titulo = i.get("titulo_seo") or f"{i['titulo']}{'' if i['regiao'] == 'outras-regioes' else ' ' + em_regiao(reg)} · {preco(i)}"
     return layout(r, titulo, desc, corpo, "comprar", f"imoveis/{i['codigo']}.html", tem_exemplo, head, fotos[0] if fotos else "static/img/fabricio-retrato.jpg",
