@@ -1,4 +1,10 @@
 {
   "_como_usar": "Só depoimentos reais, com autorização do cliente. Cada item: {\"nome\": \"Ana S.\", \"texto\": \"...\", \"contexto\": \"Comprou casa em Vicente Pires\"}. Lista vazia esconde a seção.",
-  "depoimentos": []
+  "depoimentos": [
+    {
+      "nome": "Wellington",
+      "contexto": "Vendeu a casa na QND",
+      "texto": "Só temos a agradecer por todo o suporte na venda da nossa casa na QND. O Fabrício foi extremamente prestativo, paciente e dedicado em cada etapa do processo. Mesmo diante dos problemas e pendências que surgiram no caminho, ele não mediu esforços para resolver tudo com muita agilidade e tranquilidade, nos passando total segurança até a conclusão do negócio. Recomendo o seu trabalho a todos!"
+    }
+  ]
 }
