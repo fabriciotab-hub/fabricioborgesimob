@@ -17,7 +17,8 @@
    "quartos": 4,
    "suites": 4,
    "vagas": 4,
-   "documento": "consulta",
+   "documento": "escriturado",
+   "financiamento": false,
    "capa": {
     "foto": "fotos/JQ-0101/fundo-capa.jpg",
     "foco": "50% 30%",
@@ -32,7 +33,7 @@
     ],
     "video": true
    },
-   "descricao": "Casa de estilo contemporâneo em condomínio fechado no Jockey, num lote de 330 m², com fachada imponente e projeto luminotécnico em LED. A sala tem pé-direito duplo, marcenaria completa, painel de TV e rack planejados e ar-condicionado, e o andar social conta com lavabo. São 4 suítes, todas com ar-condicionado e janela com persiana automatizada; a suíte principal tem closet e banheira de hidromassagem. A cozinha vem com móveis planejados, fogão, coifa, forno e micro-ondas e bancadas em granito. No quintal, piscina pastilhada com cascata e aquecimento elétrico automatizado, churrasqueira a carvão com bancada de apoio e WC social. Área de serviço com planejados, muro em Blindex jateado, fino acabamento e garagem para 4 carros. O proprietário estuda proposta e analisa permuta.",
+   "descricao": "Casa de estilo contemporâneo em condomínio fechado no Jockey, num lote de 330 m², com fachada imponente e projeto luminotécnico em LED. A sala tem pé-direito duplo, marcenaria completa, painel de TV e rack planejados e ar-condicionado, e o andar social conta com lavabo. São 4 suítes, todas com ar-condicionado e janela com persiana automatizada; a suíte principal tem closet e banheira de hidromassagem. A cozinha vem com móveis planejados, fogão, coifa, forno e micro-ondas e bancadas em granito. No quintal, piscina pastilhada com cascata e aquecimento elétrico automatizado, churrasqueira a carvão com bancada de apoio e WC social. Área de serviço com planejados, muro em Blindex jateado, fino acabamento e garagem para 4 carros. Imóvel escriturado, não aceita financiamento bancário; o proprietário estuda proposta e analisa permuta.",
    "itens": [
     "Condomínio fechado",
     "Lote de 330 m²",
@@ -53,6 +54,8 @@
     "Muro em Blindex jateado",
     "Projeto luminotécnico em LED",
     "Garagem para 4 carros",
+    "Escriturado",
+    "Não aceita financiamento",
     "Estuda proposta e analisa permuta"
    ],
    "video_arquivo": "fotos/JQ-0101/video.mp4",

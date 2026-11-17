@@ -946,7 +946,7 @@ def pagina_imovel(i, tem_exemplo):
     else:
         secao_video = ""
     aviso_fin = ""
-    if i["documento"] == "escriturado" or "financ" in (i.get("descricao") or "").lower() and "não aceita financ" not in (i.get("descricao") or "").lower():
+    if i.get("financiamento") is not False and (i["documento"] == "escriturado" or "financ" in (i.get("descricao") or "").lower() and "não aceita financ" not in (i.get("descricao") or "").lower()):
         aviso_fin = (f'<p class="aviso-fin">Financiamento facilitado com a <strong>{PARCEIRO["nome"]}</strong>, parceira. '
                      f'<a href="{PARCEIRO["whats"]}" rel="noopener">Simular no WhatsApp</a></p>')
     mapa_q = quote(i.get("mapa") or local(reg))
