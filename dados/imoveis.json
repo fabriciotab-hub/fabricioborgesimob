@@ -92,7 +92,7 @@
    "area": null,
    "lote": 800,
    "quartos": 3,
-   "suites": 1,
+   "suites": 2,
    "vagas": null,
    "documento": "escriturado",
    "financiamento": false,
@@ -106,14 +106,14 @@
     ],
     "direita": [
      "Casa com 03 quartos",
-     "Sendo 01 suíte · Toda na laje"
+     "Sendo 02 suítes · Toda na laje"
     ],
     "video": true
    },
-   "descricao": "Espaço de verdade em Vicente Pires. Na Rua 4, dentro de condomínio fechado, este lote de 800 m² tem uma casa com 3 quartos, sendo 1 suíte, toda na laje, e muito terreno livre em volta: amplo jardim com coqueiros e uma área coberta grande para receber a família. Além dos quartos, tem sala, cozinha, escritório, lavabo e WC social, mais 2 quartos despensa e 3 canis para quem tem cachorro. O espaço gourmet com churrasqueira já está pronto. O condomínio tem guarita, câmeras de segurança, iluminação pública em LED, rede de águas pluviais, ruas asfaltadas e calçadas largas, num ambiente bem tranquilo. Imóvel com escritura pública e IPTU desmembrado, não aceita financiamento bancário; o proprietário aceita proposta e estuda permuta.",
+   "descricao": "Espaço de verdade em Vicente Pires. Na Rua 4, dentro de condomínio fechado, este lote de 800 m² tem uma casa com 3 quartos, sendo 2 suítes, toda na laje, e muito terreno livre em volta: amplo jardim com coqueiros e uma área coberta grande para receber a família. Além dos quartos, tem sala, cozinha, escritório, lavabo e WC social, mais 2 quartos despensa e 3 canis para quem tem cachorro. O espaço gourmet com churrasqueira já está pronto. O condomínio tem guarita, câmeras de segurança, iluminação pública em LED, rede de águas pluviais, ruas asfaltadas e calçadas largas, num ambiente bem tranquilo. Imóvel com escritura pública e IPTU desmembrado, não aceita financiamento bancário; o proprietário aceita proposta e estuda permuta.",
    "itens": [
     "Lote de 800 m² em condomínio fechado",
-    "3 quartos, sendo 1 suíte",
+    "3 quartos, sendo 2 suítes",
     "Casa toda na laje",
     "Sala, cozinha americana e escritório",
     "Lavabo e WC social",
