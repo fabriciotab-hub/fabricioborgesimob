@@ -31,7 +31,7 @@ GOOGLE_ADS_ID = "AW-18537426832"
 # Rótulo da conversão "Clique no WhatsApp", ex.: "AbCdEfGhIjK" (vem junto do ID no Google Ads).
 GOOGLE_ADS_CONVERSAO = ""
 # Google Analytics 4: ID de métricas, ex.: "G-ABC123XYZ". Vazio desliga o Analytics.
-GA4_ID = ""
+GA4_ID = "G-DPWYNWK2QW"
 
 TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Comércio", "Chácara", "Fazenda"]
 
