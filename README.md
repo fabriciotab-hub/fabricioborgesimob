@@ -17,4 +17,5 @@ Novidades (nov/2026):
 - `"vendido": true` no imóvel: mostra o selo "Vendido", troca o preço por "Vendido", leva o anúncio para o fim da lista e o WhatsApp passa a pedir "um imóvel parecido".
 - `dados/depoimentos.json`: depoimentos reais, com autorização do cliente. Lista vazia esconde a seção na home e no Sobre.
 - Guias (`GUIAS` no `build.py`) viram páginas em `guias/` e entram no sitemap.
+- `"dossie": "dossies/CODIGO.pdf"` no imóvel: tarja "Dossiê de investimento disponível" no card, quadro com botão de baixar na ficha e evento `baixar_dossie` no Analytics. Some quando o imóvel é vendido.
 - Medição: todo clique que abre o WhatsApp vira o evento `contato_whatsapp` (origem e código do imóvel). Preencha `GA4_ID` e `GOOGLE_ADS_CONVERSAO` no `build.py` para ver no Analytics e contar conversão no Google Ads.

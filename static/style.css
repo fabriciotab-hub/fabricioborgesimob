@@ -359,3 +359,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .whats-flutuante { width: 52px; height: 52px; right: 14px; bottom: 14px; }
   .grade-home .card:nth-child(n+5) { display: none; }
 }
+
+/* Dossiê de investimento: tarja no card e quadro na ficha */
+.tarja-dossie { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 10px; background: var(--azul); color: var(--areia-clara); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.tarja-dossie svg { width: 14px; height: 14px; color: var(--areia); flex: none; }
+.dossie-box { border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 12px; background: var(--azul); color: var(--areia-clara); }
+.dossie-box h2 { color: #fff; font-size: 22px; }
+.dossie-box p { line-height: 1.6; }
+.dossie-rot { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--areia); }
+.dossie-box .btn { align-self: flex-start; background: var(--areia); color: var(--azul); display: inline-flex; align-items: center; gap: 8px; }
+.dossie-box .btn:hover { background: var(--areia-clara); color: var(--azul); }
+.link-dossie { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; font-size: 15px; padding: 6px 0; }
