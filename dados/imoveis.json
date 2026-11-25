@@ -2,6 +2,75 @@
  "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'. 'video_arquivo' (opcional) é um MP4 do próprio site, para imóvel cujo vídeo não está no YouTube; 'video_poster' é a imagem antes do play.",
  "imoveis": [
   {
+   "codigo": "VP-0104",
+   "destaque": true,
+   "tipo": "Casa",
+   "titulo": "Casa com 3 suítes e piscina em condomínio fechado na Rua 8",
+   "titulo_seo": "Casa com 3 suítes e piscina à venda em Vicente Pires, DF · R$ 1,6 milhão",
+   "regiao": "vicente-pires",
+   "endereco": "Rua 8, Vicente Pires",
+   "preco": 1600000,
+   "condominio": null,
+   "iptu_ano": null,
+   "area": 270,
+   "lote": 300,
+   "quartos": 3,
+   "suites": 3,
+   "vagas": 4,
+   "documento": "escriturado",
+   "doc_resumo": "Escriturada e quitada na Terracap, sem habite-se. Aceita financiamento do lote (R$ 260 mil).",
+   "doc_texto": "Este imóvel está escriturado e quitado na Terracap e ainda não possui habite-se. Por isso o financiamento bancário cobre só o lote, no valor de R$ 260 mil; o restante é pago com recursos próprios, e o proprietário analisa permuta. Eu explico com calma o que isso muda na compra antes da visita.",
+   "capa": {
+    "foto": "fotos/VP-0104/fundo-capa.jpg",
+    "foco": "50% 52%",
+    "local": "Vicente Pires",
+    "esquerda": [
+     "Cond. fechado",
+     "Excelente localização"
+    ],
+    "direita": [
+     "3 suítes",
+     "Lazer completo"
+    ]
+   },
+   "descricao": "Casa de arquitetura contemporânea em condomínio fechado na Rua 8 de Vicente Pires, a poucos minutos da Rua 5, onde estão supermercados, farmácias, escolas e o comércio do dia a dia. A fachada tem volumes retos em grafite, forro e ripado em tom amadeirado, parede de pedra natural na garagem e esquadria de vidro do piso ao teto; a garagem tem 4 vagas. Por dentro, a sala tem pé-direito elevado e janelas altas, o piso é porcelanato claro em placas grandes, a iluminação mistura spots embutidos e sancas de luz indireta, e portas de correr de vidro do piso ao teto abrem para a área externa. Na circulação, uma claraboia com trilho de spots traz luz natural para o meio da casa. A cozinha é integrada à área gourmet. São 3 suítes amplas, com box de vidro do piso ao teto, nicho iluminado, metais pretos e bancada suspensa com cuba de apoio; o lavabo tem parede em pedra natural em filetes e cuba esculpida em pedra. No fundo, piscina revestida em pastilhas, com muro de pedra natural, arandelas e jardim. São 270 m² construídos em lote de 300 m². Casa escriturada e quitada na Terracap, ainda sem habite-se; aceita financiamento do lote no valor de R$ 260 mil, e o proprietário analisa permuta.",
+   "itens": [
+    "Condomínio fechado na Rua 8, perto da Rua 5",
+    "270 m² construídos em lote de 300 m²",
+    "3 suítes amplas",
+    "Sala com pé-direito elevado e janelas altas",
+    "Cozinha integrada com área gourmet",
+    "Piscina com pastilhas e muro de pedra natural",
+    "Claraboia na circulação",
+    "Sancas de luz indireta, spots e trilho de iluminação",
+    "Porcelanato claro em placas grandes",
+    "Esquadrias pretas e portas de vidro do piso ao teto",
+    "Banheiros com box do piso ao teto e metais pretos",
+    "Lavabo em pedra natural com cuba esculpida",
+    "Garagem para 4 carros",
+    "Escriturada e quitada na Terracap",
+    "Sem habite-se",
+    "Aceita financiamento do lote (R$ 260 mil)",
+    "Analisa permuta"
+   ],
+   "fotos": [
+    "fotos/VP-0104/01.jpg",
+    "fotos/VP-0104/02.jpg",
+    "fotos/VP-0104/03.jpg",
+    "fotos/VP-0104/04.jpg",
+    "fotos/VP-0104/05.jpg",
+    "fotos/VP-0104/06.jpg",
+    "fotos/VP-0104/07.jpg",
+    "fotos/VP-0104/08.jpg",
+    "fotos/VP-0104/09.jpg",
+    "fotos/VP-0104/10.jpg",
+    "fotos/VP-0104/11.jpg",
+    "fotos/VP-0104/12.jpg",
+    "fotos/VP-0104/13.jpg",
+    "fotos/VP-0104/14.jpg"
+   ]
+  },
+  {
    "codigo": "JQ-0101",
    "destaque": true,
    "tipo": "Casa",

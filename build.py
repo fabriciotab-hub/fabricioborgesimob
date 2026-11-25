@@ -293,6 +293,9 @@ def doc_de(i):
     if i.get("financiamento") is False and i["documento"] == "escriturado":
         d = dict(d, resumo="Escritura pública. Não aceita financiamento bancário.",
                  texto="Este imóvel tem escritura pública. A venda não aceita financiamento bancário: o pagamento é à vista ou combinado com o vendedor, e a transferência é feita direto no cartório.")
+    # "doc_resumo" / "doc_texto" no imóvel: condição específica (ex.: financiamento só do lote, sem habite-se).
+    if i.get("doc_resumo") or i.get("doc_texto"):
+        d = dict(d, resumo=i.get("doc_resumo", d["resumo"]), texto=i.get("doc_texto", d["texto"]))
     return d
 
 
