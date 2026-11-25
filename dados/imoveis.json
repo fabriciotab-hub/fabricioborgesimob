@@ -18,8 +18,8 @@
    "suites": 3,
    "vagas": 4,
    "documento": "escriturado",
-   "doc_resumo": "Escriturada e quitada na Terracap, sem habite-se. Aceita financiamento do lote (R$ 260 mil).",
-   "doc_texto": "Este imóvel está escriturado e quitado na Terracap e ainda não possui habite-se. Por isso o financiamento bancário cobre só o lote, no valor de R$ 260 mil; o restante é pago com recursos próprios, e o proprietário analisa permuta. Eu explico com calma o que isso muda na compra antes da visita.",
+   "doc_resumo": "Escriturada e quitada na Terracap, sem habite-se. Aceita financiamento do lote (R$ 260 mil) no banco de sua preferência.",
+   "doc_texto": "Este imóvel está escriturado e quitado na Terracap e ainda não possui habite-se. Por isso o financiamento bancário cobre só o lote, no valor de R$ 260 mil, no banco de sua preferência; o restante é pago com recursos próprios, e o proprietário analisa permuta por apartamento em Águas Claras. Eu explico com calma o que isso muda na compra antes da visita.",
    "capa": {
     "foto": "fotos/VP-0104/fundo-capa.jpg",
     "foco": "50% 52%",
@@ -33,7 +33,7 @@
      "Lazer completo"
     ]
    },
-   "descricao": "Casa de arquitetura contemporânea em condomínio fechado na Rua 8 de Vicente Pires, a poucos minutos da Rua 5, onde estão supermercados, farmácias, escolas e o comércio do dia a dia. A fachada tem volumes retos em grafite, forro e ripado em tom amadeirado, parede de pedra natural na garagem e esquadria de vidro do piso ao teto; a garagem tem 4 vagas. Por dentro, a sala tem pé-direito elevado e janelas altas, o piso é porcelanato claro em placas grandes, a iluminação mistura spots embutidos e sancas de luz indireta, e portas de correr de vidro do piso ao teto abrem para a área externa. Na circulação, uma claraboia com trilho de spots traz luz natural para o meio da casa. A cozinha é integrada à área gourmet. São 3 suítes amplas, com box de vidro do piso ao teto, nicho iluminado, metais pretos e bancada suspensa com cuba de apoio; o lavabo tem parede em pedra natural em filetes e cuba esculpida em pedra. No fundo, piscina revestida em pastilhas, com muro de pedra natural, arandelas e jardim. São 270 m² construídos em lote de 300 m². Casa escriturada e quitada na Terracap, ainda sem habite-se; aceita financiamento do lote no valor de R$ 260 mil, e o proprietário analisa permuta.",
+   "descricao": "Casa de arquitetura contemporânea em condomínio fechado na Rua 8 de Vicente Pires, a poucos minutos da Rua 5, onde estão supermercados, farmácias, escolas e o comércio do dia a dia. A fachada tem volumes retos em grafite, forro e ripado em tom amadeirado, parede de pedra natural na garagem e esquadria de vidro do piso ao teto; a garagem tem 4 vagas. Por dentro, a sala tem pé-direito elevado e janelas altas, o piso é porcelanato claro em placas grandes, a iluminação mistura spots embutidos e sancas de luz indireta, e portas de correr de vidro do piso ao teto abrem para a área externa. Na circulação, uma claraboia com trilho de spots traz luz natural para o meio da casa. A cozinha é integrada à área gourmet. São 3 suítes amplas, com box de vidro do piso ao teto, nicho iluminado, metais pretos e bancada suspensa com cuba de apoio; o lavabo tem parede em pedra natural em filetes e cuba esculpida em pedra. No fundo, piscina revestida em pastilhas, com muro de pedra natural, arandelas e jardim. São 270 m² construídos em lote de 300 m². Casa escriturada e quitada na Terracap, ainda sem habite-se; aceita financiamento do lote no valor de R$ 260 mil, no banco de sua preferência, e o proprietário analisa permuta por apartamento em Águas Claras.",
    "itens": [
     "Condomínio fechado na Rua 8, perto da Rua 5",
     "270 m² construídos em lote de 300 m²",
@@ -50,8 +50,8 @@
     "Garagem para 4 carros",
     "Escriturada e quitada na Terracap",
     "Sem habite-se",
-    "Aceita financiamento do lote (R$ 260 mil)",
-    "Analisa permuta"
+    "Financiamento do lote (R$ 260 mil) no banco de sua preferência",
+    "Analisa permuta por apartamento em Águas Claras"
    ],
    "fotos": [
     "fotos/VP-0104/01.jpg",
