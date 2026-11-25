@@ -338,6 +338,14 @@ def youtube_id(url):
     return m.group(1) if m else None
 
 
+ICONE_DOSSIE = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 17v-3M12 17v-5M15 17v-2"/></svg>'
+
+
+def tem_dossie(i):
+    """Dossiê de investimento em PDF ("dossie": "dossies/CODIGO.pdf"); some quando o imóvel é vendido."""
+    return bool(i.get("dossie")) and not i.get("vendido")
+
+
 def tem_video(i):
     """Vídeo do YouTube ("video") ou arquivo MP4 hospedado no próprio site ("video_arquivo")."""
     return bool(youtube_id(i.get("video")) or i.get("video_arquivo"))
@@ -392,7 +400,7 @@ def card(i, r):
         + (' data-vendido="1"' if i.get("vendido") else "")
     )
     return f"""<a class="card" href="{r}imoveis/{i['codigo']}.html" {attrs}>
-<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-vendido">Vendido</span>' if i.get("vendido") else ''}{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if tem_video(i) else ''}</div>
+<div class="card-foto">{foto_capa(i, r)}<span class="selo selo-{i['documento']}">{d['rotulo']}</span>{'<span class="selo selo-vendido">Vendido</span>' if i.get("vendido") else ''}{'<span class="selo selo-video">' + ICONE_YT + ' Vídeo</span>' if tem_video(i) else ''}</div>{'<span class="tarja-dossie">' + ICONE_DOSSIE + ' Dossiê de investimento disponível</span>' if tem_dossie(i) else ''}
 <div class="card-corpo">
 <span class="preco">{"Vendido" if i.get("vendido") else preco(i)}</span>
 <span class="card-titulo">{E(i['titulo'])}</span>
@@ -434,7 +442,8 @@ def tag_google_ads():
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
 gtag('js',new Date());{configs}
-document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
+document.addEventListener('click',function(e){{var d=e.target.closest&&e.target.closest('a[data-dossie]');if(d){{gtag('event','baixar_dossie',{{imovel:d.getAttribute('data-codigo')||'',pagina:location.pathname}});return;}}
+var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
 var p={{origem:a.getAttribute('data-origem')||'link',pagina:location.pathname,imovel:a.getAttribute('data-codigo')||(document.body.getAttribute('data-codigo')||'')}};
 if(a.href.indexOf('wa.me/{WHATS}')>-1){{gtag('event','contato_whatsapp',p);{conversao}}}else{{gtag('event','contato_cvt',p);}}}},true);
 </script>
@@ -948,6 +957,12 @@ def pagina_imovel(i, tem_exemplo):
         secao_video = f'<p><a href="{E(YOUTUBE)}" rel="noopener" style="font-weight:600">{ICONE_YT} Veja os vídeos dos imóveis no meu canal do YouTube</a></p>'
     else:
         secao_video = ""
+    secao_dossie = ""
+    if tem_dossie(i):
+        secao_dossie = (f'<section class="dossie-box"><span class="dossie-rot">{ICONE_DOSSIE} Dossiê de investimento</span>'
+                        f'<h2>A compra vista como investimento</h2>'
+                        f'<p>Dados oficiais da região (renda, população, valorização e regularização), leitura de preço, caminhos de pagamento e riscos, tudo com fonte, em um PDF{f" de {i['dossie_paginas']} páginas" if i.get("dossie_paginas") else ""} feito para este imóvel.</p>'
+                        f'<a class="btn btn-azul" data-dossie data-codigo="{i["codigo"]}" href="{r}{E(i["dossie"])}" target="_blank" rel="noopener">{ICONE_DOSSIE} Baixar o dossiê (PDF)</a></section>')
     aviso_fin = ""
     if i.get("financiamento") is not False and (i["documento"] == "escriturado" or "financ" in (i.get("descricao") or "").lower() and "não aceita financ" not in (i.get("descricao") or "").lower()):
         aviso_fin = (f'<p class="aviso-fin">Financiamento facilitado com a <strong>{PARCEIRO["nome"]}</strong>, parceira. '
@@ -976,6 +991,7 @@ def pagina_imovel(i, tem_exemplo):
 <p style="line-height:1.7;color:#33334A">{E(i['descricao'])}</p>
 <div class="tags">{tags}</div>
 </section>
+{secao_dossie}
 {secao_video}
 <section class="doc-box doc-{i['documento']}">
 <h2 style="font-size:22px">{d.get('titulo', 'Situação do documento: ' + d['rotulo'].lower())}</h2>
@@ -993,6 +1009,7 @@ def pagina_imovel(i, tem_exemplo):
 <span class="preco">{preco_txt}</span>
 <div class="custos">{custos_html or ('<div><span>Sem condomínio</span></div>' if i.get("condominio") == 0 else '')}</div>
 <a class="btn btn-azul" style="min-height:52px;font-size:17px" data-origem="anuncio" data-codigo="{i['codigo']}" href="{wa(msg)}">{ICONE_WHATS.format(s=20)} {"Quero um imóvel parecido" if vendido else "Conversar no WhatsApp"}</a>
+{f'<a class="link-dossie" data-dossie data-codigo="{i["codigo"]}" href="{r}{E(i["dossie"])}" target="_blank" rel="noopener">{ICONE_DOSSIE} Baixar o dossiê de investimento</a>' if tem_dossie(i) else ''}
 {"" if vendido else '<button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>'}
 <form class="form-visita" data-visita data-codigo="{i['codigo']}" hidden>
 <label class="campo">Seu nome<input name="nome" required autocomplete="name"></label>
@@ -1211,6 +1228,8 @@ def main():
     shutil.copytree(RAIZ / "static", SAIDA / "static")
     if (RAIZ / "fotos").exists():
         shutil.copytree(RAIZ / "fotos", SAIDA / "fotos")
+    if (RAIZ / "dossies").exists():
+        shutil.copytree(RAIZ / "dossies", SAIDA / "dossies")
 
     paginas = {
         "index.html": pagina_inicial(imoveis, tem_exemplo, deps),

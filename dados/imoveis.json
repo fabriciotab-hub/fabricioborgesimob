@@ -1,8 +1,10 @@
 {
- "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'. 'video_arquivo' (opcional) é um MP4 do próprio site, para imóvel cujo vídeo não está no YouTube; 'video_poster' é a imagem antes do play.",
+ "_comentario": "Lista de imóveis do site. Cada item vira uma página em /imoveis/CODIGO.html. 'exemplo': true marca imóveis fictícios usados só na prévia; apague-os ao cadastrar os reais. 'video' aceita o link do YouTube do imóvel (opcional). 'capa_foco' (opcional) ajusta o enquadramento da capa, ex.: '50% 100%' mostra a parte de baixo da foto. 'titulo_seo' (opcional) é o título que aparece no Google; 'bairro' (opcional) dá o bairro de imóveis em 'outras-regioes'. 'video_arquivo' (opcional) é um MP4 do próprio site, para imóvel cujo vídeo não está no YouTube; 'video_poster' é a imagem antes do play. 'dossie' (opcional) é o PDF do dossiê de investimento em dossies/CODIGO.pdf: põe a tarja no card e o botão de baixar na ficha; 'dossie_paginas' é o número de páginas.",
  "imoveis": [
   {
    "codigo": "VP-0104",
+   "dossie": "dossies/VP-0104.pdf",
+   "dossie_paginas": 13,
    "destaque": true,
    "tipo": "Casa",
    "titulo": "Casa com 3 suítes e piscina em condomínio fechado na Rua 8",

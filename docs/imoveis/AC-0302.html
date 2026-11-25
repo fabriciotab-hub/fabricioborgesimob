@@ -24,7 +24,8 @@
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','AW-18537426832');gtag('config','G-DPWYNWK2QW');
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
+document.addEventListener('click',function(e){var d=e.target.closest&&e.target.closest('a[data-dossie]');if(d){gtag('event','baixar_dossie',{imovel:d.getAttribute('data-codigo')||'',pagina:location.pathname});return;}
+var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
 var p={origem:a.getAttribute('data-origem')||'link',pagina:location.pathname,imovel:a.getAttribute('data-codigo')||(document.body.getAttribute('data-codigo')||'')};
 if(a.href.indexOf('wa.me/5561995620101')>-1){gtag('event','contato_whatsapp',p);}else{gtag('event','contato_cvt',p);}},true);
 </script>
@@ -68,6 +69,7 @@ if(a.href.indexOf('wa.me/5561995620101')>-1){gtag('event','contato_whatsapp',p);
 <p style="line-height:1.7;color:#33334A">Apartamento de 3 quartos no Montana Residencial, no Areal, em Águas Claras, pronto para morar e com acabamento de alto padrão. Fica em andar alto, com vista livre e sol da manhã (nascente), o que garante privacidade e muita luz natural o dia todo. São 72 m² privativos bem distribuídos: sala de estar e jantar integradas, cozinha planejada com bancada em granito, três quartos, sendo um suíte com closet de portas de vidro, e dois banheiros com revestimento marmorizado e metais dourados. Piso em porcelanato, forro com iluminação embutida, boiseries nas paredes e armários planejados em todos os ambientes. Ar-condicionado nos quartos e na sala. Duas vagas de garagem cobertas, perto do elevador. O Montana tem estrutura de clube: piscinas adulto e infantil, academia, sauna, deck lounge, espaço gourmet, churrasqueiras, salão de festas, salão de jogos e playground, com portaria e segurança 24 horas. O condomínio aceita pets. Na QS 5, você fica a poucos minutos do Pistão Sul, do Hospital Brasília Águas Claras, de Taguatinga e do centro de Águas Claras, perto da Escola Canadense, de faculdades, supermercados, farmácias e shoppings. Imóvel escriturado, registrado e com habite-se: aceita financiamento bancário e uso do FGTS. Condomínio de R$ 699 por mês.</p>
 <div class="tags"><span>3 quartos, sendo 1 suíte</span><span>72 m² privativos</span><span>Andar alto com vista livre</span><span>Sol da manhã (nascente)</span><span>Armários planejados em todos os ambientes</span><span>Closet com portas de vidro</span><span>Porcelanato e iluminação embutida</span><span>Ar-condicionado</span><span>2 vagas cobertas perto do elevador</span><span>Piscinas adulto e infantil</span><span>Academia e sauna</span><span>Espaço gourmet e churrasqueiras</span><span>Salão de festas e de jogos</span><span>Playground</span><span>Portaria e segurança 24h</span><span>Aceita pet</span><span>Escriturado, registrado e com habite-se</span><span>Aceita financiamento e FGTS</span></div>
 </section>
+
 <p><a href="https://www.youtube.com/@FabricioBorgesCorretorIm-sb5mb" rel="noopener" style="font-weight:600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor" stroke="none"/></svg> Veja os vídeos dos imóveis no meu canal do YouTube</a></p>
 <section class="doc-box doc-escriturado">
 <h2 style="font-size:22px">Situação do documento: escriturado</h2>
@@ -85,6 +87,7 @@ if(a.href.indexOf('wa.me/5561995620101')>-1){gtag('event','contato_whatsapp',p);
 <span class="preco">R$ 960.000</span>
 <div class="custos"><div><span>Condomínio</span><b>R$ 699/mês</b></div></div>
 <a class="btn btn-azul" style="min-height:52px;font-size:17px" data-origem="anuncio" data-codigo="AC-0302" href="https://wa.me/5561995620101?text=Ol%C3%A1%20Fabr%C3%ADcio%2C%20tenho%20interesse%20no%20im%C3%B3vel%20AC-0302%20%28Apartamento%20de%203%20quartos%20com%20su%C3%ADte%20no%20Montana%20Residencial%29."><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg> Conversar no WhatsApp</a>
+
 <button class="btn btn-contorno" type="button" data-abrir-visita style="min-height:52px">Agendar visita</button>
 <form class="form-visita" data-visita data-codigo="AC-0302" hidden>
 <label class="campo">Seu nome<input name="nome" required autocomplete="name"></label>

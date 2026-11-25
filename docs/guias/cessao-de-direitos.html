@@ -24,7 +24,8 @@
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','AW-18537426832');gtag('config','G-DPWYNWK2QW');
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
+document.addEventListener('click',function(e){var d=e.target.closest&&e.target.closest('a[data-dossie]');if(d){gtag('event','baixar_dossie',{imovel:d.getAttribute('data-codigo')||'',pagina:location.pathname});return;}
+var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');if(!a)return;
 var p={origem:a.getAttribute('data-origem')||'link',pagina:location.pathname,imovel:a.getAttribute('data-codigo')||(document.body.getAttribute('data-codigo')||'')};
 if(a.href.indexOf('wa.me/5561995620101')>-1){gtag('event','contato_whatsapp',p);}else{gtag('event','contato_cvt',p);}},true);
 </script>
