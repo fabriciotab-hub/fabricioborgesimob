@@ -19,3 +19,4 @@ Novidades (nov/2026):
 - Guias (`GUIAS` no `build.py`) viram páginas em `guias/` e entram no sitemap.
 - `"dossie": "dossies/CODIGO.pdf"` no imóvel: tarja "Dossiê de investimento disponível" no card, quadro com botão de baixar na ficha e evento `baixar_dossie` no Analytics. Some quando o imóvel é vendido.
 - Medição: todo clique que abre o WhatsApp vira o evento `contato_whatsapp` (origem e código do imóvel). Preencha `GA4_ID` e `GOOGLE_ADS_CONVERSAO` no `build.py` para ver no Analytics e contar conversão no Google Ads.
+- Pixel da Meta: preencha `META_PIXEL_ID` no `build.py`. Envia `PageView` em todas as páginas, `ViewContent` na ficha do imóvel (com o código) e `Contact` em todo clique no WhatsApp do Fabricio. Vazio desliga.

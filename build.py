@@ -32,6 +32,8 @@ GOOGLE_ADS_ID = "AW-18537426832"
 GOOGLE_ADS_CONVERSAO = ""
 # Google Analytics 4: ID de métricas, ex.: "G-ABC123XYZ". Vazio desliga o Analytics.
 GA4_ID = "G-DPWYNWK2QW"
+# Pixel da Meta (Facebook/Instagram Ads): ID do conjunto de dados, ex.: "1234567890123456". Vazio desliga o Pixel.
+META_PIXEL_ID = ""
 
 TIPOS = ["Casa", "Apartamento", "Lote", "Área residencial", "Área comercial", "Comércio", "Chácara", "Fazenda"]
 
@@ -450,6 +452,24 @@ if(a.href.indexOf('wa.me/{WHATS}')>-1){{gtag('event','contato_whatsapp',p);{conv
 """
 
 
+def tag_meta_pixel():
+    """Pixel da Meta: PageView em toda página, ViewContent na ficha do imóvel e Contact em todo clique
+    que abre o WhatsApp do Fabricio (inclusive formulários). Vazio em META_PIXEL_ID desliga tudo."""
+    if not META_PIXEL_ID:
+        return ""
+    return f"""<script>
+!function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','{META_PIXEL_ID}');fbq('track','PageView');
+document.addEventListener('DOMContentLoaded',function(){{var c=document.body.getAttribute('data-codigo');if(c)fbq('track','ViewContent',{{content_ids:[c],content_type:'product'}});}});
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/{WHATS}"]');if(!a)return;
+var c=a.getAttribute('data-codigo')||document.body.getAttribute('data-codigo')||'';fbq('track','Contact',{{content_name:c,origem:a.getAttribute('data-origem')||'link'}});}},true);
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id={META_PIXEL_ID}&ev=PageView&noscript=1"></noscript>
+"""
+
+
 def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False, extra_head="", imagem="static/img/fabricio-retrato.jpg", indexar=True, whats_msg=None, codigo="", barra=""):
     canonical = f"{DOMINIO}/{caminho}"
     robots = "" if indexar else '<meta name="robots" content="noindex">\n'
@@ -500,7 +520,7 @@ def layout(r, titulo, descricao, corpo, ativo="", caminho="", tem_exemplo=False,
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Julius+Sans+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{r}static/style.css">
-{tag_google_ads()}{extra_head}
+{tag_google_ads()}{tag_meta_pixel()}{extra_head}
 </head>
 <body{f' data-codigo="{codigo}"' if codigo else ""}{' class="com-barra"' if barra else ""}>
 {aviso}
@@ -1189,7 +1209,7 @@ def pagina_privacidade(tem_exemplo):
 <h2>Seus direitos</h2>
 <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados. Basta me chamar no WhatsApp {WHATS_TXT}.</p>
 <h2>Serviços de terceiros</h2>
-<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts.{" Também uso o Google Ads para anunciar o site, com cookies que medem quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if GOOGLE_ADS_ID else ""}{" Uso o Google Analytics para contar visitas e cliques no WhatsApp, sem identificar quem você é." if GA4_ID else ""} Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
+<p>As páginas de imóveis mostram um mapa do Google Maps e podem mostrar vídeos do YouTube, e o site usa fontes do Google Fonts.{" Também uso o Google Ads para anunciar o site, com cookies que medem quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if GOOGLE_ADS_ID else ""}{" Uso o Google Analytics para contar visitas e cliques no WhatsApp, sem identificar quem você é." if GA4_ID else ""}{" Também uso o Pixel da Meta (Facebook e Instagram) para medir quantas pessoas chegam pelos anúncios e clicam no WhatsApp." if META_PIXEL_ID else ""} Esses serviços podem registrar dados técnicos de acesso conforme as políticas do Google.</p>
 </div></section>"""
     return layout("", f"Política de privacidade · {MARCA}", "Como o site de Fabrício Borges trata os dados de quem entra em contato.", corpo, "", "privacidade.html", tem_exemplo)
 
